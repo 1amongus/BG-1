@@ -128,6 +128,14 @@
       .stat .n { color: var(--gold); font-size: 19px; }
       .path-top .spacer { flex: 1; }
       .path-sub { color: var(--ink-soft); font-size: 15.5px; margin: 0 0 10px; }
+      /* Chapter switcher (path + reader, kept in sync) */
+      .ch-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+      .ch-tab {
+        border: 1.5px solid var(--line); background: var(--bg); color: var(--ink-soft);
+        border-radius: 999px; padding: 8px 18px; font-size: 15.5px; font-weight: 700; min-height: 44px;
+      }
+      .ch-tab.active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+      .verse-list .ch-tabs { padding: 14px 16px 0; margin-bottom: 2px; }
       .path { position: relative; max-width: 430px; margin: 8px auto 0; padding: 10px 0 4px; }
       .path::before {
         content: ""; position: absolute; top: 24px; bottom: 24px; left: 50%; width: 3px;
@@ -385,10 +393,10 @@
     <div class="wrap">
       <header class="intro">
         <h1>Learn the <span class="dev">भगवद्गीता</span>, two ways</h1>
-        <p>Same forty-seven verses, two very different ways to learn them. Try the guided path if you want small daily steps with checks along the way; open the study reader if you would rather sit with each verse and take it apart word by word. Both are live below — pick either and start.</p>
+        <p>Same verses, two very different ways to learn them. Try the guided path if you want small daily steps with checks along the way; open the study reader if you would rather sit with each verse and take it apart word by word. Both are live below — pick either and start.</p>
         <div class="chips">
-          <span class="chip"><strong>Chapter 1</strong> · Arjuna Viṣāda Yoga</span>
-          <span class="chip">Verses <strong>1–47</strong> · the whole chapter</span>
+          <span class="chip" id="chipCh"><strong>Chapter 1</strong> · Arjuna Viṣāda Yoga</span>
+          <span class="chip" id="chipRange">Verses <strong>1–47</strong> · the whole chapter</span>
           <span class="chip">Text from the <strong>Samsaadhanii</strong> e-reader</span>
         </div>
       </header>
@@ -409,7 +417,7 @@
         <article class="opt-card">
           <p class="opt-tag">Option B</p>
           <h2>The Study Reader</h2>
-          <p>The e-reader way — these forty-seven verses open in front of you, each with its full analysis.</p>
+          <p>The e-reader way — the verses open in front of you, each with its full analysis.</p>
           <ul>
             <li>Complete word-by-word breakdown of every verse</li>
             <li><span class="dev">अन्वयः</span>, <span class="dev">कारकचक्रम्</span> and <span class="dev">पदपरिचयः</span> for every verse, in Sanskrit</li>
@@ -424,16 +432,20 @@
       <section class="block" id="option-a">
         <div class="block-head">
           <h2>Option A — The Guided Path</h2>
-          <p>Forty-seven stops, one for each verse. Each lesson now has four short steps, almost all in Sanskrit: <span class="dev">पाठः</span> (read and tap the words), <span class="dev">पदपरिचयः</span> (is each word a <span class="dev">नामपदम्</span> or a <span class="dev">क्रियापदम्</span>?), <span class="dev">अन्वयः</span> with the <span class="dev">कारकचक्रम्</span>, and a final <span class="dev">परीक्षणम्</span> (meaning check). Every stop stays open, so you can revisit any verse.</p>
+          <p>One stop for each verse. Each lesson now has four short steps, almost all in Sanskrit: <span class="dev">पाठः</span> (read and tap the words), <span class="dev">पदपरिचयः</span> (is each word a <span class="dev">नामपदम्</span> or a <span class="dev">क्रियापदम्</span>?), <span class="dev">अन्वयः</span> with the <span class="dev">कारकचक्रम्</span>, and a final <span class="dev">परीक्षणम्</span> (meaning check). Every stop stays open, so you can revisit any verse.</p>
         </div>
         <div class="path-shell">
+          <div class="ch-tabs" role="group" aria-label="Choose a chapter">
+            <button class="ch-tab active" data-ch="1">Chapter 1 · Arjuna Viṣāda Yoga</button>
+            <button class="ch-tab" data-ch="12">Chapter 12 · Bhakti Yoga</button>
+          </div>
           <div class="path-top">
             <span class="stat"><span class="n" id="statDone">० / १०</span> verses done</span>
             <span class="stat"><span class="n" id="statXp">०</span> XP</span>
             <span class="spacer"></span>
             <button class="btn" id="startBtn">Start verse १</button>
           </div>
-          <p class="path-sub">Chapter 1 opens on the battlefield of Kurukṣetra: a blind king asks what happened, and Duryodhana walks the lines of both armies.</p>
+          <p class="path-sub" id="pathSub">Chapter 1 opens on the battlefield of Kurukṣetra: a blind king asks what happened, and Duryodhana walks the lines of both armies.</p>
           <div class="path" id="path"></div>
         </div>
       </section>
@@ -445,8 +457,12 @@
           <p>Modelled on the Samsaadhanii e-reader: choose a verse and study it whole — text, transliteration, translation, word-by-word table, and now also the <span class="dev">अन्वयः</span>, the <span class="dev">कारकचक्रम्</span> and a <span class="dev">पदपरिचयः</span> table naming each word's form — <span class="dev">नामपदम्</span>, <span class="dev">क्रियापदम्</span> or <span class="dev">अव्ययपदम्</span> — with its <span class="dev">लिङ्ग-विभक्ति-वचन</span> or <span class="dev">लकार-पुरुष-वचन</span>.</p>
         </div>
         <div class="reader">
-          <nav class="verse-list" aria-label="Verses of chapter 1">
-            <h3>Chapter 1 · Verses 1–47</h3>
+          <nav class="verse-list" aria-label="Verses of the chapter">
+            <div class="ch-tabs" role="group" aria-label="Choose a chapter">
+              <button class="ch-tab active" data-ch="1">Chapter 1</button>
+              <button class="ch-tab" data-ch="12">Chapter 12</button>
+            </div>
+            <h3 id="readerHead">Chapter 1 · Verses 1–47</h3>
             <div class="items" id="verseList"></div>
           </nav>
           <article class="reader-detail" id="readerDetail"></article>
@@ -501,7 +517,7 @@
           <div class="cmp">
             <h3>Guided Path</h3>
             <dl>
-              <dt>Pace</dt><dd>One verse at a time, about 2–3 minutes a stop; all forty-seven verses in about two hours, or spread over days.</dd>
+              <dt>Pace</dt><dd>One verse at a time, about 2–3 minutes a stop; a whole chapter in about two hours, or spread over days.</dd>
               <dt>You do</dt><dd>Read, tap words for meanings, answer one check per verse. The path decides what comes next.</dd>
               <dt>Choose it if</dt><dd>You are starting out, or you want the Gita to become a daily habit that carries you forward on its own.</dd>
             </dl>
@@ -509,7 +525,7 @@
           <div class="cmp">
             <h3>Study Reader</h3>
             <dl>
-              <dt>Pace</dt><dd>Yours. Sit with a single verse for twenty minutes, or scan all forty-seven in twenty.</dd>
+              <dt>Pace</dt><dd>Yours. Sit with a single verse for twenty minutes, or scan a whole chapter in twenty.</dd>
               <dt>You do</dt><dd>Read the full analysis — every word glossed, the context explained — and move freely between verses.</dd>
               <dt>Choose it if</dt><dd>You already read some Sanskrit, are preparing for a class, or want a reference to return to.</dd>
             </dl>
@@ -518,7 +534,7 @@
       </section>
 
       <footer class="note">
-        <p>Verse text: <em>Śrīmad Bhagavad Gītā</em>, Chapter 1, verses 1–47, as presented in the <a href="https://ereaders.samsaadhanii.in/books/ereaders/#/read/shrimadbhagavadgita/1-1-1" target="_blank" rel="noopener">Samsaadhanii e-reader</a> (Computational Linguistics Group, University of Hyderabad). The <span class="dev">अन्वयः</span> word order, <span class="dev">कारकचक्रम्</span> relations and <span class="dev">पदपरिचयः</span> tables here are the e-reader's own analysis, reproduced exactly as its data gives them — nothing re-tagged, reordered or corrected; words the analysis supplies but the verse omits are shown in brackets, and the speaker lines are marked as not part of that analysis. A word the analysis lists more than once keeps a row for each occurrence. Translations and word glosses are short learner renderings.</p>
+        <p>Verse text: <em>Śrīmad Bhagavad Gītā</em> — Chapter 1, verses 1–47, and Chapter 12, verses 1–10 — as presented in the <a href="https://ereaders.samsaadhanii.in/books/ereaders/#/read/shrimadbhagavadgita/1-1-1" target="_blank" rel="noopener">Samsaadhanii e-reader</a> (Computational Linguistics Group, University of Hyderabad). The <span class="dev">अन्वयः</span> word order, <span class="dev">कारकचक्रम्</span> relations and <span class="dev">पदपरिचयः</span> tables here are the e-reader's own analysis, reproduced exactly as its data gives them — nothing re-tagged, reordered or corrected; words the analysis supplies but the verse omits are shown in brackets, and the speaker lines are marked as not part of that analysis. A word the analysis lists more than once keeps a row for each occurrence. Translations and word glosses are short learner renderings.</p>
       </footer>
     </div>
 
@@ -2189,6 +2205,461 @@
         47: [["एवम्","अव्यय","अव्ययम् · क्रियाविशेषणम्"],["उक्त्वा","अव्यय","वच्-धातोः क्त्वान्तम् · पूर्वकालक्रिया"],["अर्जुनः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · कर्ता"],["सङ्ख्ये","नाम","नपुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् सङ्ख्य · अधिकरणम्"],["रथ-","नाम","षष्ठी-तत्पुरुषः · उपस्थे-पदेन सह (रथोपस्थे)"],["उपस्थे","नाम","पुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् उपस्थ · अधिकरणम्"],["उपाविशत्","क्रिया","धातुः उप+विश् · लङ् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्"],["विसृज्य","अव्यय","वि+सृज्-धातोः ल्यबन्तम् · पूर्वकालक्रिया"],["स-","नाम","तृतीया-तत्पुरुषः · शरम्-पदेन सह (सशरम्)"],["शरम्","नाम","पुंलिङ्गम् · द्वितीया · एकवचनम् · विशेषणम्"],["चापम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् चाप · कर्म"],["शोक-","नाम","तृतीया-तत्पुरुषः · मानसः-पदेन सह (शोकसंविग्नमानसः)"],["संविग्न-","नाम","बहुव्रीहिः · मानसः-पदेन सह"],["मानसः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · विशेषणम्"]]
       };
 
+      /* ============ Chapter 12 (Bhakti Yoga), verses 1–10 ============
+         Added from the same source: the Samsaadhanii e-reader's own analysis
+         data for chapter 12 (slokas.json + analysis.json), extracted into
+         word tables with its anvaya numbering, morph-in-context, karaka
+         relations and Hindi glosses. Same design principle as chapter 1:
+         always stick to the source — the anvaya order, pada tables and
+         karaka graphs below follow the source records one for one, implied
+         words bracketed, repeated words keeping a row per occurrence, and
+         the source's own quirks reproduced as they stand, including two
+         morph strings in 12.6 that the source file attaches to मयि
+         (देहवद्{पुं;3;बहु}) and योगेन (समुद्धर्तृ{पुं;1;एक}).
+         Verses 3–4 and 6–7 are single merged entries in the source (one
+         analysis, one graph), so they share their anvaya and karaka here,
+         exactly as verses 4–6 and 17–18 do in chapter 1. Speaker lines are
+         marked as not part of the source analysis, as in chapter 1.
+         Translations and word glosses are short learner renderings. */
+      var VERSES12 = [
+        {
+          n: 1, speaker: "अर्जुन उवाच",
+          text: "अर्जुन उवाच । एवम् सततयुक्ता ये भक्तास्त्वां पर्युपासते । ये चाप्यक्षरमव्यक्तं तेषां के योगवित्तमाः ॥ १ ॥",
+          translit: "arjuna uvāca — evaṁ satatayuktā ye bhaktās tvāṁ paryupāsate । ye cāpy akṣaram avyaktaṁ teṣāṁ ke yogavittamāḥ ॥ 1 ॥",
+          translation: "Arjuna said: Those devotees who, ever steadfast in this way, worship You — and those who worship the Imperishable, the Unmanifest — which of them are the best knowers of yoga?",
+          context: "Chapter 12, Bhakti Yoga, opens with Arjuna's question, hard on the cosmic vision of Chapter 11: is the better yogin the one who worships the Lord in form, or the one who contemplates the formless Absolute?",
+          words: [
+            ["अर्जुन", "arjunaḥ", "Arjuna"],
+            ["उवाच", "uvāca", "said"],
+            ["एवम्", "evam", "thus, in the way described"],
+            ["सततयुक्ता", "satatayuktāḥ", "ever steadfast, constantly engaged"],
+            ["ये", "ye", "those who"],
+            ["भक्तास्त्वां", "bhaktās tvām", "devotees (who worship) you"],
+            ["पर्युपासते", "paryupāsate", "worship, adore"],
+            ["ये", "ye", "those who (the others)"],
+            ["चाप्यक्षरम्", "cāpy akṣaram", "and also the Imperishable"],
+            ["अव्यक्तं", "avyaktam", "the Unmanifest"],
+            ["तेषां", "teṣām", "of them — of these two kinds"],
+            ["के", "ke", "which ones"],
+            ["योगवित्तमाः", "yogavittamāḥ", "the best knowers of yoga"]
+          ]
+        },
+        {
+          n: 2, speaker: "श्रीभगवानुवाच",
+          text: "श्रीभगवानुवाच । मय्यावेश्य मनो ये मां नित्ययुक्ता उपासते । श्रद्धया परयोपेतास्ते मे युक्ततमा मताः ॥ २ ॥",
+          translit: "śrībhagavān uvāca — mayy āveśya mano ye māṁ nityayuktā upāsate । śraddhayā parayopetās te me yuktatamā matāḥ ॥ 2 ॥",
+          translation: "The Blessed Lord said: Those who fix their minds on Me and worship Me, ever steadfast, endowed with supreme faith — they are, in My view, the most perfect in yoga.",
+          context: "Kṛṣṇa answers without hesitation: the devotees who worship him in form, minds fixed on him and full of faith, come first. What of the worshippers of the Unmanifest follows next.",
+          words: [
+            ["श्रीभगवान्", "śrībhagavān", "the Blessed Lord (Kṛṣṇa)"],
+            ["उवाच", "uvāca", "said"],
+            ["मय्यावेश्य", "mayy āveśya", "having fixed (the mind) on Me"],
+            ["मनो", "manaḥ", "the mind"],
+            ["ये", "ye", "those who"],
+            ["मां", "mām", "Me"],
+            ["नित्ययुक्ता", "nityayuktāḥ", "ever steadfast"],
+            ["उपासते", "upāsate", "worship"],
+            ["श्रद्धया", "śraddhayā", "with faith"],
+            ["परयोपेता", "parayopetāḥ", "endowed with the highest (faith)"],
+            ["ते", "te", "they"],
+            ["मे", "me", "by Me, in My estimation"],
+            ["युक्ततमा", "yuktatamāḥ", "the most perfect in yoga"],
+            ["मताः", "matāḥ", "are considered"]
+          ]
+        },
+        {
+          n: 3, speaker: "श्रीभगवान्",
+          text: "ये त्वक्षरमनिर्देश्यमव्यक्तं पर्युपासते । सर्वत्रगमचिन्त्यं च कूटस्थमचलं ध्रुवम् ॥ ३ ॥",
+          translit: "ye tv akṣaram anirdeśyam avyaktaṁ paryupāsate । sarvatragam acintyaṁ ca kūṭastham acalaṁ dhruvam ॥ 3 ॥",
+          translation: "But those who worship the Imperishable, the indefinable, the Unmanifest — the all-pervading, the unthinkable, the unchanging, the immovable, the eternal —",
+          context: "The sentence runs on into verse 4: one long description of the formless Absolute and of those who meditate on it, its attributes piling up — beyond definition, everywhere present, unmoved.",
+          words: [
+            ["ये", "ye", "those who"],
+            ["त्वक्षरम्", "tv akṣaram", "but the Imperishable"],
+            ["अनिर्देश्यम्", "anirdeśyam", "the indefinable"],
+            ["अव्यक्तं", "avyaktam", "the Unmanifest"],
+            ["पर्युपासते", "paryupāsate", "worship, meditate upon"],
+            ["सर्वत्रगम्", "sarvatragam", "the all-pervading"],
+            ["अचिन्त्यं", "acintyam", "the unthinkable"],
+            ["च", "ca", "and"],
+            ["कूटस्थम्", "kūṭastham", "the unchanging"],
+            ["अचलं", "acalam", "the immovable"],
+            ["ध्रुवम्", "dhruvam", "the eternal"]
+          ]
+        },
+        {
+          n: 4, speaker: "श्रीभगवान्",
+          text: "सन्नियम्येन्द्रियग्रामं सर्वत्र समबुद्धयः । ते प्राप्नुवन्ति मामेव सर्वभूतहिते रताः ॥ ४ ॥",
+          translit: "sanniyamyendriyagrāmaṁ sarvatra samabuddhayaḥ । te prāpnuvanti mām eva sarvabhūtahite ratāḥ ॥ 4 ॥",
+          translation: "— having fully restrained the host of the senses, even-minded everywhere, devoted to the welfare of all beings — they too attain Me alone.",
+          context: "The sentence that began in verse 3 completes here: the worshippers of the Unmanifest reach Kṛṣṇa too. The goal is one — only the road differs, as the next verse explains.",
+          words: [
+            ["सन्नियम्य", "sanniyamya", "having well restrained"],
+            ["इन्द्रियग्रामं", "indriyagrāmam", "the host of the senses"],
+            ["सर्वत्र", "sarvatra", "everywhere, in all circumstances"],
+            ["समबुद्धयः", "samabuddhayaḥ", "even-minded, of equal vision"],
+            ["ते", "te", "they"],
+            ["प्राप्नुवन्ति", "prāpnuvanti", "attain, reach"],
+            ["मामेव", "mām eva", "Me alone"],
+            ["सर्वभूतहिते", "sarvabhūtahite", "in the welfare of all beings"],
+            ["रताः", "ratāḥ", "devoted, delighting"]
+          ]
+        },
+        {
+          n: 5, speaker: "श्रीभगवान्",
+          text: "क्लेशोऽधिकतरस्तेषामव्यक्तासक्तचेतसाम् । अव्यक्ता हि गतिर्दुःखं देहवद्भिरवाप्यते ॥ ५ ॥",
+          translit: "kleśo 'dhikataras teṣām avyaktāsaktacetasām । avyaktā hi gatir duḥkhaṁ dehavadbhir avāpyate ॥ 5 ॥",
+          translation: "Greater is the toil of those whose minds are set on the Unmanifest — for the goal centred on the Unmanifest is hard for the embodied to attain.",
+          context: "Why the formless road is harder: as long as a person identifies with a body, holding the mind on what has no form at all is a strain the embodied feel at every step.",
+          words: [
+            ["क्लेशः", "kleśaḥ", "the hardship, the toil"],
+            ["अधिकतरः", "adhikataraḥ", "greater"],
+            ["तेषाम्", "teṣām", "of those"],
+            ["अव्यक्तासक्तचेतसाम्", "avyaktāsaktacetasām", "whose minds are set on the Unmanifest"],
+            ["अव्यक्ता", "avyaktā", "(centred on) the Unmanifest"],
+            ["हि", "hi", "for, indeed"],
+            ["गतिः", "gatiḥ", "the goal, the state"],
+            ["दुःखं", "duḥkham", "with difficulty"],
+            ["देहवद्भिः", "dehavadbhiḥ", "by the embodied"],
+            ["अवाप्यते", "avāpyate", "is attained"]
+          ]
+        },
+        {
+          n: 6, speaker: "श्रीभगवान्",
+          text: "ये तु सर्वाणि कर्माणि मयि संन्यस्य मत्पराः । अनन्येनैव योगेन मां ध्यायन्त उपासते ॥ ६ ॥",
+          translit: "ye tu sarvāṇi karmāṇi mayi sannyasya matparāḥ । ananyenaiva yogena māṁ dhyāyanta upāsate ॥ 6 ॥",
+          translation: "But those who surrender all their actions to Me, hold Me as the highest, and worship Me, meditating on Me with undivided devotion —",
+          context: "The sentence completes in verse 7. Kṛṣṇa turns back to his devotees: every action handed over to him, no other refuge, the mind resting on him as they worship.",
+          words: [
+            ["ये", "ye", "those who"],
+            ["तु", "tu", "but"],
+            ["सर्वाणि", "sarvāṇi", "all"],
+            ["कर्माणि", "karmāṇi", "actions"],
+            ["मयि", "mayi", "to Me, in Me"],
+            ["संन्यस्य", "sannyasya", "having surrendered"],
+            ["मत्पराः", "matparāḥ", "intent on Me as the highest"],
+            ["अनन्येन", "ananyena", "with undivided (devotion)"],
+            ["एव", "eva", "alone, indeed"],
+            ["योगेन", "yogena", "by yoga, by devotion"],
+            ["मां", "mām", "Me"],
+            ["ध्यायन्त", "dhyāyantaḥ", "meditating (on Me)"],
+            ["उपासते", "upāsate", "worship"]
+          ]
+        },
+        {
+          n: 7, speaker: "श्रीभगवान्",
+          text: "तेषामहं समुद्धर्ता मृत्युसंसारसागरात् । भवामि नचिरात्पार्थ मय्यावेशितचेतसाम् ॥ ७ ॥",
+          translit: "teṣām ahaṁ samuddhartā mṛtyusaṁsārasāgarāt । bhavāmi nacirāt pārtha mayy āveśitacetasām ॥ 7 ॥",
+          translation: "— for them I become, before long, O Pārtha, the deliverer from the ocean of death and saṁsāra: for those whose minds are absorbed in Me.",
+          context: "The promise that completes verse 6: devotees who fix their minds on Kṛṣṇa do not have to cross the sea of birth and death by their own strength — he himself becomes their rescuer, and soon.",
+          words: [
+            ["तेषाम्", "teṣām", "of them, for them"],
+            ["अहं", "aham", "I"],
+            ["समुद्धर्ता", "samuddhartā", "the deliverer, the rescuer"],
+            ["मृत्युसंसारसागरात्", "mṛtyusaṁsārasāgarāt", "from the ocean of death and saṁsāra"],
+            ["भवामि", "bhavāmi", "I become, I am"],
+            ["नचिरात्", "nacirāt", "before long, soon"],
+            ["पार्थ", "pārtha", "O Pārtha (Arjuna)"],
+            ["मय्यावेशितचेतसाम्", "mayy āveśitacetasām", "whose minds are absorbed in Me"]
+          ]
+        },
+        {
+          n: 8, speaker: "श्रीभगवान्",
+          text: "मय्येव मन आधत्स्व मयि बुद्धिं निवेशय । निवसिष्यसि मय्येव अत ऊर्ध्वं न संशयः ॥ ८ ॥",
+          translit: "mayy eva mana ādhatsva mayi buddhiṁ niveśaya । nivasishyasi mayy eva ata ūrdhvaṁ na saṁśayaḥ ॥ 8 ॥",
+          translation: "Fix your mind on Me alone; rest your understanding in Me. Thereafter you shall dwell in Me alone — of this there is no doubt.",
+          context: "The teaching turns practical: a direct instruction to Arjuna — mind and intellect both placed in Kṛṣṇa — and the result promised without any hedging: no doubt about it.",
+          words: [
+            ["मयि", "mayi", "on Me"],
+            ["एव", "eva", "alone"],
+            ["मन", "manaḥ", "the mind"],
+            ["आधत्स्व", "ādhatsva", "fix, place"],
+            ["मयि", "mayi", "in Me"],
+            ["बुद्धिं", "buddhim", "the intellect, the understanding"],
+            ["निवेशय", "niveśaya", "set, rest"],
+            ["निवसिष्यसि", "nivasishyasi", "you shall dwell"],
+            ["मयि", "mayi", "in Me"],
+            ["एव", "eva", "alone"],
+            ["अत", "ataḥ", "henceforth, from now on"],
+            ["ऊर्ध्वं", "ūrdhvam", "afterwards, for ever after"],
+            ["न", "na", "no, not"],
+            ["संशयः", "saṁśayaḥ", "doubt"]
+          ]
+        },
+        {
+          n: 9, speaker: "श्रीभगवान्",
+          text: "अथ चित्तं समाधातुं न शक्नोषि मयि स्थिरम् । अभ्यासयोगेन ततो मामिच्छाप्तुं धनञ्जय ॥ ९ ॥",
+          translit: "atha cittaṁ samādhātuṁ na śaknoṣi mayi sthiram । abhyāsayogena tato mām icchāptuṁ dhanañjaya ॥ 9 ॥",
+          translation: "If you cannot fix your mind steadily on Me, then seek to reach Me by the yoga of repeated practice, O Dhanañjaya.",
+          context: "The ladder begins to descend. If the steady fixing of verse 8 is beyond reach for now, there is a next rung: abhyāsa, practice — returning the mind again and again.",
+          words: [
+            ["अथ", "atha", "if, now if"],
+            ["चित्तं", "cittam", "the mind"],
+            ["समाधातुं", "samādhātum", "to fix, to settle"],
+            ["न", "na", "not"],
+            ["शक्नोषि", "śaknoṣi", "you are able"],
+            ["मयि", "mayi", "on Me"],
+            ["स्थिरम्", "sthiram", "steadily, firmly"],
+            ["अभ्यासयोगेन", "abhyāsayogena", "by the yoga of practice"],
+            ["ततो", "tataḥ", "then"],
+            ["मामिच्छाप्तुं", "mām iccha āptum", "seek to attain Me"],
+            ["धनञ्जय", "dhanañjaya", "O Dhanañjaya (Arjuna)"]
+          ]
+        },
+        {
+          n: 10, speaker: "श्रीभगवान्",
+          text: "अभ्यासेऽप्यसमर्थोऽसि मत्कर्मपरमो भव । मदर्थमपि कर्माणि कुर्वन् सिद्धिमवाप्स्यसि ॥ १० ॥",
+          translit: "abhyāse 'py asamartho 'si matkarmaparamo bhava । madartham api karmāṇi kurvan siddhim avāpsyasi ॥ 10 ॥",
+          translation: "If you are unable even to practise, then be one whose highest aim is work for Me; even by doing actions for My sake, you shall attain perfection.",
+          context: "One rung lower still: if even steady practice is beyond reach, let every action be done for Kṛṣṇa's sake — that too, he promises, leads to the goal.",
+          words: [
+            ["अभ्यासेऽप्यसमर्थोऽसि", "abhyāse 'py asamartho 'si", "if you are unable even in practice"],
+            ["मत्कर्मपरमो", "matkarmaparamaḥ", "whose highest aim is work for Me"],
+            ["भव", "bhava", "be, become"],
+            ["मदर्थमपि", "madartham api", "even for My sake"],
+            ["कर्माणि", "karmāṇi", "actions"],
+            ["कुर्वन्", "kurvan", "doing, performing"],
+            ["सिद्धिमवाप्स्यसि", "siddhim avāpsyasi", "you shall attain perfection"]
+          ]
+        }
+      ];
+
+      var ANVAYA12 = {
+        1: { t: "अर्जुनः उवाच — एवम् सततयुक्ताः ये भक्ताः त्वाम् पर्युपासते, ये च अपि अक्षरम् अव्यक्तं (पर्युपासते) — तेषां के योगवित्तमाः (सन्ति) ?", n: "प्रश्नवाक्यम् । प्रथमे क्रिया पर्युपासते, कर्ता भक्ताः । द्वितीये क्रिया (सन्ति) अध्याहृता, कर्ता के, योगवित्तमाः तस्य विधेयविशेषणम्; (पर्युपासते) अपि अध्याहृतम् — तस्य कर्ता ये, कर्म अव्यक्तम् । तेषाम् इति निर्धारणम् ।" },
+        2: { t: "श्रीभगवान् उवाच — मयि आवेश्य मनः, ये माम् नित्ययुक्ताः उपासते, श्रद्धया परया उपेताः, ते मे युक्ततमाः मताः ।", n: "मुख्या क्रिया उपासते, कर्ता ये । आवेश्य इति पूर्वकालक्रिया — तस्याः कर्म मनः, अधिकरणं मयि । मताः इति क्तान्तं द्वितीयवाक्यस्य क्रियास्थाने, तस्य कर्ता ते ।" },
+        3: { t: "ये तु अक्षरम् अनिर्देश्यम् अव्यक्तं पर्युपासते — सर्वत्रगम्, अचिन्त्यं च, कूटस्थम्, अचलं, ध्रुवम् — संनियम्य इन्द्रियग्रामं, सर्वत्र समबुद्धयः, ते प्राप्नुवन्ति माम् एव, सर्वभूतहिते रताः ।", n: "तृतीयः चतुर्थः च श्लोकौ मिलित्वा एकं वाक्यम् (स्रोतसि एकमेव विश्लेषणप्रविष्टिः) । मुख्या क्रिया पर्युपासते, कर्ता ये, कर्म क्षरम् — निर्देश्यम्-आदयः सर्वे ध्रुवे समुच्चिताः, ध्रुवं क्षरस्य विशेषणम् । द्वितीया क्रिया प्राप्नुवन्ति, कर्ता ते । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
+        4: { t: "ये तु अक्षरम् अनिर्देश्यम् अव्यक्तं पर्युपासते — सर्वत्रगम्, अचिन्त्यं च, कूटस्थम्, अचलं, ध्रुवम् — संनियम्य इन्द्रियग्रामं, सर्वत्र समबुद्धयः, ते प्राप्नुवन्ति माम् एव, सर्वभूतहिते रताः ।", n: "तृतीयः चतुर्थः च श्लोकौ मिलित्वा एकं वाक्यम् (स्रोतसि एकमेव विश्लेषणप्रविष्टिः) । मुख्या क्रिया पर्युपासते, कर्ता ये, कर्म क्षरम् — निर्देश्यम्-आदयः सर्वे ध्रुवे समुच्चिताः, ध्रुवं क्षरस्य विशेषणम् । द्वितीया क्रिया प्राप्नुवन्ति, कर्ता ते । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
+        5: { t: "क्लेशः अधिकतरः तेषाम् अव्यक्तासक्तचेतसाम् (अस्ति) । अव्यक्ता हि गतिः दुःखं देहवद्भिः अवाप्यते ।", n: "द्वे वाक्ये । प्रथमे क्रिया (अस्ति) अध्याहृता, कर्ता क्लेशः, अधिकतरः तस्य विधेयविशेषणम्, चेतसाम् तस्य षष्ठीसम्बन्धः । द्वितीये कर्मणिप्रयोगः — क्रिया अवाप्यते, अभिहितं कर्म गतिः, कर्ता देहवद्भिः ।" },
+        6: { t: "ये तु सर्वाणि कर्माणि मयि सन्न्यस्य मत्पराः, अनन्येन एव योगेन मां ध्यायन्तः उपासते — तेषाम् अहं समुद्धर्ता मृत्युसंसारसागरात् भवामि नचिरात्, हे पार्थ, मयि आवेशितचेतसाम् ।", n: "षष्ठः सप्तमः च श्लोकौ मिलित्वा एकं वाक्यम् (स्रोतसि एकमेव विश्लेषणप्रविष्टिः) । प्रथमा क्रिया उपासते, कर्ता ये; सन्न्यस्य इति पूर्वकालक्रिया, ध्यायन्तः वर्तमानसमानकालक्रिया । द्वितीया क्रिया भवामि, कर्ता अहम्, समुद्धर्ता तस्य विधेयविशेषणम् । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
+        7: { t: "ये तु सर्वाणि कर्माणि मयि सन्न्यस्य मत्पराः, अनन्येन एव योगेन मां ध्यायन्तः उपासते — तेषाम् अहं समुद्धर्ता मृत्युसंसारसागरात् भवामि नचिरात्, हे पार्थ, मयि आवेशितचेतसाम् ।", n: "षष्ठः सप्तमः च श्लोकौ मिलित्वा एकं वाक्यम् (स्रोतसि एकमेव विश्लेषणप्रविष्टिः) । प्रथमा क्रिया उपासते, कर्ता ये; सन्न्यस्य इति पूर्वकालक्रिया, ध्यायन्तः वर्तमानसमानकालक्रिया । द्वितीया क्रिया भवामि, कर्ता अहम्, समुद्धर्ता तस्य विधेयविशेषणम् । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
+        8: { t: "मयि एव मनः आधत्स्व (त्वम्) । मयि बुद्धिं निवेशय (त्वम्) । निवसिष्यसि मयि एव (त्वम्) । अतः ऊर्ध्वं न संशयः (अस्ति) ।", n: "त्रीणि वाक्यानि — आधत्स्व, निवेशय इति लोट्-क्रिये, निवसिष्यसि इति लृट् च; त्रयाणाम् अपि कर्ता (त्वम्) अध्याहृतः । चतुर्थे क्रिया (अस्ति) अध्याहृता, कर्ता संशयः, न इति प्रतिषेधः ।" },
+        9: { t: "अथ चित्तं समाधातुं न शक्नोषि मयि स्थिरं (त्वम्) — अभ्यासयोगेन ततः माम् आप्तुम् इच्छ (त्वम्), हे धनञ्जय ।", n: "द्वे क्रिये — शक्नोषि, इच्छ (लोट्) च; उभयोः कर्ता (त्वम्) अध्याहृतः । समाधातुम् इति शक्नोषि-क्रियायाः तुमुन्कर्म, आप्तुम् इति इच्छ-क्रियायाः । धनञ्जय इति सम्बोध्यः ।" },
+        10: { t: "अभ्यासे अपि असमर्थः असि (त्वम्) — मत्कर्मपरमः भव (त्वम्) । मदर्थम् अपि कर्माणि कुर्वन् सिद्धिम् अवाप्स्यसि (त्वम्) ।", n: "त्रीणि वाक्यानि — असि, भव (लोट्), अवाप्स्यसि (लृट्) च; त्रयाणाम् अपि कर्ता (त्वम्) अध्याहृतः । कुर्वन् इति अवाप्स्यसि-क्रियायाः वर्तमानसमानकालक्रिया, तस्याः कर्म कर्माणि, प्रयोजनं मदर्थम् ।" }
+      };
+
+      /* Verses 3–4 are ONE sentence in the source analysis (one merged entry,
+         anvaya numbers running 1–22 across both verses, one graph): the same
+         graph object serves both, as with chapter 1 verses 4–6. */
+      var KARAKA12_34 = { note: "तृतीय-चतुर्थश्लोकौ एकमेव वाक्यम् — अतः कारकचक्रम् अपि एकमेव । मुख्या क्रिया पर्युपासते, कर्ता ये, कर्म क्षरम्; निर्देश्यम्-आदयः सर्वे ध्रुवे समुच्चिताः । संनियम्य इति पूर्वकालक्रिया अपि स्रोतसि पर्युपासते-क्रिययैव सम्बद्धा ।", hubs: [
+        { kriya: "पर्युपासते", sub: "धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम् · सकर्मकः", nodes: [
+          ["कर्ता", "ये", "प्रथमा · बहुवचनम्", "karta", 0],
+          ["सम्बन्धः", "तु", "ये प्रति · अव्ययम्", "sambandha", 1],
+          ["विशेषणम्", "बुद्धयः", "प्रथमा · ये प्रति · चतुर्थश्लोकात्", "other", 1],
+          ["अधिकरणम्", "सर्वत्र", "अव्ययम् · बुद्धयः प्रति", "adhikarana", 2],
+          ["बहुव्रीहिः", "सम-", "बुद्धयः-पदेन सह (समबुद्धयः)", "sambandha", 2],
+          ["नित्यसम्बन्धः", "ते", "प्राप्नुवन्ति-वाक्ये · ये ↔ ते", "sambandha", 1],
+          ["कर्म", "क्षरम्", "द्वितीया · एकवचनम्", "karma", 0],
+          ["नञ्-तत्पुरुषः", "अ-", "क्षरम्-पदेन सह (अक्षरम्)", "sambandha", 1],
+          ["विशेषणम्", "ध्रुवम्", "द्वितीया · क्षरम् प्रति", "other", 1],
+          ["समुच्चितः", "निर्देश्यम्", "द्वितीया · ध्रुवम् प्रति", "karma", 2],
+          ["नञ्-तत्पुरुषः", "अ-", "निर्देश्यम्-पदेन सह (अनिर्देश्यम्)", "sambandha", 3],
+          ["समुच्चितः", "व्यक्तम्", "द्वितीया · ध्रुवम् प्रति", "karma", 2],
+          ["बहुव्रीहिः", "अ-", "व्यक्तम्-पदेन सह (अव्यक्तम्)", "sambandha", 3],
+          ["समुच्चितः", "गम्", "द्वितीया · ध्रुवम् प्रति", "karma", 2],
+          ["उपपद-तत्पुरुषः", "सर्वत्र-", "गम्-पदेन सह (सर्वत्रगम्)", "sambandha", 3],
+          ["समुच्चितः", "चिन्त्यम्", "द्वितीया · ध्रुवम् प्रति", "karma", 2],
+          ["नञ्-तत्पुरुषः", "अ-", "चिन्त्यम्-पदेन सह (अचिन्त्यम्)", "sambandha", 3],
+          ["समुच्चयद्योतकः", "च", "ध्रुवम् प्रति", "sambandha", 2],
+          ["समुच्चितः", "स्थम्", "द्वितीया · ध्रुवम् प्रति", "karma", 2],
+          ["उपपद-तत्पुरुषः", "कूट-", "स्थम्-पदेन सह (कूटस्थम्)", "sambandha", 3],
+          ["समुच्चितः", "चलम्", "द्वितीया · ध्रुवम् प्रति", "karma", 2],
+          ["नञ्-तत्पुरुषः", "अ-", "चलम्-पदेन सह (अचलम्)", "sambandha", 3],
+          ["पूर्वकालः", "संनियम्य", "ल्यबन्तम् · पर्युपासते प्रति", "other", 0],
+          ["कर्म", "ग्रामम्", "द्वितीया · संनियम्य प्रति", "karma", 1],
+          ["षष्ठी-तत्पुरुषः", "इन्द्रिय-", "ग्रामम्-पदेन सह (इन्द्रियग्रामम्)", "sambandha", 2] ] },
+        { kriya: "प्राप्नुवन्ति", sub: "धातुः प्र+आप् · लट् · प्रथमपुरुषः · बहुवचनम् · परस्मैपदम् · सकर्मकः", nodes: [
+          ["कर्ता", "ते", "प्रथमा · बहुवचनम्", "karta", 0],
+          ["विशेषणम्", "रताः", "प्रथमा · ते प्रति", "other", 1],
+          ["अधिकरणम्", "हिते", "सप्तमी · रताः प्रति", "adhikarana", 2],
+          ["षष्ठी-तत्पुरुषः", "भूत-", "हिते-पदेन सह (सर्वभूतहिते)", "sambandha", 3],
+          ["कर्मधारयः", "सर्व-", "भूत-पदेन सह", "sambandha", 4],
+          ["कर्म", "माम्", "द्वितीया · एकवचनम्", "karma", 0],
+          ["सम्बन्धः", "एव", "माम् प्रति · अव्ययम्", "sambandha", 1] ] } ] };
+      /* Verses 6–7 likewise form ONE sentence in the source (anvaya numbers
+         1–22 across both, one graph): उपासते and भवामि keep separate hubs in
+         the one shared graph. */
+      var KARAKA12_67 = { note: "षष्ठ-सप्तमश्लोकौ एकमेव वाक्यम् — अतः कारकचक्रम् अपि एकमेव । द्वे क्रियाकेन्द्रे — उपासते, भवामि च; ये ↔ तेषाम् इति नित्यसम्बन्धः केन्द्रे योजयति । सन्न्यस्य पूर्वकालक्रिया, ध्यायन्तः वर्तमानसमानकालक्रिया ।", hubs: [
+        { kriya: "उपासते", sub: "धातुः उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम् · सकर्मकः", nodes: [
+          ["कर्ता", "ये", "प्रथमा · बहुवचनम्", "karta", 0],
+          ["सम्बन्धः", "तु", "ये प्रति · अव्ययम्", "sambandha", 1],
+          ["विशेषणम्", "पराः", "प्रथमा · ये प्रति", "other", 1],
+          ["बहुव्रीहिः", "मत्-", "पराः-पदेन सह (मत्पराः)", "sambandha", 2],
+          ["नित्यसम्बन्धः", "तेषाम्", "भवामि-वाक्ये · ये ↔ तेषाम्", "sambandha", 1],
+          ["पूर्वकालः", "सन्न्यस्य", "ल्यबन्तम् · उपासते प्रति", "other", 0],
+          ["कर्म", "कर्माणि", "द्वितीया · सन्न्यस्य प्रति", "karma", 1],
+          ["विशेषणम्", "सर्वाणि", "कर्माणि प्रति", "other", 2],
+          ["अधिकरणम्", "मयि", "सप्तमी · सन्न्यस्य प्रति", "adhikarana", 1],
+          ["वर्तमानसमानकालः", "ध्यायन्तः", "शतृ-प्रत्ययान्तम् · उपासते प्रति", "other", 0],
+          ["कर्म", "माम्", "द्वितीया · ध्यायन्तः प्रति", "karma", 1],
+          ["सम्बन्धः", "एव", "माम् प्रति · अव्ययम्", "sambandha", 2],
+          ["करणम्", "योगेन", "तृतीया · ध्यायन्तः प्रति", "karana", 1],
+          ["विशेषणम्", "अन्येन", "तृतीया · योगेन प्रति", "other", 2],
+          ["बहुव्रीहिः", "अन्-", "अन्येन-पदेन सह (अनन्येन)", "sambandha", 3] ] },
+        { kriya: "भवामि", sub: "धातुः भू · लट् · उत्तमपुरुषः · एकवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+          ["कर्ता", "अहम्", "प्रथमा · एकवचनम्", "karta", 0],
+          ["विधेयविशेषणम्", "समुद्धर्ता", "प्रथमा · अहम् प्रति", "other", 1],
+          ["षष्ठीसम्बन्धः", "तेषाम्", "षष्ठी · समुद्धर्ता प्रति", "sambandha", 2],
+          ["अपादानम्", "सागरात्", "पञ्चमी · समुद्धर्ता प्रति", "apadana", 2],
+          ["कर्मधारयः", "संसार-", "सागरात्-पदेन सह (मृत्युसंसारसागरात्)", "sambandha", 3],
+          ["कर्मधारयः", "मृत्यु-", "संसार-पदेन सह", "sambandha", 4],
+          ["षष्ठीसम्बन्धः", "चेतसाम्", "षष्ठी · समुद्धर्ता प्रति", "sambandha", 2],
+          ["बहुव्रीहिः", "आवेशित-", "चेतसाम्-पदेन सह (आवेशितचेतसाम्)", "sambandha", 3],
+          ["अधिकरणम्", "मयि", "सप्तमी · चेतसाम् प्रति", "adhikarana", 4],
+          ["क्रियाविशेषणम्", "नचिरात्", "अव्ययम् · भवामि प्रति", "other", 0],
+          ["सम्बोध्यः", "पार्थ", "सम्बोधनम् · भवामि प्रति", "other", 0] ] } ] };
+      var KARAKA12 = {
+        1: { note: "त्रीणि क्रियाकेन्द्राणि — पर्युपासते, अध्याहृतं (पर्युपासते), अध्याहृतं (सन्ति) च । ये ↔ तेषाम् इति नित्यसम्बन्धः केन्द्राणि योजयति ।", hubs: [
+          { kriya: "पर्युपासते", sub: "धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "भक्ताः", "प्रथमा · बहुवचनम्", "karta", 0],
+            ["विशेषणम्", "युक्ताः", "प्रथमा · भक्ताः प्रति", "other", 1],
+            ["कर्मधारयः", "सतत-", "युक्ताः-पदेन सह (सततयुक्ताः)", "sambandha", 2],
+            ["सम्बन्धः", "एवम्", "अव्ययम् · युक्ताः प्रति", "sambandha", 2],
+            ["विशेषणम्", "ये", "प्रथमा · भक्ताः प्रति", "other", 1],
+            ["नित्यसम्बन्धः", "तेषाम्", "(सन्ति)-वाक्ये · ये ↔ तेषाम्", "sambandha", 2],
+            ["कर्म", "त्वाम्", "द्वितीया · एकवचनम् · सर्वनाम युष्मद्", "karma", 0] ] },
+          { kriya: "(पर्युपासते)", sub: "क्रिया अध्याहृता · धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम्", nodes: [
+            ["कर्ता", "ये", "प्रथमा · बहुवचनम्", "karta", 0],
+            ["नित्यसम्बन्धः", "तेषाम्", "(सन्ति)-वाक्ये · ये ↔ तेषाम्", "sambandha", 1],
+            ["कर्म", "व्यक्तम्", "द्वितीया · एकवचनम्", "karma", 0],
+            ["समुच्चयद्योतकः", "च", "व्यक्तम् प्रति", "sambandha", 1],
+            ["सम्बन्धः", "अपि", "व्यक्तम् प्रति · अव्ययम्", "sambandha", 1],
+            ["समुच्चितः", "क्षरम्", "प्रथमा · व्यक्तम् प्रति", "karma", 1],
+            ["नञ्-तत्पुरुषः", "अ-", "क्षरम्-पदेन सह (अक्षरम्)", "sambandha", 2],
+            ["बहुव्रीहिः", "अ-", "व्यक्तम्-पदेन सह (अव्यक्तम्)", "sambandha", 1] ] },
+          { kriya: "(सन्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · बहुवचनम्", nodes: [
+            ["कर्ता", "के", "प्रथमा · बहुवचनम् · सर्वनाम किम्", "karta", 0],
+            ["विधेयविशेषणम्", "वित्तमाः", "प्रथमा · के प्रति", "other", 1],
+            ["निर्धारणम्", "तेषाम्", "षष्ठी · वित्तमाः प्रति", "sambandha", 2],
+            ["सप्तमी-तत्पुरुषः", "योग-", "वित्तमाः-पदेन सह (योगवित्तमाः)", "sambandha", 2] ] } ] },
+        2: { note: "द्वे क्रियाकेन्द्रे — उपासते, मताः (क्तान्तम्) च । ये ↔ ते इति नित्यसम्बन्धः । आवेश्य इति पूर्वकालक्रिया — तस्याः कर्म मनः, अधिकरणं मयि ।", hubs: [
+          { kriya: "उपासते", sub: "धातुः उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम् · सकर्मकः", nodes: [
+            ["कर्ता", "ये", "प्रथमा · बहुवचनम्", "karta", 0],
+            ["विशेषणम्", "युक्ताः", "प्रथमा · ये प्रति", "other", 1],
+            ["कर्मधारयः", "नित्य-", "युक्ताः-पदेन सह (नित्ययुक्ताः)", "sambandha", 2],
+            ["विशेषणम्", "उपेताः", "प्रथमा · ये प्रति", "other", 1],
+            ["करणम्", "श्रद्धया", "तृतीया · उपेताः प्रति", "karana", 2],
+            ["विशेषणम्", "परया", "तृतीया · श्रद्धया प्रति", "other", 3],
+            ["नित्यसम्बन्धः", "ते", "मताः-वाक्ये · ये ↔ ते", "sambandha", 1],
+            ["कर्म", "माम्", "द्वितीया · एकवचनम्", "karma", 0],
+            ["पूर्वकालः", "आवेश्य", "ल्यबन्तम् · उपासते प्रति", "other", 0],
+            ["कर्म", "मनः", "द्वितीया · आवेश्य प्रति", "karma", 1],
+            ["अधिकरणम्", "मयि", "सप्तमी · आवेश्य प्रति", "adhikarana", 1] ] },
+          { kriya: "मताः", sub: "क्तान्तम् · धातुः मन् · पुंलिङ्गम् · प्रथमा · बहुवचनम्", nodes: [
+            ["कर्ता", "ते", "प्रथमा · बहुवचनम्", "karta", 0],
+            ["विशेषणम्", "युक्ततमाः", "प्रथमा · ते प्रति", "other", 1],
+            ["षष्ठीसम्बन्धः", "मे", "षष्ठी · मताः प्रति", "sambandha", 0] ] } ] },
+        3: KARAKA12_34,
+        4: KARAKA12_34,
+        5: { note: "द्वे वाक्ये, द्वे क्रियाकेन्द्रे — अध्याहृतं (अस्ति), कर्मणि अवाप्यते च । अव्यक्तासक्तचेतसाम् इति बहुव्रीहिः क्लेशस्य षष्ठीसम्बन्धः ।", hubs: [
+          { kriya: "अवाप्यते", sub: "धातुः अव+आप् · कर्मणि · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम् · अकर्मकः", nodes: [
+            ["कर्म", "गतिः", "प्रथमा · एकवचनम् · अभिहितं कर्म", "karma", 0],
+            ["विशेषणम्", "व्यक्ता", "प्रथमा · गतिः प्रति", "other", 1],
+            ["नञ्-तत्पुरुषः", "अ-", "व्यक्ता-पदेन सह (अव्यक्ता)", "sambandha", 2],
+            ["कर्ता", "देहवद्भिः", "तृतीया · बहुवचनम्", "karta", 0],
+            ["सम्बन्धः", "हि", "देहवद्भिः प्रति · अव्ययम्", "sambandha", 1],
+            ["क्रियाविशेषणम्", "दुःखम्", "अवाप्यते प्रति", "other", 0] ] },
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "क्लेशः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["विधेयविशेषणम्", "अधिकतरः", "प्रथमा · क्लेशः प्रति", "other", 1],
+            ["षष्ठीसम्बन्धः", "चेतसाम्", "षष्ठी · क्लेशः प्रति", "sambandha", 1],
+            ["विशेषणम्", "तेषाम्", "षष्ठी · चेतसाम् प्रति", "other", 2],
+            ["बहुव्रीहिः", "आसक्त-", "चेतसाम्-पदेन सह (अव्यक्तासक्तचेतसाम्)", "sambandha", 2],
+            ["सप्तमी-तत्पुरुषः", "व्यक्त-", "आसक्त-पदेन सह", "sambandha", 3],
+            ["नञ्-तत्पुरुषः", "अ-", "व्यक्त-पदेन सह", "sambandha", 4] ] } ] },
+        6: KARAKA12_67,
+        7: KARAKA12_67,
+        8: { note: "चत्वारि क्रियाकेन्द्राणि — आधत्स्व, निवेशय, निवसिष्यसि, अध्याहृतं (अस्ति) च । आद्यत्रयाणां कर्ता (त्वम्) अध्याहृतः ।", hubs: [
+          { kriya: "आधत्स्व", sub: "धातुः आ+धा · लोट् · मध्यमपुरुषः · एकवचनम् · आत्मनेपदम्", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["कर्म", "मनः", "द्वितीया · एकवचनम्", "karma", 0],
+            ["देशाधिकरणम्", "मयि", "सप्तमी · एकवचनम्", "adhikarana", 0],
+            ["सम्बन्धः", "एव", "मयि प्रति · अव्ययम्", "sambandha", 1] ] },
+          { kriya: "निवेशय", sub: "धातुः नि+विश् · णिजन्तम् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["कर्म", "बुद्धिम्", "द्वितीया · एकवचनम्", "karma", 0],
+            ["देशाधिकरणम्", "मयि", "सप्तमी · एकवचनम्", "adhikarana", 0] ] },
+          { kriya: "निवसिष्यसि", sub: "धातुः नि+वस् · लृट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["देशाधिकरणम्", "मयि", "सप्तमी · एकवचनम्", "adhikarana", 0],
+            ["सम्बन्धः", "एव", "मयि प्रति · अव्ययम्", "sambandha", 1],
+            ["कालाधिकरणम्", "ऊर्ध्वम्", "अव्ययम् · निवसिष्यसि प्रति", "adhikarana", 0],
+            ["सन्दर्भ बिन्दुः", "अतः", "ऊर्ध्वम् प्रति · अव्ययम्", "sambandha", 1] ] },
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्", nodes: [
+            ["कर्ता", "संशयः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["प्रतिषेधः", "न", "संशयः प्रति · अव्ययम्", "sambandha", 1] ] } ] },
+        9: { note: "द्वे क्रियाकेन्द्रे — शक्नोषि, इच्छ (लोट्) च; उभयोः कर्ता (त्वम्) अध्याहृतः । समाधातुम् शक्नोषि-क्रियायाः तुमुन्कर्म, आप्तुम् इच्छ-क्रियायाः ।", hubs: [
+          { kriya: "शक्नोषि", sub: "धातुः शक् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम् · सकर्मकः", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["तुमुन्कर्म", "समाधातुम्", "तुमुन्-प्रत्ययान्तम्", "other", 0],
+            ["कर्म", "चित्तम्", "द्वितीया · समाधातुम् प्रति", "karma", 1],
+            ["अधिकरणम्", "मयि", "सप्तमी · समाधातुम् प्रति", "adhikarana", 1],
+            ["क्रियाविशेषणम्", "स्थिरम्", "समाधातुम् प्रति", "other", 1],
+            ["प्रतिषेधः", "न", "शक्नोषि प्रति · अव्ययम्", "sambandha", 0],
+            ["सम्बन्धः", "अथ", "शक्नोषि प्रति · अव्ययम्", "sambandha", 0] ] },
+          { kriya: "इच्छ", sub: "धातुः इष् · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम् · सकर्मकः", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["तुमुन्कर्म", "आप्तुम्", "तुमुन्-प्रत्ययान्तम्", "other", 0],
+            ["कर्म", "माम्", "द्वितीया · आप्तुम् प्रति", "karma", 1],
+            ["करणम्", "योगेन", "तृतीया · आप्तुम् प्रति", "karana", 1],
+            ["कर्मधारय", "अभ्यास-", "योगेन-पदेन सह (अभ्यासयोगेन)", "sambandha", 2],
+            ["सम्बोध्यः", "जय", "सम्बोधनम् · इच्छ प्रति", "other", 0],
+            ["उपपद-तत्पुरुष", "धनञ्-", "जय-पदेन सह (धनञ्जय)", "sambandha", 1],
+            ["सम्बन्धः", "ततः", "इच्छ प्रति · अव्ययम्", "sambandha", 0] ] } ] },
+        10: { note: "त्रीणि क्रियाकेन्द्राणि — असि, भव (लोट्), अवाप्स्यसि (लृट्) च; त्रयाणाम् अपि कर्ता (त्वम्) अध्याहृतः । कुर्वन् अवाप्स्यसि-क्रियायाः वर्तमानसमानकालक्रिया ।", hubs: [
+          { kriya: "असि", sub: "धातुः अस् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["विधेयविशेषणम्", "समर्थः", "प्रथमा · (त्वम्) प्रति", "other", 1],
+            ["नञ्-तत्पुरुषः", "अ-", "समर्थः-पदेन सह (असमर्थः)", "sambandha", 2],
+            ["अधिकरणम्", "अभ्यासे", "सप्तमी · असि प्रति", "adhikarana", 0],
+            ["सम्बन्धः", "अपि", "अभ्यासे प्रति · अव्ययम्", "sambandha", 1] ] },
+          { kriya: "भव", sub: "धातुः भू · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["विधेयविशेषणम्", "परमः", "प्रथमा · (त्वम्) प्रति · (मत्कर्मपरमः)", "other", 1],
+            ["सप्तमी-तत्पुरुषः", "कर्म-", "परमः-पदेन सह", "sambandha", 2],
+            ["षष्ठी-तत्पुरुषः", "मत्-", "कर्म-पदेन सह", "sambandha", 3] ] },
+          { kriya: "अवाप्स्यसि", sub: "धातुः अव+आप् · लृट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम् · सकर्मकः", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["कर्म", "सिद्धिम्", "द्वितीया · एकवचनम्", "karma", 0],
+            ["वर्तमानसमानकालः", "कुर्वन्", "शतृ-प्रत्ययान्तम् · अवाप्स्यसि प्रति", "other", 0],
+            ["कर्म", "कर्माणि", "द्वितीया · कुर्वन् प्रति", "karma", 1],
+            ["प्रयोजनम्", "अर्थम्", "कुर्वन् प्रति · (मदर्थम्)", "other", 1],
+            ["चतुर्थी-तत्पुरुषः", "मद्-", "अर्थम्-पदेन सह (मदर्थम्)", "sambandha", 2],
+            ["सम्बन्धः", "अपि", "कुर्वन् प्रति · अव्ययम्", "sambandha", 1] ] } ] }
+      };
+
+      var PADA12 = {
+        1: [["अर्जुनः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · वक्तृपदम् — स्रोतः-विश्लेषणे नास्ति"],["उवाच","क्रिया","धातुः वच् · लिट् · प्रथमपुरुषः · एकवचनम् · वक्तृपदम् — स्रोतः-विश्लेषणे नास्ति"],["एवम्","अव्यय","अव्ययम्"],["सतत-","नाम","कर्मधारयः · युक्ताः-पदेन सह (सततयुक्ताः)"],["युक्ताः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · युज्-धातोः क्तान्तम्"],["ये","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम यद्"],["भक्ताः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् भक्त"],["त्वाम्","नाम","द्वितीया · एकवचनम् · सर्वनाम युष्मद्"],["पर्युपासते","क्रिया","धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम्"],["ये","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम यद्"],["च","अव्यय","समुच्चयार्थकम्"],["अपि","अव्यय","अव्ययम्"],["अ-","अव्यय","नञ्-तत्पुरुषः · क्षरम्-पदेन सह (अक्षरम्)"],["क्षरम्","नाम","नपुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् क्षर"],["अ-","अव्यय","बहुव्रीहिः · व्यक्तम्-पदेन सह (अव्यक्तम्)"],["व्यक्तम्","नाम","पुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् व्यक्त"],["तेषाम्","नाम","पुंलिङ्गम् · षष्ठी · बहुवचनम् · सर्वनाम तद्"],["(पर्युपासते)","क्रिया","धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["के","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम किम्"],["योग-","नाम","सप्तमी-तत्पुरुषः · वित्तमाः-पदेन सह (योगवित्तमाः)"],["वित्तमाः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् वित्तम"],["(सन्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · बहुवचनम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        2: [["श्रीभगवान्","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · वक्तृपदम् — स्रोतः-विश्लेषणे नास्ति"],["उवाच","क्रिया","धातुः वच् · लिट् · प्रथमपुरुषः · एकवचनम् · वक्तृपदम् — स्रोतः-विश्लेषणे नास्ति"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["आवेश्य","अव्यय","आ+विश्-धातोः ल्यबन्तम् · पूर्वकालक्रिया"],["मनः","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् मनस्"],["ये","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम यद्"],["माम्","नाम","द्वितीया · एकवचनम् · सर्वनाम अस्मद्"],["नित्य-","नाम","कर्मधारयः · युक्ताः-पदेन सह (नित्ययुक्ताः)"],["युक्ताः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · युज्-धातोः क्तान्तम्"],["उपासते","क्रिया","धातुः उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम्"],["श्रद्धया","नाम","स्त्रीलिङ्गम् · तृतीया · एकवचनम् · मूलपदम् श्रद्धा"],["परया","नाम","स्त्रीलिङ्गम् · तृतीया · एकवचनम् · मूलपदम् परा · विशेषणम्"],["उपेताः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · उप+इ-धातोः क्तान्तम्"],["ते","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम तद्"],["मे","नाम","षष्ठी · एकवचनम् · सर्वनाम अस्मद्"],["युक्ततमाः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् युक्ततम"],["मताः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मन्-धातोः क्तान्तम्"]],
+        3: [["ये","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम यद्"],["तु","अव्यय","भेदार्थकम्"],["अ-","अव्यय","नञ्-तत्पुरुषः · क्षरम्-पदेन सह (अक्षरम्)"],["क्षरम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् क्षर"],["अ-","अव्यय","नञ्-तत्पुरुषः · निर्देश्यम्-पदेन सह (अनिर्देश्यम्)"],["निर्देश्यम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · निर्+दिश्-धातोः यत्-प्रत्ययान्तम् · मूलपदम् निर्देश्य"],["अ-","अव्यय","बहुव्रीहिः · व्यक्तम्-पदेन सह (अव्यक्तम्)"],["व्यक्तम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् व्यक्त"],["पर्युपासते","क्रिया","धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम्"],["सर्वत्र-","नाम","उपपद-तत्पुरुषः · गम्-पदेन सह (सर्वत्रगम्)"],["गम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् ग"],["अ-","अव्यय","नञ्-तत्पुरुषः · चिन्त्यम्-पदेन सह (अचिन्त्यम्)"],["चिन्त्यम्","नाम","पुंलिङ्गम् · द्वितीया · एकवचनम् · चित्-धातोः यत्-प्रत्ययान्तम् · मूलपदम् चिन्त्य"],["च","अव्यय","समुच्चयार्थकम्"],["कूट-","नाम","उपपद-तत्पुरुषः · स्थम्-पदेन सह (कूटस्थम्)"],["स्थम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् स्थ"],["अ-","अव्यय","नञ्-तत्पुरुषः · चलम्-पदेन सह (अचलम्)"],["चलम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् चल"],["ध्रुवम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् ध्रुव"]],
+        4: [["संनियम्य","अव्यय","सम्+नि+यम्-धातोः ल्यबन्तम् · पूर्वकालक्रिया"],["इन्द्रिय-","नाम","षष्ठी-तत्पुरुषः · ग्रामम्-पदेन सह (इन्द्रियग्रामम्)"],["ग्रामम्","नाम","पुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् ग्राम"],["सर्वत्र","अव्यय","अव्ययम्"],["सम-","नाम","बहुव्रीहिः · बुद्धयः-पदेन सह (समबुद्धयः)"],["बुद्धयः","नाम","स्त्रीलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् बुद्धि"],["ते","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम तद्"],["प्राप्नुवन्ति","क्रिया","धातुः प्र+आप् · लट् · प्रथमपुरुषः · बहुवचनम् · परस्मैपदम्"],["माम्","नाम","द्वितीया · एकवचनम् · सर्वनाम अस्मद्"],["एव","अव्यय","अवधारणार्थकम्"],["सर्व-","नाम","कर्मधारयः · भूत-पदेन सह (सर्वभूतहिते)"],["भूत-","नाम","षष्ठी-तत्पुरुषः · हिते-पदेन सह"],["हिते","नाम","पुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् हित"],["रताः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् रत"]],
+        5: [["क्लेशः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् क्लेश"],["अधिकतरः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् अधिकतर"],["तेषाम्","नाम","पुंलिङ्गम् · षष्ठी · बहुवचनम् · सर्वनाम तद्"],["अ-","अव्यय","नञ्-तत्पुरुषः · व्यक्त-पदेन सह (अव्यक्तासक्तचेतसाम्)"],["व्यक्त-","नाम","सप्तमी-तत्पुरुषः · आसक्त-पदेन सह"],["आसक्त-","नाम","बहुव्रीहिः · चेतसाम्-पदेन सह"],["चेतसाम्","नाम","पुंलिङ्गम् · षष्ठी · बहुवचनम् · मूलपदम् चेतस्"],["अ-","अव्यय","नञ्-तत्पुरुषः · व्यक्ता-पदेन सह (अव्यक्ता)"],["व्यक्ता","नाम","स्त्रीलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् व्यक्ता"],["हि","अव्यय","अव्ययम्"],["गतिः","नाम","स्त्रीलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् गति"],["दुःखम्","नाम","नपुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् दुःख · क्रियाविशेषणम्"],["देहवद्भिः","नाम","पुंलिङ्गम् · तृतीया · बहुवचनम् · मूलपदम् देहवद्"],["अवाप्यते","क्रिया","धातुः अव+आप् · कर्मणि · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम्"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        6: [["ये","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम यद्"],["तु","अव्यय","भेदार्थकम्"],["सर्वाणि","नाम","नपुंलिङ्गम् · द्वितीया · बहुवचनम् · सर्वनाम सर्व"],["कर्माणि","नाम","नपुंलिङ्गम् · द्वितीया · बहुवचनम् · मूलपदम् कर्मन्"],["मयि","नाम","पुंलिङ्गम् · तृतीया · बहुवचनम् · मूलपदम् देहवद्"],["सन्न्यस्य","अव्यय","सम्+नि+अस्-धातोः ल्यबन्तम् · पूर्वकालक्रिया"],["मत्-","नाम","बहुव्रीहिः · पराः-पदेन सह (मत्पराः)"],["पराः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् पर"],["अन्-","अव्यय","बहुव्रीहिः · अन्येन-पदेन सह (अनन्येन)"],["अन्येन","नाम","पुंलिङ्गम् · तृतीया · एकवचनम् · मूलपदम् अनन्य"],["एव","अव्यय","अवधारणार्थकम्"],["योगेन","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् समुद्धर्तृ"],["माम्","नाम","द्वितीया · एकवचनम् · सर्वनाम अस्मद्"],["ध्यायन्तः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · ध्यै-धातोः शतृ-प्रत्ययान्तम् · मूलपदम् ध्यायत्"],["उपासते","क्रिया","धातुः उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम्"]],
+        7: [["तेषाम्","नाम","पुंलिङ्गम् · षष्ठी · बहुवचनम् · सर्वनाम तद्"],["अहम्","नाम","प्रथमा · एकवचनम् · सर्वनाम अस्मद्"],["समुद्धर्ता","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् समुद्धर्तृ"],["मृत्यु-","नाम","कर्मधारयः · संसार-पदेन सह (मृत्युसंसारसागरात्)"],["संसार-","नाम","कर्मधारयः · सागरात्-पदेन सह"],["सागरात्","नाम","पुंलिङ्गम् · पञ्चमी · एकवचनम् · मूलपदम् सागर"],["भवामि","क्रिया","धातुः भू · लट् · उत्तमपुरुषः · एकवचनम् · परस्मैपदम्"],["नचिरात्","अव्यय","अव्ययम् · क्रियाविशेषणम्"],["पार्थ","नाम","पुंलिङ्गम् · सम्बोधनम् · एकवचनम् · मूलपदम् पार्थ"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["आवेशित-","नाम","बहुव्रीहिः · चेतसाम्-पदेन सह (आवेशितचेतसाम्)"],["चेतसाम्","नाम","नपुंलिङ्गम् · षष्ठी · बहुवचनम् · मूलपदम् चेतस्"]],
+        8: [["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["एव","अव्यय","अवधारणार्थकम्"],["मनः","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् मनस्"],["आधत्स्व","क्रिया","धातुः आ+धा · लोट् · मध्यमपुरुषः · एकवचनम् · आत्मनेपदम्"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["बुद्धिम्","नाम","स्त्रीलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् बुद्धि"],["निवेशय","क्रिया","धातुः नि+विश् (णिजन्तम्) · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["निवसिष्यसि","क्रिया","धातुः नि+वस् · लृट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["एव","अव्यय","अवधारणार्थकम्"],["अतः","अव्यय","अव्ययम्"],["ऊर्ध्वम्","अव्यय","अव्ययम्"],["न","अव्यय","प्रतिषेधार्थकम्"],["संशयः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् संशय"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        9: [["अथ","अव्यय","अव्ययम्"],["चित्तम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् चित्त"],["समाधातुम्","नाम","सम्+आ+धा-धातोः तुमुन्-प्रत्ययान्तम् · तुमुन्कर्म"],["न","अव्यय","प्रतिषेधार्थकम्"],["शक्नोषि","क्रिया","धातुः शक् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["स्थिरम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् स्थिर · क्रियाविशेषणम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["अभ्यास-","नाम","कर्मधारयः · योगेन-पदेन सह (अभ्यासयोगेन)"],["योगेन","नाम","पुंलिङ्गम् · तृतीया · एकवचनम् · मूलपदम् योग"],["ततः","अव्यय","अव्ययम्"],["माम्","नाम","द्वितीया · एकवचनम् · सर्वनाम अस्मद्"],["इच्छ","क्रिया","धातुः इष् · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["आप्तुम्","नाम","आप्-धातोः तुमुन्-प्रत्ययान्तम् · तुमुन्कर्म"],["धनञ्-","नाम","उपपद-तत्पुरुषः · जय-पदेन सह (धनञ्जय)"],["जय","नाम","पुंलिङ्गम् · सम्बोधनम् · एकवचनम् · मूलपदम् जय"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        10: [["अभ्यासे","नाम","पुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् अभ्यास"],["अपि","अव्यय","अव्ययम्"],["अ-","अव्यय","नञ्-तत्पुरुषः · समर्थः-पदेन सह (असमर्थः)"],["समर्थः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् समर्थ"],["असि","क्रिया","धातुः अस् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मत्-","नाम","षष्ठी-तत्पुरुषः · कर्म-पदेन सह (मत्कर्मपरमः)"],["कर्म-","नाम","सप्तमी-तत्पुरुषः · परमः-पदेन सह"],["परमः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् परम"],["भव","क्रिया","धातुः भू · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मद्-","नाम","चतुर्थी-तत्पुरुषः · अर्थम्-पदेन सह (मदर्थम्)"],["अर्थम्","नाम","नपुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् अर्थ"],["अपि","अव्यय","अव्ययम्"],["कर्माणि","नाम","नपुंलिङ्गम् · द्वितीया · बहुवचनम् · मूलपदम् कर्मन्"],["कुर्वन्","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · कृ-धातोः शतृ-प्रत्ययान्तम् · मूलपदम् कुर्वत्"],["सिद्धिम्","नाम","स्त्रीलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् सिद्धि"],["अवाप्स्यसि","क्रिया","धातुः अव+आप् · लृट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]]
+      };
+
+      /* ============ Chapters ============ */
+      var CHAPTERS = {
+        1: { name: "Chapter 1", verses: VERSES, anvaya: ANVAYA, karaka: KARAKA, pada: PADA,
+          chipCh: "<strong>Chapter 1</strong> · Arjuna Viṣāda Yoga",
+          chipRange: "Verses <strong>1–47</strong> · the whole chapter",
+          pathSub: "Chapter 1 opens on the battlefield of Kurukṣetra: a blind king asks what happened, and Duryodhana walks the lines of both armies.",
+          readerHead: "Chapter 1 · Verses 1–47",
+          completeTitle: "Chapter 1, verses 1–47 — complete",
+          completeText: "You have walked the whole trail: the armies are arrayed, the conches have sounded on both sides, the chariot stands between the two hosts — Arjuna, seeing his own kin on either side, feels his limbs give way, argues the whole chain of ruin that killing them would bring, and at last casts aside his bow and arrows and sinks down on the seat of his chariot, his mind overwhelmed with grief." },
+        12: { name: "Chapter 12", verses: VERSES12, anvaya: ANVAYA12, karaka: KARAKA12, pada: PADA12,
+          chipCh: "<strong>Chapter 12</strong> · Bhakti Yoga",
+          chipRange: "Verses <strong>1–10</strong> · the first half of the chapter",
+          pathSub: "Chapter 12 — Bhakti Yoga — opens with Arjuna's question: who are the greater yogins, the devotees who worship the Lord in form, or those who contemplate the unmanifest Imperishable? Kṛṣṇa's answer unfolds as a ladder of practice.",
+          readerHead: "Chapter 12 · Verses 1–10",
+          completeTitle: "Chapter 12, verses 1–10 — complete",
+          completeText: "You have walked this stretch of the trail: Arjuna's question, Kṛṣṇa's verdict for those who worship him with faith, the harder road of the Unmanifest that reaches him all the same, his promise to lift his devotees out of the ocean of death, and the first rungs of the ladder — fix the mind on Me; if not, practise; if not, work for Me. Verses 11–20 will complete the chapter." }
+      };
+      var CH = 1;
+      function CV() { return CHAPTERS[CH].verses; }
+
       /* type -> badge label / class */
       function padaBadge(type) {
         if (type === "क्रिया") return '<span class="pada-badge pada-kriya dev">क्रियापदम्</span>';
@@ -2196,14 +2667,14 @@
         return '<span class="pada-badge pada-nama dev">नामपदम्</span>';
       }
       function findPada(v, surface) {
-        var list = PADA[v.n] || [];
+        var list = CHAPTERS[CH].pada[v.n] || [];
         for (var i = 0; i < list.length; i++) {
           if (surface.indexOf(list[i][0]) === 0 || list[i][0].indexOf(surface.replace(/[ःम्]$/, "")) === 0) return list[i];
         }
         return null;
       }
       function anvayaHTML(v) {
-        var a = ANVAYA[v.n];
+        var a = CHAPTERS[CH].anvaya[v.n];
         return '<h4 class="sec-title-dev"><span class="dev">अन्वयः</span><span class="en">Anvaya · prose order</span></h4>' +
           '<div class="anvaya-box"><p class="a-text dev">' + esc(a.t) + '</p><p class="a-note dev">' + esc(a.n) + "</p></div>";
       }
@@ -2239,7 +2710,7 @@
           '<div class="k-conn"></div>' + kFlowTree(hub.nodes) + "</div>";
       }
       function karakaHTML(v) {
-        var k = KARAKA[v.n];
+        var k = CHAPTERS[CH].karaka[v.n];
         if (k.hubs) {
           var blocks = k.hubs.map(function (hub, hi) {
             var tag = k.hubs.length > 1 ? '<p class="k-hub-tag dev">क्रियाकेन्द्रम् ' + devNum(hi + 1) + " / " + devNum(k.hubs.length) + "</p>" : "";
@@ -2254,7 +2725,7 @@
           '<div class="karaka k-single">' + kHubBlock({ kriya: k.kriya, sub: k.sub, nodes: k.nodes }, "") + "</div>";
       }
       function padaHTML(v) {
-        var rows = (PADA[v.n] || []).map(function (p) {
+        var rows = (CHAPTERS[CH].pada[v.n] || []).map(function (p) {
           return "<tr><td class='p dev'>" + esc(p[0]) + "</td><td>" + padaBadge(p[1]) + "</td><td class='d dev'>" + esc(p[2]) + "</td></tr>";
         }).join("");
         return '<table class="ptable"><thead><tr><th class="dev">पदम्</th><th class="dev">प्रकारः</th><th class="dev">विवरणम्</th></tr></thead><tbody>' + rows + "</tbody></table>" +
@@ -2262,9 +2733,14 @@
       }
 
       /* ================= Shared state (in-memory only) ================= */
-      var done = {};            // verse n -> true
-      var doneCount = 0;
+      var done = {};            // "chapter:verse" -> true
       var xp = 0;
+      function dkey(n) { return CH + ":" + n; }
+      function chDone() {
+        var c = 0;
+        CV().forEach(function (v) { if (done[dkey(v.n)]) c++; });
+        return c;
+      }
 
       function el(id) { return document.getElementById(id); }
       function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
@@ -2280,44 +2756,48 @@
       /* ================= Option A: the path ================= */
       var OFFSETS = [0, 46, 74, 46, 0, -46, -74, -46, 0, 40];
       var pathEl = el("path");
-      VERSES.forEach(function (v, i) {
-        var row = document.createElement("div");
-        row.className = "node-row";
-        var wrap = document.createElement("div");
-        wrap.className = "node-wrap";
-        wrap.style.transform = "translateX(" + OFFSETS[i % OFFSETS.length] + "px)";
-        var btn = document.createElement("button");
-        btn.className = "node dev";
-        btn.id = "node-" + v.n;
-        btn.setAttribute("aria-label", "Lesson for verse " + v.n);
-        btn.innerHTML = '<span class="num">' + devNum(v.n) + '</span><span class="tick">✓</span>';
-        btn.addEventListener("click", function () { openLesson(v.n); });
-        var lab = document.createElement("div");
-        lab.className = "node-label";
-        lab.textContent = "Verse " + v.n;
-        wrap.appendChild(btn);
-        wrap.appendChild(lab);
-        row.appendChild(wrap);
-        pathEl.appendChild(row);
-      });
+      function renderPath() {
+        pathEl.innerHTML = "";
+        CV().forEach(function (v, i) {
+          var row = document.createElement("div");
+          row.className = "node-row";
+          var wrap = document.createElement("div");
+          wrap.className = "node-wrap";
+          wrap.style.transform = "translateX(" + OFFSETS[i % OFFSETS.length] + "px)";
+          var btn = document.createElement("button");
+          btn.className = "node dev";
+          btn.id = "node-" + v.n;
+          btn.setAttribute("aria-label", "Lesson for verse " + v.n);
+          btn.innerHTML = '<span class="num">' + devNum(v.n) + '</span><span class="tick">✓</span>';
+          btn.addEventListener("click", function () { openLesson(v.n); });
+          var lab = document.createElement("div");
+          lab.className = "node-label";
+          lab.textContent = "Verse " + v.n;
+          wrap.appendChild(btn);
+          wrap.appendChild(lab);
+          row.appendChild(wrap);
+          pathEl.appendChild(row);
+        });
+      }
 
       function nextUndone() {
-        for (var i = 0; i < VERSES.length; i++) if (!done[VERSES[i].n]) return VERSES[i].n;
+        var vs = CV();
+        for (var i = 0; i < vs.length; i++) if (!done[dkey(vs[i].n)]) return vs[i].n;
         return null;
       }
       function refreshPath() {
-        VERSES.forEach(function (v) {
+        CV().forEach(function (v) {
           var b = el("node-" + v.n);
-          b.classList.toggle("done", !!done[v.n]);
+          b.classList.toggle("done", !!done[dkey(v.n)]);
           b.classList.remove("next");
         });
         var nx = nextUndone();
         if (nx !== null) el("node-" + nx).classList.add("next");
-        el("statDone").textContent = devNum(doneCount) + " / " + devNum(VERSES.length);
+        el("statDone").textContent = devNum(chDone()) + " / " + devNum(CV().length);
         el("statXp").textContent = devNum(xp);
         var sb = el("startBtn");
         if (nx === null) { sb.textContent = "Review verse १"; sb.onclick = function () { openLesson(1); }; }
-        else { sb.textContent = (doneCount === 0 ? "Start" : "Continue with") + " verse " + devNum(nx); sb.onclick = function () { openLesson(nx); }; }
+        else { sb.textContent = (chDone() === 0 ? "Start" : "Continue with") + " verse " + devNum(nx); sb.onclick = function () { openLesson(nx); }; }
       }
 
       /* ================= Lesson overlay ================= */
@@ -2336,14 +2816,14 @@
       }
       var STEP_FRAC = { read: 0, pada: 0.3, anvaya: 0.6, quiz: 0.85, done: 1 };
       function setProgress() {
-        var frac = doneCount + (L ? (STEP_FRAC[L.step] || 0) * (L.wasDone ? 0 : 1) : 0);
-        ovProg.style.width = Math.min(100, Math.round((frac / VERSES.length) * 100)) + "%";
+        var frac = chDone() + (L ? (STEP_FRAC[L.step] || 0) * (L.wasDone ? 0 : 1) : 0);
+        ovProg.style.width = Math.min(100, Math.round((frac / CV().length) * 100)) + "%";
         ovXp.textContent = devNum(xp) + " XP";
       }
 
       function openLesson(n) {
-        var v = VERSES[n - 1];
-        L = { v: v, step: "read", selWord: -1, selOpt: -1, checked: false, wasDone: !!done[n] };
+        var v = CV()[n - 1];
+        L = { v: v, step: "read", selWord: -1, selOpt: -1, checked: false, wasDone: !!done[dkey(n)] };
         overlay.hidden = false;
         document.body.style.overflow = "hidden";
         renderRead();
@@ -2359,7 +2839,7 @@
 
       function verseCardHTML(v, withMeta) {
         return '<div class="verse-card"><p class="verse-text dev">' + esc(v.text) + "</p>" +
-          (withMeta ? '<p class="verse-meta">Chapter 1 · Verse ' + v.n + ' · Speaker: <span class="dev">' + esc(v.speaker) + "</span></p>" : "") +
+          (withMeta ? '<p class="verse-meta">' + CHAPTERS[CH].name + ' · Verse ' + v.n + ' · Speaker: <span class="dev">' + esc(v.speaker) + "</span></p>" : "") +
           "</div>";
       }
 
@@ -2426,7 +2906,8 @@
       }
 
       function quizOptions(v) {
-        var others = [VERSES[(v.n - 1 + 3) % VERSES.length].translation, VERSES[(v.n - 1 + 7) % VERSES.length].translation];
+        var vs = CV();
+        var others = [vs[(v.n - 1 + 3) % vs.length].translation, vs[(v.n - 1 + 7) % vs.length].translation];
         var opts = [{ t: v.translation, ok: true }, { t: others[0], ok: false }, { t: others[1], ok: false }];
         // deterministic shuffle seeded by verse number
         var seed = v.n * 7;
@@ -2472,8 +2953,8 @@
         });
         if (picked.ok) {
           setFeedback("Correct — सुन्दरम्!", "ok");
-          if (!L.wasDone) { done[L.v.n] = true; doneCount++; xp += 10; L.wasDone = true; }
-          setAction(L.v.n === VERSES.length ? "See your result" : "Complete verse " + devNum(L.v.n), true, function () { renderComplete(false); });
+          if (!L.wasDone) { done[dkey(L.v.n)] = true; xp += 10; L.wasDone = true; }
+          setAction(L.v.n === CV().length ? "See your result" : "Complete verse " + devNum(L.v.n), true, function () { renderComplete(false); });
         } else {
           setFeedback("Not quite — the green one is this verse. Read it once more, then continue.", "no");
           setAction("Continue", true, renderCompleteNoCredit);
@@ -2488,16 +2969,16 @@
         var v = L.v;
         L.step = "done";
         setFeedback("", "");
-        var last = v.n === VERSES.length;
-        var allDone = doneCount === VERSES.length;
+        var last = v.n === CV().length;
+        var allDone = chDone() === CV().length;
         var h = '<div class="complete-c"><div class="big dev">॥</div>';
         if (retry) {
           h += "<h3>Verse " + v.n + " read through</h3>" +
             "<p>You saw the words and the meaning. This stop stays open — come back and answer the check to mark it done.</p>";
         } else if (allDone) {
-          h += "<h3>Chapter 1, verses 1–47 — complete</h3>" +
-            "<p>You have walked the whole trail: the armies are arrayed, the conches have sounded on both sides, the chariot stands between the two hosts — Arjuna, seeing his own kin on either side, feels his limbs give way, argues the whole chain of ruin that killing them would bring, and at last casts aside his bow and arrows and sinks down on the seat of his chariot, his mind overwhelmed with grief. " + devNum(xp) + " XP earned.</p>" +
-            '<span class="xp-pill">+१० XP · ' + devNum(doneCount) + " / " + devNum(VERSES.length) + " verses</span>";
+          h += "<h3>" + CHAPTERS[CH].completeTitle + "</h3>" +
+            "<p>" + CHAPTERS[CH].completeText + " " + devNum(xp) + " XP earned.</p>" +
+            '<span class="xp-pill">+१० XP · ' + devNum(chDone()) + " / " + devNum(CV().length) + " verses</span>";
         } else {
           h += "<h3>Verse " + v.n + " done</h3>" +
             "<p>" + esc(v.context) + "</p>" +
@@ -2516,25 +2997,28 @@
       var listEl = el("verseList"), detailEl = el("readerDetail");
       var curVerse = 1, showTranslit = true;
 
-      VERSES.forEach(function (v) {
-        var b = document.createElement("button");
-        b.className = "v-item" + (v.n === 1 ? " sel" : "");
-        b.id = "vitem-" + v.n;
-        b.innerHTML = '<span class="vn dev">' + devNum(v.n) + '</span><span class="vp dev">' + esc(v.text) + "</span>";
-        b.setAttribute("aria-label", "Open verse " + v.n);
-        b.addEventListener("click", function () { selectVerse(v.n, true); });
-        listEl.appendChild(b);
-      });
+      function renderReaderList() {
+        listEl.innerHTML = "";
+        CV().forEach(function (v) {
+          var b = document.createElement("button");
+          b.className = "v-item" + (v.n === curVerse ? " sel" : "");
+          b.id = "vitem-" + v.n;
+          b.innerHTML = '<span class="vn dev">' + devNum(v.n) + '</span><span class="vp dev">' + esc(v.text) + "</span>";
+          b.setAttribute("aria-label", "Open verse " + v.n);
+          b.addEventListener("click", function () { selectVerse(v.n, true); });
+          listEl.appendChild(b);
+        });
+      }
 
       function selectVerse(n, scroll) {
         curVerse = n;
-        VERSES.forEach(function (v) { el("vitem-" + v.n).classList.toggle("sel", v.n === n); });
+        CV().forEach(function (v) { el("vitem-" + v.n).classList.toggle("sel", v.n === n); });
         renderReader();
         if (scroll && window.innerWidth <= 820) detailEl.scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
       function renderReader() {
-        var v = VERSES[curVerse - 1];
+        var v = CV()[curVerse - 1];
         var rows = v.words.map(function (w) {
           return "<tr><td class='w dev'>" + esc(w[0]) + "</td><td class='t'>" + esc(w[1]) + "</td><td>" + esc(w[2]) + "</td></tr>";
         }).join("");
@@ -2551,7 +3035,7 @@
           anvayaHTML(v) + karakaHTML(v) + padaHTML(v) +
           '<div class="rd-nav">' +
             '<button class="btn plain" id="rdPrev"' + (curVerse === 1 ? " disabled" : "") + ">" + (curVerse === 1 ? "← Previous" : "← Verse " + (curVerse - 1)) + "</button>" +
-            '<button class="btn plain" id="rdNext"' + (curVerse === VERSES.length ? " disabled" : "") + ">" + (curVerse === VERSES.length ? "Next →" : "Verse " + (curVerse + 1) + " →") + "</button>" +
+            '<button class="btn plain" id="rdNext"' + (curVerse === CV().length ? " disabled" : "") + ">" + (curVerse === CV().length ? "Next →" : "Verse " + (curVerse + 1) + " →") + "</button>" +
           "</div>";
         el("tglTranslit").addEventListener("click", function () {
           showTranslit = !showTranslit;
@@ -2561,6 +3045,27 @@
         if (p) p.addEventListener("click", function () { selectVerse(curVerse - 1, false); });
         if (nx) nx.addEventListener("click", function () { selectVerse(curVerse + 1, false); });
       }
+
+      /* ================= Chapter switcher ================= */
+      function setChapter(id) {
+        CH = id;
+        var c = CHAPTERS[CH];
+        Array.prototype.forEach.call(document.querySelectorAll(".ch-tab"), function (t) {
+          t.classList.toggle("active", +t.getAttribute("data-ch") === CH);
+        });
+        el("chipCh").innerHTML = c.chipCh;
+        el("chipRange").innerHTML = c.chipRange;
+        el("pathSub").textContent = c.pathSub;
+        el("readerHead").textContent = c.readerHead;
+        curVerse = 1;
+        renderPath();
+        renderReaderList();
+        renderReader();
+        refreshPath();
+      }
+      Array.prototype.forEach.call(document.querySelectorAll(".ch-tab"), function (t) {
+        t.addEventListener("click", function () { setChapter(+t.getAttribute("data-ch")); });
+      });
 
       /* ================= Font showcase ================= */
       Array.prototype.forEach.call(document.querySelectorAll("[data-font-card]"), function (card) {
@@ -2573,8 +3078,7 @@
         });
       });
 
-      refreshPath();
-      renderReader();
+      setChapter(1);
     </script>
   </body>
 </html>
