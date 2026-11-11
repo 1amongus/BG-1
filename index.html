@@ -89,7 +89,22 @@
       }
       .chip strong { color: var(--ink); font-weight: 600; }
 
-      /* ---------- Option chooser ---------- */
+      /* ---------- Page navigation (Option A / Option B pages) ---------- */
+      .page-nav {
+        display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 4px;
+        border-bottom: 1px solid var(--line); padding-bottom: 16px;
+      }
+      .page-tab {
+        border: 1.5px solid var(--line); background: var(--card); color: var(--ink-soft);
+        border-radius: 999px; padding: 10px 20px; font-size: 16px; font-weight: 700; min-height: 48px;
+      }
+      .page-tab.active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+      .page-view[hidden] { display: none; }
+      .cross-link { margin-top: 28px; }
+      .back-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 28px; }
+      .back-bar .hint { margin: 0; }
+
+      /* ---------- Option chooser cards (now used as cross-page links) ---------- */
       .chooser { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 30px 0 8px; }
       @media (max-width: 720px) { .chooser { grid-template-columns: 1fr; } }
       .opt-card {
@@ -395,7 +410,7 @@
       <header class="intro">
         <h1>Timeless wisdom for life’s deepest questions</h1>
         <p>The Bhagavad Gita is the sacred dialogue between Krishna and Arjuna on the battlefield of Kurukshetra—teaching duty, devotion, self-knowledge, and the path to inner freedom.</p>
-        <button class="btn" data-scroll="#option-a">Start learning</button>
+        <button class="btn" data-goto-page="a" data-scroll-target="#option-a">Start learning</button>
         <div class="chips">
           <span class="chip" id="chipCh"><strong>Chapter 1</strong> · Arjuna Viṣāda Yoga</span>
           <span class="chip" id="chipRange">Verses <strong>1–47</strong> · the whole chapter</span>
@@ -403,35 +418,14 @@
         </div>
       </header>
 
-      <div class="chooser">
-        <article class="opt-card">
-          <p class="opt-tag">Option A</p>
-          <h2>The Guided Path</h2>
-          <p>A Duolingo-style trail through the chapter's opening — one verse per stop, a few minutes each.</p>
-          <ul>
-            <li>Tap any word — <span class="dev">पदपरिचयः</span> says whether it is a <span class="dev">नामपदम्</span> or a <span class="dev">क्रियापदम्</span></li>
-            <li>Every verse now carries its <span class="dev">अन्वयः</span> and a <span class="dev">कारकचक्रम्</span>, as in the Samsaadhanii e-reader</li>
-            <li>Almost everything in Sanskrit — English kept to a minimum</li>
-            <li>Best for: a daily habit, beginners</li>
-          </ul>
-          <button class="btn" data-scroll="#option-a">Walk the path</button>
-        </article>
-        <article class="opt-card">
-          <p class="opt-tag">Option B</p>
-          <h2>The Study Reader</h2>
-          <p>The e-reader way — the verses open in front of you, each with its full analysis.</p>
-          <ul>
-            <li>Complete word-by-word breakdown of every verse</li>
-            <li><span class="dev">अन्वयः</span>, <span class="dev">कारकचक्रम्</span> and <span class="dev">पदपरिचयः</span> for every verse, in Sanskrit</li>
-            <li>Transliteration you can show or hide</li>
-            <li>Best for: close study, revision, reference</li>
-          </ul>
-          <button class="btn ghost" data-scroll="#option-b">Open the reader</button>
-        </article>
-      </div>
+      <nav class="page-nav" aria-label="Choose a page">
+        <button class="page-tab active" data-page-tab="a" aria-current="page">Option A — The Guided Path</button>
+        <button class="page-tab" data-page-tab="b">Option B — The Study Reader</button>
+      </nav>
 
-      <!-- ============ OPTION A ============ -->
-      <section class="block" id="option-a">
+      <!-- ============ PAGE A: OPTION A ============ -->
+      <div id="page-a" class="page-view">
+      <section class="block" id="option-a" style="margin-top:28px">
         <div class="block-head">
           <h2>Option A — The Guided Path</h2>
           <p>One stop for each verse. Each lesson now has four short steps, almost all in Sanskrit: <span class="dev">पाठः</span> (read and tap the words), <span class="dev">पदपरिचयः</span> (is each word a <span class="dev">नामपदम्</span> or a <span class="dev">क्रियापदम्</span>?), <span class="dev">अन्वयः</span> with the <span class="dev">कारकचक्रम्</span>, and a final <span class="dev">परीक्षणम्</span> (meaning check). Every stop stays open, so you can revisit any verse.</p>
@@ -452,8 +446,26 @@
         </div>
       </section>
 
-      <!-- ============ OPTION B ============ -->
-      <section class="block" id="option-b">
+        <article class="opt-card cross-link">
+          <p class="opt-tag">Option B · Its own page</p>
+          <h2>The Study Reader</h2>
+          <p>The e-reader way — the verses open in front of you, each with its full analysis.</p>
+          <ul>
+            <li>Complete word-by-word breakdown of every verse</li>
+            <li><span class="dev">अन्वयः</span>, <span class="dev">कारकचक्रम्</span> and <span class="dev">पदपरिचयः</span> for every verse, in Sanskrit</li>
+            <li>Transliteration you can show or hide</li>
+            <li>Best for: close study, revision, reference</li>
+          </ul>
+          <button class="btn ghost" data-goto-page="b">Go to Option B — The Study Reader →</button>
+        </article>
+      </div>
+
+      <!-- ============ PAGE B: OPTION B ============ -->
+      <div id="page-b" class="page-view" hidden>
+        <div class="back-bar">
+          <button class="btn ghost" data-goto-page="a">← Back to Option A — The Guided Path</button>
+        </div>
+      <section class="block" id="option-b" style="margin-top:28px">
         <div class="block-head">
           <h2>Option B — The Study Reader</h2>
           <p>Modelled on the Samsaadhanii e-reader: choose a verse and study it whole — text, transliteration, translation, word-by-word table, and now also the <span class="dev">अन्वयः</span>, the <span class="dev">कारकचक्रम्</span> and a <span class="dev">पदपरिचयः</span> table naming each word's form — <span class="dev">नामपदम्</span>, <span class="dev">क्रियापदम्</span> or <span class="dev">अव्ययपदम्</span> — with its <span class="dev">लिङ्ग-विभक्ति-वचन</span> or <span class="dev">लकार-पुरुष-वचन</span>.</p>
@@ -470,6 +482,23 @@
           <article class="reader-detail" id="readerDetail"></article>
         </div>
       </section>
+
+        <article class="opt-card cross-link">
+          <p class="opt-tag">Option A · Its own page</p>
+          <h2>The Guided Path</h2>
+          <p>A Duolingo-style trail through the chapter — one verse per stop, a few minutes each.</p>
+          <ul>
+            <li>Tap any word — <span class="dev">पदपरिचयः</span> says whether it is a <span class="dev">नामपदम्</span> or a <span class="dev">क्रियापदम्</span></li>
+            <li>Every verse carries its <span class="dev">अन्वयः</span> and a <span class="dev">कारकचक्रम्</span>, as in the Samsaadhanii e-reader</li>
+            <li>Almost everything in Sanskrit — English kept to a minimum</li>
+            <li>Best for: a daily habit, beginners</li>
+          </ul>
+          <button class="btn" data-goto-page="a">Go to Option A — The Guided Path →</button>
+        </article>
+        <div class="back-bar">
+          <button class="btn ghost" data-goto-page="a">← Back to Option A — The Guided Path</button>
+        </div>
+      </div>
 
       <!-- ============ FONT SHOWCASE ============ -->
       <section class="block" id="fonts">
@@ -3170,7 +3199,44 @@
       function el(id) { return document.getElementById(id); }
       function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
 
-      /* ================= Scroll buttons ================= */
+      /* ================= Page navigation: Option A / Option B ================= */
+      var currentPage = "a";
+      function showPage(which, opts) {
+        opts = opts || {};
+        currentPage = which === "b" ? "b" : "a";
+        var isB = currentPage === "b";
+        el("page-a").hidden = isB;
+        el("page-b").hidden = !isB;
+        Array.prototype.forEach.call(document.querySelectorAll("[data-page-tab]"), function (t) {
+          var on = t.getAttribute("data-page-tab") === currentPage;
+          t.classList.toggle("active", on);
+          if (on) t.setAttribute("aria-current", "page"); else t.removeAttribute("aria-current");
+        });
+        if (opts.updateHash !== false) {
+          var h = isB ? "#option-b" : "#option-a";
+          if (window.location.hash !== h) {
+            try { history.pushState(null, "", h); } catch (e) { window.location.hash = h; }
+          }
+        }
+        if (opts.scrollTarget) {
+          var t = document.querySelector(opts.scrollTarget);
+          if (t) { t.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+        }
+        if (opts.scroll !== false) window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      Array.prototype.forEach.call(document.querySelectorAll("[data-goto-page]"), function (b) {
+        b.addEventListener("click", function () {
+          showPage(b.getAttribute("data-goto-page"), { scrollTarget: b.getAttribute("data-scroll-target") || null });
+        });
+      });
+      Array.prototype.forEach.call(document.querySelectorAll("[data-page-tab]"), function (t) {
+        t.addEventListener("click", function () { showPage(t.getAttribute("data-page-tab")); });
+      });
+      window.addEventListener("hashchange", function () {
+        var want = (window.location.hash === "#option-b" || window.location.hash === "#page-b") ? "b" : "a";
+        if (want !== currentPage) showPage(want, { updateHash: false });
+      });
+      // Keep any legacy scroll buttons working within the visible page
       Array.prototype.forEach.call(document.querySelectorAll("[data-scroll]"), function (b) {
         b.addEventListener("click", function () {
           var t = document.querySelector(b.getAttribute("data-scroll"));
@@ -3504,6 +3570,12 @@
       });
 
       setChapter(1);
+      // Main screen is Option A; open on Option B only when its link/hash is used
+      if (window.location.hash === "#option-b" || window.location.hash === "#page-b") {
+        showPage("b", { updateHash: false, scroll: false });
+      } else {
+        showPage("a", { updateHash: false, scroll: false });
+      }
     </script>
   </body>
 </html>
