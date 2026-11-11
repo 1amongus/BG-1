@@ -534,7 +534,7 @@
       </section>
 
       <footer class="note">
-        <p>Verse text: <em>Śrīmad Bhagavad Gītā</em> — Chapter 1, verses 1–47, and Chapter 12, verses 1–10 — as presented in the <a href="https://ereaders.samsaadhanii.in/books/ereaders/#/read/shrimadbhagavadgita/1-1-1" target="_blank" rel="noopener">Samsaadhanii e-reader</a> (Computational Linguistics Group, University of Hyderabad). The <span class="dev">अन्वयः</span> word order, <span class="dev">कारकचक्रम्</span> relations and <span class="dev">पदपरिचयः</span> tables here are the e-reader's own analysis, reproduced exactly as its data gives them — nothing re-tagged, reordered or corrected; words the analysis supplies but the verse omits are shown in brackets, and the speaker lines are marked as not part of that analysis. A word the analysis lists more than once keeps a row for each occurrence. Translations and word glosses are short learner renderings.</p>
+        <p>Verse text: <em>Śrīmad Bhagavad Gītā</em> — Chapter 1, verses 1–47, and Chapter 12, verses 1–20 — as presented in the <a href="https://ereaders.samsaadhanii.in/books/ereaders/#/read/shrimadbhagavadgita/1-1-1" target="_blank" rel="noopener">Samsaadhanii e-reader</a> (Computational Linguistics Group, University of Hyderabad). The <span class="dev">अन्वयः</span> word order, <span class="dev">कारकचक्रम्</span> relations and <span class="dev">पदपरिचयः</span> tables here are the e-reader's own analysis, reproduced exactly as its data gives them — nothing re-tagged, reordered or corrected; words the analysis supplies but the verse omits are shown in brackets, and the speaker lines are marked as not part of that analysis. A word the analysis lists more than once keeps a row for each occurrence. Translations and word glosses are short learner renderings.</p>
       </footer>
     </div>
 
@@ -2205,7 +2205,7 @@
         47: [["एवम्","अव्यय","अव्ययम् · क्रियाविशेषणम्"],["उक्त्वा","अव्यय","वच्-धातोः क्त्वान्तम् · पूर्वकालक्रिया"],["अर्जुनः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · कर्ता"],["सङ्ख्ये","नाम","नपुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् सङ्ख्य · अधिकरणम्"],["रथ-","नाम","षष्ठी-तत्पुरुषः · उपस्थे-पदेन सह (रथोपस्थे)"],["उपस्थे","नाम","पुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् उपस्थ · अधिकरणम्"],["उपाविशत्","क्रिया","धातुः उप+विश् · लङ् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्"],["विसृज्य","अव्यय","वि+सृज्-धातोः ल्यबन्तम् · पूर्वकालक्रिया"],["स-","नाम","तृतीया-तत्पुरुषः · शरम्-पदेन सह (सशरम्)"],["शरम्","नाम","पुंलिङ्गम् · द्वितीया · एकवचनम् · विशेषणम्"],["चापम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् चाप · कर्म"],["शोक-","नाम","तृतीया-तत्पुरुषः · मानसः-पदेन सह (शोकसंविग्नमानसः)"],["संविग्न-","नाम","बहुव्रीहिः · मानसः-पदेन सह"],["मानसः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · विशेषणम्"]]
       };
 
-      /* ============ Chapter 12 (Bhakti Yoga), verses 1–10 ============
+      /* ============ Chapter 12 (Bhakti Yoga), verses 1–20 ============
          Added from the same source: the Samsaadhanii e-reader's own analysis
          data for chapter 12 (slokas.json + analysis.json), extracted into
          word tables with its anvaya numbering, morph-in-context, karaka
@@ -2215,12 +2215,16 @@
          words bracketed, repeated words keeping a row per occurrence, and
          the source's own quirks reproduced as they stand, including two
          morph strings in 12.6 that the source file attaches to मयि
-         (देहवद्{पुं;3;बहु}) and योगेन (समुद्धर्तृ{पुं;1;एक}).
-         Verses 3–4 and 6–7 are single merged entries in the source (one
-         analysis, one graph), so they share their anvaya and karaka here,
-         exactly as verses 4–6 and 17–18 do in chapter 1. Speaker lines are
-         marked as not part of the source analysis, as in chapter 1.
-         Translations and word glosses are short learner renderings. */
+         (देहवद्{पुं;3;बहु}) and योगेन (समुद्धर्तृ{पुं;1;एक}), and the morph
+         string in 12.20 that it attaches to उक्तम् (प्रिय{पुं;1;बहु}).
+         Verses 3–4, 6–7, 13–14 and 18–19 are single merged entries in the
+         source (one analysis), so they share their anvaya and karaka here,
+         exactly as verses 4–6 and 17–18 do in chapter 1; the source gives
+         no separate graph for the merged 13–14 entry, so its karaka here is
+         drawn from the source's own karaka relations, as in chapter 1.
+         Speaker lines are marked as not part of the source analysis, as
+         in chapter 1. Translations and word glosses are short learner
+         renderings. */
       var VERSES12 = [
         {
           n: 1, speaker: "अर्जुन उवाच",
@@ -2421,6 +2425,198 @@
             ["कुर्वन्", "kurvan", "doing, performing"],
             ["सिद्धिमवाप्स्यसि", "siddhim avāpsyasi", "you shall attain perfection"]
           ]
+        },
+        {
+          n: 11, speaker: "श्रीभगवान्",
+          text: "अथैतदप्यशक्तोऽसि कर्तुं मद्योगमाश्रितः । सर्वकर्मफलत्यागं ततः कुरु यतात्मवान् ॥ ११ ॥",
+          translit: "athaitad apy aśakto 'si kartuṁ madyogam āśritaḥ । sarvakarmaphalatyāgaṁ tataḥ kuru yatātmavān ॥ 11 ॥",
+          translation: "If you are unable to do even this, then — taking refuge in the yoga of devotion to Me, with the self restrained — renounce the fruit of all actions.",
+          context: "The last rung of the ladder that began at verse 8: if even work done for Kṛṣṇa's sake is beyond reach, then simply give up the fruits of every action, keeping the self under control.",
+          words: [
+            ["अथैतदप्यशक्तोऽसि", "athaitad apy aśakto 'si", "if you are unable to do even this"],
+            ["कर्तुं", "kartum", "to do"],
+            ["मद्योगमाश्रितः", "madyogam āśritaḥ", "taking refuge in union with Me"],
+            ["सर्वकर्मफलत्यागं", "sarvakarmaphalatyāgam", "renunciation of the fruits of all actions"],
+            ["ततः", "tataḥ", "then"],
+            ["कुरु", "kuru", "do, practise"],
+            ["यतात्मवान्", "yatātmavān", "with the self restrained"]
+          ]
+        },
+        {
+          n: 12, speaker: "श्रीभगवान्",
+          text: "श्रेयो हि ज्ञानमभ्यासाज्ज्ञानाद्ध्यानं विशिष्यते । ध्यानात्कर्मफलत्यागस्त्यागाच्छान्तिरनन्तरम् ॥ १२ ॥",
+          translit: "śreyo hi jñānam abhyāsāj jñānād dhyānaṁ viśiṣyate । dhyānāt karmaphalatyāgas tyāgāc chāntir anantaram ॥ 12 ॥",
+          translation: "Knowledge is better than practice; meditation is better than knowledge; renunciation of the fruit of actions is better than meditation — and from renunciation, peace follows at once.",
+          context: "A summing-up of the ladder: practice, knowledge, meditation, renunciation of fruits — each step quieter than the one before, until renunciation opens directly onto peace.",
+          words: [
+            ["श्रेयो", "śreyaḥ", "better"],
+            ["हि", "hi", "for, indeed"],
+            ["ज्ञानमभ्यासात्", "jñānam abhyāsāt", "knowledge (better) than practice"],
+            ["ज्ञानाद्ध्यानं", "jñānād dhyānam", "meditation (better) than knowledge"],
+            ["विशिष्यते", "viśiṣyate", "is esteemed higher, excels"],
+            ["ध्यानात्कर्मफलत्यागः", "dhyānāt karmaphalatyāgaḥ", "renunciation of the fruit of actions (better) than meditation"],
+            ["त्यागाच्छान्तिः", "tyāgāc chāntiḥ", "from renunciation, peace"],
+            ["अनन्तरम्", "anantaram", "immediately after"]
+          ]
+        },
+        {
+          n: 13, speaker: "श्रीभगवान्",
+          text: "अद्वेष्टा सर्वभूतानां मैत्रः करुण एव च । निर्ममो निरहङ्कारः समदुःखसुखः क्षमी ॥ १३ ॥",
+          translit: "adveṣṭā sarvabhūtānāṁ maitraḥ karuṇa eva ca । nirmamo nirahaṅkāraḥ samaduḥkhasukhaḥ kṣamī ॥ 13 ॥",
+          translation: "He who bears no hatred toward any being, who is friendly and compassionate, free from 'mine' and from egoism, the same in pain and pleasure, forgiving —",
+          context: "Kṛṣṇa now paints the devotee who is dear to him. The portrait runs from here to verse 19 — one long sentence of qualities that first completes in verse 14, and the refrain 'dear to Me' carries it to the chapter's end.",
+          words: [
+            ["अद्वेष्टा", "adveṣṭā", "free from hatred (toward)"],
+            ["सर्वभूतानां", "sarvabhūtānām", "all beings"],
+            ["मैत्रः", "maitraḥ", "friendly"],
+            ["करुण", "karuṇaḥ", "compassionate"],
+            ["एव", "eva", "indeed"],
+            ["च", "ca", "and"],
+            ["निर्ममो", "nirmamaḥ", "free from 'mine'"],
+            ["निरहङ्कारः", "nirahaṅkāraḥ", "free from egoism"],
+            ["समदुःखसुखः", "samaduḥkhasukhaḥ", "the same in pain and pleasure"],
+            ["क्षमी", "kṣamī", "forgiving"]
+          ]
+        },
+        {
+          n: 14, speaker: "श्रीभगवान्",
+          text: "सन्तुष्टः सततं योगी यतात्मा दृढनिश्चयः । मय्यर्पितमनोबुद्धिर्यो मद्भक्तः स मे प्रियः ॥ १४ ॥",
+          translit: "santuṣṭaḥ satataṁ yogī yatātmā dṛḍhaniścayaḥ । mayy arpitamanobuddhir yo madbhaktaḥ sa me priyaḥ ॥ 14 ॥",
+          translation: "— ever content, a yogin, self-controlled, of firm resolve, his mind and intellect offered up to Me — that devotee of Mine is dear to Me.",
+          context: "The sentence that began in verse 13 completes here: contentment, self-mastery and a mind offered to Kṛṣṇa — and for the first time the refrain sounds in full: 'such a devotee is dear to Me'.",
+          words: [
+            ["सन्तुष्टः", "santuṣṭaḥ", "content"],
+            ["सततं", "satatam", "always, constantly"],
+            ["योगी", "yogī", "the yogin"],
+            ["यतात्मा", "yatātmā", "self-controlled"],
+            ["दृढनिश्चयः", "dṛḍhaniścayaḥ", "of firm resolve"],
+            ["मय्यर्पितमनोबुद्धिः", "mayy arpitamanobuddhiḥ", "whose mind and intellect are offered to Me"],
+            ["यो", "yaḥ", "who"],
+            ["मद्भक्तः", "madbhaktaḥ", "My devotee"],
+            ["स", "saḥ", "he"],
+            ["मे", "me", "to Me"],
+            ["प्रियः", "priyaḥ", "is dear"]
+          ]
+        },
+        {
+          n: 15, speaker: "श्रीभगवान्",
+          text: "यस्मान्नोद्विजते लोको लोकान्नोद्विजते च यः । हर्षामर्षभयोद्वेगैर्मुक्तो यः स च मे प्रियः ॥ १५ ॥",
+          translit: "yasmān nodvijate loko lokān nodvijate ca yaḥ । harṣāmarṣabhayodvegair mukto yaḥ sa ca me priyaḥ ॥ 15 ॥",
+          translation: "He from whom the world does not shrink, and who does not shrink from the world — who is free from elation, impatience, fear and agitation — he too is dear to Me.",
+          context: "The dear devotee is untroubling and untroubled: no one is unsettled by him, he is unsettled by no one, and the pairs of excitement and dread have loosened their hold on him.",
+          words: [
+            ["यस्मान्नोद्विजते", "yasmān nodvijate", "from whom (no one) shrinks, is agitated"],
+            ["लोको", "lokaḥ", "the world, anyone"],
+            ["लोकान्नोद्विजते", "lokān nodvijate", "(who) does not shrink from the world"],
+            ["च", "ca", "and"],
+            ["यः", "yaḥ", "who"],
+            ["हर्षामर्षभयोद्वेगैर्मुक्तो", "harṣāmarṣabhayodvegair muktaḥ", "freed from elation, impatience, fear and agitation"],
+            ["यः", "yaḥ", "who"],
+            ["स", "saḥ", "he"],
+            ["च", "ca", "also"],
+            ["मे", "me", "to Me"],
+            ["प्रियः", "priyaḥ", "is dear"]
+          ]
+        },
+        {
+          n: 16, speaker: "श्रीभगवान्",
+          text: "अनपेक्षः शुचिर्दक्ष उदासीनो गतव्यथः । सर्वारम्भपरित्यागी यो मद्भक्तः स मे प्रियः ॥ १६ ॥",
+          translit: "anapekṣaḥ śucir dakṣa udāsīno gatavyathaḥ । sarvārambhaparityāgī yo madbhaktaḥ sa me priyaḥ ॥ 16 ॥",
+          translation: "He who expects nothing, who is pure, capable, impartial and free from sorrow, who has renounced all undertakings — that devotee of Mine is dear to Me.",
+          context: "Expecting nothing from the world and having given up every undertaking's claim on him, the devotee is pure, capable and untouched by sorrow — and therefore dear.",
+          words: [
+            ["अनपेक्षः", "anapekṣaḥ", "expecting nothing"],
+            ["शुचिः", "śuciḥ", "pure"],
+            ["दक्ष", "dakṣaḥ", "skilled, capable"],
+            ["उदासीनो", "udāsīnaḥ", "impartial, unconcerned"],
+            ["गतव्यथः", "gatavyathaḥ", "free from sorrow"],
+            ["सर्वारम्भपरित्यागी", "sarvārambhaparityāgī", "who has renounced all undertakings"],
+            ["यो", "yaḥ", "who"],
+            ["मद्भक्तः", "madbhaktaḥ", "My devotee"],
+            ["स", "saḥ", "he"],
+            ["मे", "me", "to Me"],
+            ["प्रियः", "priyaḥ", "is dear"]
+          ]
+        },
+        {
+          n: 17, speaker: "श्रीभगवान्",
+          text: "यो न हृष्यति न द्वेष्टि न शोचति न काङ्क्षति । शुभाशुभपरित्यागी भक्तिमान्यः स मे प्रियः ॥ १७ ॥",
+          translit: "yo na hṛṣyati na dveṣṭi na śocati na kāṅkṣati । śubhāśubhaparityāgī bhaktimān yaḥ sa me priyaḥ ॥ 17 ॥",
+          translation: "He who neither rejoices nor hates, neither grieves nor longs, who has renounced both good and evil results and is full of devotion — he is dear to Me.",
+          context: "Four negations clear the ground — no elation, no hatred, no grief, no craving — and what remains is a devotee who has let go of auspicious and inauspicious results alike.",
+          words: [
+            ["यो", "yaḥ", "who"],
+            ["न", "na", "does not"],
+            ["हृष्यति", "hṛṣyati", "rejoice"],
+            ["न", "na", "nor"],
+            ["द्वेष्टि", "dveṣṭi", "hate"],
+            ["न", "na", "nor"],
+            ["शोचति", "śocati", "grieve"],
+            ["न", "na", "nor"],
+            ["काङ्क्षति", "kāṅkṣati", "desire, long for"],
+            ["शुभाशुभपरित्यागी", "śubhāśubhaparityāgī", "who has renounced good and evil (results)"],
+            ["भक्तिमान्यः", "bhaktimān yaḥ", "who is full of devotion"],
+            ["स", "saḥ", "he"],
+            ["मे", "me", "to Me"],
+            ["प्रियः", "priyaḥ", "is dear"]
+          ]
+        },
+        {
+          n: 18, speaker: "श्रीभगवान्",
+          text: "समः शत्रौ च मित्रे च तथा मानापमानयोः । शीतोष्णसुखदुःखेषु समः सङ्गविवर्जितः ॥ १८ ॥",
+          translit: "samaḥ śatrau ca mitre ca tathā mānāpamānayoḥ । śītoṣṇasukhaduḥkheṣu samaḥ saṅgavivarjitaḥ ॥ 18 ॥",
+          translation: "He who is the same toward foe and friend, and likewise in honour and dishonour; the same in cold and heat, in pleasure and pain; free from attachment —",
+          context: "The portrait continues into verse 19: sameness across every pair the world offers — friend and foe, honour and disgrace, cold and heat, pleasure and pain — and no attachment anywhere.",
+          words: [
+            ["समः", "samaḥ", "the same, equal"],
+            ["शत्रौ", "śatrau", "toward an enemy"],
+            ["च", "ca", "and"],
+            ["मित्रे", "mitre", "toward a friend"],
+            ["च", "ca", "and"],
+            ["तथा", "tathā", "likewise"],
+            ["मानापमानयोः", "mānāpamānayoḥ", "in honour and dishonour"],
+            ["शीतोष्णसुखदुःखेषु", "śītoṣṇasukhaduḥkheṣu", "in cold and heat, pleasure and pain"],
+            ["समः", "samaḥ", "the same"],
+            ["सङ्गविवर्जितः", "saṅgavivarjitaḥ", "free from attachment"]
+          ]
+        },
+        {
+          n: 19, speaker: "श्रीभगवान्",
+          text: "तुल्यनिन्दास्तुतिर्मौनी सन्तुष्टो येनकेनचित् । अनिकेतः स्थिरमतिर्भक्तिमान्मे प्रियो नरः ॥ १९ ॥",
+          translit: "tulyanindāstutir maunī santuṣṭo yenakenacit । aniketaḥ sthiramatir bhaktimān me priyo naraḥ ॥ 19 ॥",
+          translation: "— to whom blame and praise are equal, who is silent, content with whatever comes, without a home, of steady mind and full of devotion — that man is dear to Me.",
+          context: "The sentence that began in verse 18 completes: praise and blame weigh the same, he is content with whatever comes, has no fixed home to defend, and his mind is steady.",
+          words: [
+            ["तुल्यनिन्दास्तुतिः", "tulyanindāstutiḥ", "to whom blame and praise are equal"],
+            ["मौनी", "maunī", "silent, contemplative"],
+            ["सन्तुष्टो", "santuṣṭaḥ", "content"],
+            ["येनकेनचित्", "yenakenacit", "with whatever (comes)"],
+            ["अनिकेतः", "aniketaḥ", "homeless, without a fixed abode"],
+            ["स्थिरमतिः", "sthiramatiḥ", "of steady mind"],
+            ["भक्तिमान्मे", "bhaktimān me", "full of devotion, (dear) to Me"],
+            ["प्रियो", "priyaḥ", "dear"],
+            ["नरः", "naraḥ", "the man"]
+          ]
+        },
+        {
+          n: 20, speaker: "श्रीभगवान्",
+          text: "ये तु धर्म्यामृतमिदं यथोक्तं पर्युपासते । श्रद्दधाना मत्परमा भक्तास्तेऽतीव मे प्रियाः ॥ २० ॥",
+          translit: "ye tu dharmyāmṛtam idaṁ yathoktaṁ paryupāsate । śraddadhānā matparamā bhaktās te 'tīva me priyāḥ ॥ 20 ॥",
+          translation: "But those who follow this immortal dharma just as it has been declared, full of faith, holding Me as their supreme goal — those devotees are exceedingly dear to Me.",
+          context: "The chapter closes where it began: पर्युपासते, 'they worship', is the very word of Arjuna's opening question. Those who live this teaching with faith are not merely dear, but exceedingly dear.",
+          words: [
+            ["ये", "ye", "those who"],
+            ["तु", "tu", "but"],
+            ["धर्म्यामृतमिदं", "dharmyāmṛtam idam", "this immortal dharma"],
+            ["यथोक्तं", "yathoktam", "as declared"],
+            ["पर्युपासते", "paryupāsate", "follow, worship"],
+            ["श्रद्दधानाः", "śraddadhānāḥ", "full of faith"],
+            ["मत्परमाः", "matparamāḥ", "holding Me as the supreme goal"],
+            ["भक्ताः", "bhaktāḥ", "devotees"],
+            ["तेऽतीव", "te 'tīva", "they (are) exceedingly"],
+            ["मे", "me", "to Me"],
+            ["प्रियाः", "priyāḥ", "dear"]
+          ]
         }
       ];
 
@@ -2434,7 +2630,17 @@
         7: { t: "ये तु सर्वाणि कर्माणि मयि सन्न्यस्य मत्पराः, अनन्येन एव योगेन मां ध्यायन्तः उपासते — तेषाम् अहं समुद्धर्ता मृत्युसंसारसागरात् भवामि नचिरात्, हे पार्थ, मयि आवेशितचेतसाम् ।", n: "षष्ठः सप्तमः च श्लोकौ मिलित्वा एकं वाक्यम् (स्रोतसि एकमेव विश्लेषणप्रविष्टिः) । प्रथमा क्रिया उपासते, कर्ता ये; सन्न्यस्य इति पूर्वकालक्रिया, ध्यायन्तः वर्तमानसमानकालक्रिया । द्वितीया क्रिया भवामि, कर्ता अहम्, समुद्धर्ता तस्य विधेयविशेषणम् । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
         8: { t: "मयि एव मनः आधत्स्व (त्वम्) । मयि बुद्धिं निवेशय (त्वम्) । निवसिष्यसि मयि एव (त्वम्) । अतः ऊर्ध्वं न संशयः (अस्ति) ।", n: "त्रीणि वाक्यानि — आधत्स्व, निवेशय इति लोट्-क्रिये, निवसिष्यसि इति लृट् च; त्रयाणाम् अपि कर्ता (त्वम्) अध्याहृतः । चतुर्थे क्रिया (अस्ति) अध्याहृता, कर्ता संशयः, न इति प्रतिषेधः ।" },
         9: { t: "अथ चित्तं समाधातुं न शक्नोषि मयि स्थिरं (त्वम्) — अभ्यासयोगेन ततः माम् आप्तुम् इच्छ (त्वम्), हे धनञ्जय ।", n: "द्वे क्रिये — शक्नोषि, इच्छ (लोट्) च; उभयोः कर्ता (त्वम्) अध्याहृतः । समाधातुम् इति शक्नोषि-क्रियायाः तुमुन्कर्म, आप्तुम् इति इच्छ-क्रियायाः । धनञ्जय इति सम्बोध्यः ।" },
-        10: { t: "अभ्यासे अपि असमर्थः असि (त्वम्) — मत्कर्मपरमः भव (त्वम्) । मदर्थम् अपि कर्माणि कुर्वन् सिद्धिम् अवाप्स्यसि (त्वम्) ।", n: "त्रीणि वाक्यानि — असि, भव (लोट्), अवाप्स्यसि (लृट्) च; त्रयाणाम् अपि कर्ता (त्वम्) अध्याहृतः । कुर्वन् इति अवाप्स्यसि-क्रियायाः वर्तमानसमानकालक्रिया, तस्याः कर्म कर्माणि, प्रयोजनं मदर्थम् ।" }
+        10: { t: "अभ्यासे अपि असमर्थः असि (त्वम्) — मत्कर्मपरमः भव (त्वम्) । मदर्थम् अपि कर्माणि कुर्वन् सिद्धिम् अवाप्स्यसि (त्वम्) ।", n: "त्रीणि वाक्यानि — असि, भव (लोट्), अवाप्स्यसि (लृट्) च; त्रयाणाम् अपि कर्ता (त्वम्) अध्याहृतः । कुर्वन् इति अवाप्स्यसि-क्रियायाः वर्तमानसमानकालक्रिया, तस्याः कर्म कर्माणि, प्रयोजनं मदर्थम् ।" },
+        11: { t: "अथ एतत् अपि कर्तुम् अशक्तः असि (त्वम्) — मद्योगम् आश्रितः, सर्वकर्मफलत्यागं ततः कुरु (त्वम्), यतात्मवान् ।", n: "द्वे वाक्ये । प्रथमे क्रिया असि, कर्ता (त्वम्) अध्याहृतः, शक्तः तस्य विधेयविशेषणम्, कर्तुम् इति तस्य तुमुन्कर्म, एतत् कर्तुम्-क्रियायाः कर्म । द्वितीये क्रिया कुरु (लोट्), कर्ता (त्वम्) अध्याहृतः, कर्म त्यागम्; आश्रितः यतात्मवान् च कर्तुः विशेषणे ।" },
+        12: { t: "श्रेयः हि ज्ञानम् अभ्यासात् (अस्ति) । ज्ञानात् ध्यानं विशिष्यते । ध्यानात् कर्मफलत्यागः (विशिष्यते) । त्यागात् शान्तिः अनन्तरं (भवति) ।", n: "चत्वारि वाक्यानि । प्रथमे क्रिया (अस्ति) अध्याहृता, कर्ता ज्ञानम्, श्रेयः तस्य विधेयविशेषणम्, अभ्यासात् विभक्तम् । विशिष्यते-क्रियायाः कर्ता ध्यानम्, ज्ञानात् विभक्तम्; तृतीये (विशिष्यते) अध्याहृतम्, कर्ता त्यागः, ध्यानात् विभक्तम् । अन्तिमे (भवति) अध्याहृतम्, कर्ता शान्तिः, त्यागात् हेतुः, अनन्तरं कालाधिकरणम् ।" },
+        13: { t: "अद्वेष्टा सर्वभूतानां मैत्रः करुणः एव च, निर्ममः निरहङ्कारः समदुःखसुखः क्षमी, सन्तुष्टः सततं योगी यतात्मा दृढनिश्चयः, मयि अर्पितमनोबुद्धिः यः मद्भक्तः अस्ति — सः मे प्रियः अस्ति ।", n: "त्रयोदश-चतुर्दशश्लोकौ मिलित्वा एकमेव विश्लेषणप्रविष्टिः (स्रोतसि एकमेव विश्लेषणम्, कारकचित्रं नास्ति) । अद्वेष्टा-आदयः सर्वे यः-पदस्य विशेषणानि । अस्ति-क्रिया द्विः स्रोतसि एव दत्ता — यः प्रति, सः प्रति च; अध्याहृता न । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
+        14: { t: "अद्वेष्टा सर्वभूतानां मैत्रः करुणः एव च, निर्ममः निरहङ्कारः समदुःखसुखः क्षमी, सन्तुष्टः सततं योगी यतात्मा दृढनिश्चयः, मयि अर्पितमनोबुद्धिः यः मद्भक्तः अस्ति — सः मे प्रियः अस्ति ।", n: "त्रयोदश-चतुर्दशश्लोकौ मिलित्वा एकमेव विश्लेषणप्रविष्टिः (स्रोतसि एकमेव विश्लेषणम्, कारकचित्रं नास्ति) । अद्वेष्टा-आदयः सर्वे यः-पदस्य विशेषणानि । अस्ति-क्रिया द्विः स्रोतसि एव दत्ता — यः प्रति, सः प्रति च; अध्याहृता न । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
+        15: { t: "यस्मात् न उद्विजते लोकः, लोकात् न उद्विजते च यः, हर्षामर्षभयोद्वेगैः मुक्तः यः (अस्ति) — सः च मे प्रियः (अस्ति) ।", n: "चत्वारि वाक्यानि । उद्विजते द्विः — प्रथमस्य कर्ता लोकः, द्वितीयस्य कर्ता यः; यस्मात् लोकात् च अपादानम्, उभयोः न प्रतिषेधः । मुक्तः तृतीयस्य यः-पदस्य विधेयविशेषणम्, क्रिया (अस्ति) अध्याहृता; हर्षामर्षभयोद्वेगैः मुक्त-पदस्य कर्ता । अन्तिमे अपि (अस्ति) अध्याहृतम्, कर्ता सः, प्रियः विधेयविशेषणम् ।" },
+        16: { t: "अनपेक्षः शुचिः दक्षः उदासीनः गतव्यथः सर्वारम्भपरित्यागी यः मद्भक्तः (अस्ति) — सः मे प्रियः (अस्ति) ।", n: "द्वे वाक्ये, उभयोः अपि क्रिया (अस्ति) अध्याहृता । अनपेक्षः-आदयः सर्वे भक्त-पदे समुच्चिताः, भक्तः यः-पदस्य विधेयविशेषणम्; यः ↔ सः इति नित्यसम्बन्धः । द्वितीये कर्ता सः, प्रियः तस्य विधेयविशेषणम्, मे प्रिय-पदस्य षष्ठीसम्बन्धः ।" },
+        17: { t: "यः न हृष्यति, (यः) न द्वेष्टि, (यः) न शोचति, (यः) न काङ्क्षति — शुभाशुभपरित्यागी भक्तिमान् यः (अस्ति), सः मे प्रियः (अस्ति) ।", n: "षट् वाक्यानि । हृष्यति-क्रियायाः कर्ता यः; द्वेष्टि-शोचति-काङ्क्षति-क्रियाणां कर्ता (यः) अध्याहृतः; चतुर्णाम् अपि क्रियाणां प्रतिषेधः न । परित्यागी भक्तिमान् च यः-पदस्य विधेयविशेषणे, तस्य क्रिया (अस्ति) अध्याहृता; अन्तिमे अपि (अस्ति) अध्याहृतम्, कर्ता सः, प्रियः विधेयविशेषणम् ।" },
+        18: { t: "समः शत्रौ च मित्रे च तथा मानापमानयोः, शीतोष्णसुखदुःखेषु समः सङ्गविवर्जितः, तुल्यनिन्दास्तुतिः मौनी सन्तुष्टः येनकेनचित्, अनिकेतः स्थिरमतिः भक्तिमान् नरः — मे प्रियः (अस्ति) ।", n: "अष्टादश-एकोनविंशश्लोकौ मिलित्वा एकमेव वाक्यम् (स्रोतसि एकमेव विश्लेषणप्रविष्टिः) । समः-आदयः सर्वे नर-पदस्य विशेषणानि; नरः क्रियायाः कर्ता, प्रियः तस्य विधेयविशेषणम्, क्रिया (अस्ति) अध्याहृता । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
+        19: { t: "समः शत्रौ च मित्रे च तथा मानापमानयोः, शीतोष्णसुखदुःखेषु समः सङ्गविवर्जितः, तुल्यनिन्दास्तुतिः मौनी सन्तुष्टः येनकेनचित्, अनिकेतः स्थिरमतिः भक्तिमान् नरः — मे प्रियः (अस्ति) ।", n: "अष्टादश-एकोनविंशश्लोकौ मिलित्वा एकमेव वाक्यम् (स्रोतसि एकमेव विश्लेषणप्रविष्टिः) । समः-आदयः सर्वे नर-पदस्य विशेषणानि; नरः क्रियायाः कर्ता, प्रियः तस्य विधेयविशेषणम्, क्रिया (अस्ति) अध्याहृता । अतः अन्वयः कारकचक्रं च उभयोः श्लोकयोः अपि समानम् ।" },
+        20: { t: "ये तु धर्म्यामृतम् इदं यथोक्तं पर्युपासते, श्रद्दधानाः मत्परमाः भक्ताः — ते अतीव मे प्रियाः (सन्ति) ।", n: "द्वे वाक्ये । प्रथमे क्रिया पर्युपासते, अभिहितः कर्ता भक्ताः, कर्म अमृतम्; ये भक्तानां विशेषणम्, श्रद्दधानाः परमाः च अपि तेषाम् एव । द्वितीये क्रिया (सन्ति) अध्याहृता, कर्ता ते, प्रियाः विधेयविशेषणम्, अतीव तीव्रतादर्शी, मे षष्ठीसम्बन्धः; ये ↔ ते इति नित्यसम्बन्धः ।" }
       };
 
       /* Verses 3–4 are ONE sentence in the source analysis (one merged entry,
@@ -2507,6 +2713,81 @@
           ["अधिकरणम्", "मयि", "सप्तमी · चेतसाम् प्रति", "adhikarana", 4],
           ["क्रियाविशेषणम्", "नचिरात्", "अव्ययम् · भवामि प्रति", "other", 0],
           ["सम्बोध्यः", "पार्थ", "सम्बोधनम् · भवामि प्रति", "other", 0] ] } ] };
+      /* Verses 13–14 are ONE entry in the source analysis (anvaya numbers
+         1–24 across both verses) and the source gives no separate graph for
+         it: the graph below is drawn from the source's own karaka relations
+         for those records. The अस्ति verbs are the source's own (not
+         supplied), exactly as its tables list them. */
+      var KARAKA12_1314 = { note: "त्रयोदश-चतुर्दशश्लोकौ एकमेव वाक्यम् — स्रोतसि कारकचित्रं नास्ति, अतः चक्रं स्रोतसः कारकसम्बन्धेभ्यः एव रचितम् । द्वे अस्ति-क्रिये स्रोतसि एव दत्ते (अध्याहृते न) — यः-कर्तृकम्, सः-कर्तृकं च । अद्वेष्टा-आदयः सर्वे यः-पदस्य विशेषणानि ।", hubs: [
+        { kriya: "अस्ति", sub: "धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · यः-वाक्यम्", nodes: [
+          ["कर्ता", "यः", "प्रथमा · एकवचनम् · सर्वनाम यद्", "karta", 0],
+          ["विशेषणम्", "द्वेष्टा", "प्रथमा · यः प्रति · (अद्वेष्टा)", "other", 1],
+          ["नञ्-तत्पुरुषः", "अ-", "द्वेष्टा-पदेन सह", "sambandha", 2],
+          ["विशेषणम्", "मैत्रः", "प्रथमा · यः प्रति", "other", 1],
+          ["षष्ठीसम्बन्धः", "भूतानाम्", "षष्ठी · मैत्रः प्रति", "sambandha", 2],
+          ["कर्मधारयः", "सर्व-", "भूतानाम्-पदेन सह (सर्वभूतानाम्)", "sambandha", 3],
+          ["विशेषणम्", "करुणः", "प्रथमा · यः प्रति", "other", 1],
+          ["सम्बन्धः", "एव", "करुणः प्रति · अव्ययम्", "sambandha", 2],
+          ["सम्बन्धः", "च", "एव प्रति · अव्ययम्", "sambandha", 3],
+          ["विशेषणम्", "ममः", "प्रथमा · यः प्रति · (निर्ममः)", "other", 1],
+          ["पञ्चमी-तत्पुरुषः", "निर्-", "ममः-पदेन सह", "sambandha", 2],
+          ["विशेषणम्", "अहङ्कारः", "प्रथमा · यः प्रति · (निरहङ्कारः)", "other", 1],
+          ["पञ्चमी-तत्पुरुषः", "निर्-", "अहङ्कारः-पदेन सह", "sambandha", 2],
+          ["विशेषणम्", "सुखः", "प्रथमा · यः प्रति · (समदुःखसुखः)", "other", 1],
+          ["द्वन्द्वः", "दुःख-", "सुखः-पदेन सह", "sambandha", 2],
+          ["बहुव्रीहिः", "सम-", "दुःख-पदेन सह", "sambandha", 3],
+          ["विशेषणम्", "क्षमी", "प्रथमा · यः प्रति", "other", 1],
+          ["विशेषणम्", "सन्तुष्टः", "प्रथमा · यः प्रति · चतुर्दशश्लोकात्", "other", 1],
+          ["क्रियाविशेषणम्", "सततम्", "अव्ययम् · सन्तुष्टः प्रति", "other", 2],
+          ["विशेषणम्", "योगी", "प्रथमा · यः प्रति", "other", 1],
+          ["विशेषणम्", "यतात्मा", "प्रथमा · यः प्रति", "other", 1],
+          ["विशेषणम्", "निश्चयः", "प्रथमा · यः प्रति · (दृढनिश्चयः)", "other", 1],
+          ["बहुव्रीहिः", "दृढ-", "निश्चयः-पदेन सह", "sambandha", 2],
+          ["विशेषणम्", "बुद्धिः", "प्रथमा · यः प्रति · (मय्यर्पितमनोबुद्धिः)", "other", 1],
+          ["विषयाधिकरणम्", "मयि", "सप्तमी · बुद्धिः प्रति", "adhikarana", 2],
+          ["बहुव्रीहिः", "अर्पित-", "बुद्धिः-पदेन सह", "sambandha", 2],
+          ["द्वन्द्वः", "मनः-", "बुद्धिः-पदेन सह", "sambandha", 2],
+          ["विशेषणम्", "भक्तः", "प्रथमा · यः प्रति · (मद्भक्तः)", "other", 1],
+          ["षष्ठी-तत्पुरुषः", "मत्-", "भक्तः-पदेन सह", "sambandha", 2] ] },
+        { kriya: "अस्ति", sub: "धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · सः-वाक्यम्", nodes: [
+          ["कर्ता", "सः", "प्रथमा · एकवचनम् · सर्वनाम तद्", "karta", 0],
+          ["विधेयविशेषणम्", "प्रियः", "प्रथमा · सः प्रति", "other", 1],
+          ["षष्ठीसम्बन्धः", "मे", "षष्ठी · प्रियः प्रति", "sambandha", 2] ] } ] };
+      /* Verses 18–19 likewise form ONE sentence in the source (anvaya
+         numbers 1–22 across both): one shared graph, its single hub the
+         supplied (अस्ति) whose kartā is नरः. */
+      var KARAKA12_1819 = { note: "अष्टादश-एकोनविंशश्लोकौ एकमेव वाक्यम् — अतः कारकचक्रम् अपि एकमेव । एकमेव क्रियाकेन्द्रम् — अध्याहृतम् (अस्ति); तस्य कर्ता नरः, प्रियः तस्य विधेयविशेषणम्, समः-आदयः सर्वे नरस्य विशेषणानि ।", hubs: [
+        { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+          ["कर्ता", "नरः", "प्रथमा · एकवचनम्", "karta", 0],
+          ["विशेषणम्", "समः", "प्रथमा · नरः प्रति", "other", 1],
+          ["विषयाधिकरणम्", "मित्रे", "सप्तमी · समः प्रति", "adhikarana", 2],
+          ["समुच्चितः", "शत्रौ", "सप्तमी · मित्रे प्रति", "karma", 3],
+          ["समुच्चयद्योतकः", "च", "मित्रे प्रति · अव्ययम्", "sambandha", 3],
+          ["समुच्चयद्योतकः", "च", "मित्रे प्रति · अव्ययम्", "sambandha", 3],
+          ["विशेषणम्", "समः", "प्रथमा · नरः प्रति", "other", 1],
+          ["विषयाधिकरणम्", "अपमानयोः", "सप्तमी · द्विवचनम् · समः प्रति", "adhikarana", 2],
+          ["इतरेतर-द्वन्द्वः", "मान-", "अपमानयोः-पदेन सह (मानापमानयोः)", "sambandha", 3],
+          ["सम्बन्धः", "तथा", "समः प्रति · अव्ययम्", "sambandha", 2],
+          ["विषयाधिकरणम्", "दुःखेषु", "सप्तमी · बहुवचनम् · समः प्रति", "adhikarana", 2],
+          ["इतरेतर-द्वन्द्वः", "शीत-", "दुःखेषु-पदेन सह (शीतोष्णसुखदुःखेषु)", "sambandha", 3],
+          ["इतरेतर-द्वन्द्वः", "उष्ण-", "दुःखेषु-पदेन सह", "sambandha", 3],
+          ["इतरेतर-द्वन्द्वः", "सुख-", "दुःखेषु-पदेन सह", "sambandha", 3],
+          ["विशेषणम्", "विवर्जितः", "प्रथमा · नरः प्रति · (सङ्गविवर्जितः)", "other", 1],
+          ["तॄतीया-तत्पुरुषः", "सङ्ग-", "विवर्जितः-पदेन सह", "sambandha", 2],
+          ["विशेषणम्", "स्तुतिः", "प्रथमा · नरः प्रति · एकोनविंशश्लोकात् · (तुल्यनिन्दास्तुतिः)", "other", 1],
+          ["इतरेतर-द्वन्द्वः", "निन्दा-", "स्तुतिः-पदेन सह", "sambandha", 2],
+          ["बहुव्रीहिः", "तुल्य-", "निन्दा-पदेन सह", "sambandha", 3],
+          ["विशेषणम्", "मौनी", "प्रथमा · नरः प्रति", "other", 1],
+          ["विशेषणम्", "सन्तुष्टः", "प्रथमा · नरः प्रति", "other", 1],
+          ["हेतुः", "केनचित्", "तृतीया · सन्तुष्टः प्रति", "other", 2],
+          ["विशेषणम्", "येन", "तृतीया · केनचित् प्रति", "other", 3],
+          ["विशेषणम्", "निकेतः", "प्रथमा · नरः प्रति · (अनिकेतः)", "other", 1],
+          ["बहुव्रीहिः", "अ-", "निकेतः-पदेन सह", "sambandha", 2],
+          ["विशेषणम्", "मतिः", "प्रथमा · नरः प्रति · (स्थिरमतिः)", "other", 1],
+          ["बहुव्रीहिः", "स्थिर-", "मतिः-पदेन सह", "sambandha", 2],
+          ["विशेषणम्", "भक्तिमान्", "प्रथमा · नरः प्रति", "other", 1],
+          ["विधेयविशेषणम्", "प्रियः", "प्रथमा · नरः प्रति", "other", 1],
+          ["षष्ठीसम्बन्धः", "मे", "षष्ठी · प्रियः प्रति", "sambandha", 2] ] } ] };
       var KARAKA12 = {
         1: { note: "त्रीणि क्रियाकेन्द्राणि — पर्युपासते, अध्याहृतं (पर्युपासते), अध्याहृतं (सन्ति) च । ये ↔ तेषाम् इति नित्यसम्बन्धः केन्द्राणि योजयति ।", hubs: [
           { kriya: "पर्युपासते", sub: "धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम् · अकर्मकः", nodes: [
@@ -2624,7 +2905,139 @@
             ["कर्म", "कर्माणि", "द्वितीया · कुर्वन् प्रति", "karma", 1],
             ["प्रयोजनम्", "अर्थम्", "कुर्वन् प्रति · (मदर्थम्)", "other", 1],
             ["चतुर्थी-तत्पुरुषः", "मद्-", "अर्थम्-पदेन सह (मदर्थम्)", "sambandha", 2],
-            ["सम्बन्धः", "अपि", "कुर्वन् प्रति · अव्ययम्", "sambandha", 1] ] } ] }
+            ["सम्बन्धः", "अपि", "कुर्वन् प्रति · अव्ययम्", "sambandha", 1] ] } ] },
+        11: { note: "द्वे क्रियाकेन्द्रे — असि, कुरु (लोट्) च; उभयोः कर्ता (त्वम्) अध्याहृतः । कर्तुम् इति शक्त-पदस्य तुमुन्कर्म, तस्य कर्म एतत् ।", hubs: [
+          { kriya: "असि", sub: "धातुः अस् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["विधेयविशेषणम्", "शक्तः", "प्रथमा · (त्वम्) प्रति · (अशक्तः)", "other", 1],
+            ["नञ्-तत्पुरुषः", "अ-", "शक्तः-पदेन सह", "sambandha", 2],
+            ["तुमुन्कर्म", "कर्तुम्", "तुमुन्-प्रत्ययान्तम् · शक्तः प्रति", "other", 2],
+            ["कर्म", "एतत्", "द्वितीया · कर्तुम् प्रति · सर्वनाम एतद्", "karma", 3],
+            ["सम्बन्धः", "अपि", "एतत् प्रति · अव्ययम्", "sambandha", 4],
+            ["सम्बन्धः", "अथ", "असि प्रति · अव्ययम्", "sambandha", 0] ] },
+          { kriya: "कुरु", sub: "धातुः कृ · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम् · सकर्मकः", nodes: [
+            ["कर्ता", "(त्वम्)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["विशेषणम्", "आश्रितः", "प्रथमा · (त्वम्) प्रति · क्तान्तम्", "other", 1],
+            ["कर्म", "योगम्", "द्वितीया · आश्रितः प्रति · (मद्योगम्)", "karma", 2],
+            ["बहुव्रीहिः", "मद्-", "योगम्-पदेन सह", "sambandha", 3],
+            ["विशेषणम्", "आत्मवान्", "प्रथमा · (त्वम्) प्रति · (यतात्मवान्)", "other", 1],
+            ["बहुव्रीहिः", "यत्-", "आत्मवान्-पदेन सह", "sambandha", 2],
+            ["कर्म", "त्यागम्", "द्वितीया · एकवचनम् · (सर्वकर्मफलत्यागम्)", "karma", 0],
+            ["षष्ठी-तत्पुरुषः", "फल-", "त्यागम्-पदेन सह", "sambandha", 1],
+            ["षष्ठी-तत्पुरुष", "कर्म-", "फल-पदेन सह", "sambandha", 2],
+            ["कर्मधारयः", "सर्व-", "कर्म-पदेन सह", "sambandha", 3],
+            ["सम्बन्धः", "ततः", "कुरु प्रति · अव्ययम्", "sambandha", 0] ] } ] },
+        12: { note: "चत्वारि क्रियाकेन्द्राणि — अध्याहृतं (अस्ति), विशिष्यते, अध्याहृतं (विशिष्यते), अध्याहृतं (भवति) च । अभ्यासात् ज्ञानात् ध्यानात् च विभक्तानि — यतः श्रेयस्त्वं तुल्यते ।", hubs: [
+          { kriya: "विशिष्यते", sub: "धातुः वि+शास् · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "ध्यानम्", "प्रथमा · एकवचनम्", "karta", 0],
+            ["विभक्तम्", "ज्ञानात्", "पञ्चमी · ध्यानम् प्रति", "sambandha", 1] ] },
+          { kriya: "(विशिष्यते)", sub: "क्रिया अध्याहृता · धातुः वि+शास् · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम्", nodes: [
+            ["कर्ता", "त्यागः", "प्रथमा · एकवचनम् · (कर्मफलत्यागः)", "karta", 0],
+            ["षष्ठी-तत्पुरुषः", "फल-", "त्यागः-पदेन सह", "sambandha", 1],
+            ["षष्ठी-तत्पुरुषः-", "कर्म-", "फल-पदेन सह", "sambandha", 2],
+            ["विभक्तम्", "ध्यानात्", "पञ्चमी · त्यागः प्रति", "sambandha", 1] ] },
+          { kriya: "(भवति)", sub: "क्रिया अध्याहृता · धातुः भू · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "शान्तिः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["हेतुः", "त्यागात्", "पञ्चमी · (भवति) प्रति", "other", 0],
+            ["कालाधिकरणम्", "अनन्तरम्", "अव्ययम् · (भवति) प्रति", "adhikarana", 0] ] },
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "ज्ञानम्", "प्रथमा · एकवचनम्", "karta", 0],
+            ["विधेयविशेषणम्", "श्रेयः", "प्रथमा · ज्ञानम् प्रति", "other", 1],
+            ["विभक्तम्", "अभ्यासात्", "पञ्चमी · ज्ञानम् प्रति", "sambandha", 1],
+            ["सम्बन्धः", "हि", "अभ्यासात् प्रति · अव्ययम्", "sambandha", 2] ] } ] },
+        13: KARAKA12_1314,
+        14: KARAKA12_1314,
+        15: { note: "चत्वारि क्रियाकेन्द्राणि — उद्विजते द्विः, अध्याहृते (अस्ति) द्वे च । यस्मात् लोकात् च अपादानम्; हर्षामर्षभयोद्वेगैः इति इतरेतरद्वन्द्वः मुक्त-पदस्य कर्ता । यः ↔ सः इति नित्यसम्बन्धः ।", hubs: [
+          { kriya: "उद्विजते", sub: "धातुः उद्+विज् · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "लोकः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["अपादानम्", "यस्मात्", "पञ्चमी · उद्विजते प्रति", "apadana", 0],
+            ["प्रतिषेधः", "न", "उद्विजते प्रति · अव्ययम्", "sambandha", 0] ] },
+          { kriya: "उद्विजते", sub: "धातुः उद्+विज् · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "यः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["अपादानम्", "लोकात्", "पञ्चमी · उद्विजते प्रति", "apadana", 0],
+            ["प्रतिषेधः", "न", "उद्विजते प्रति · अव्ययम्", "sambandha", 0],
+            ["सम्बन्धः", "च", "उद्विजते प्रति · अव्ययम्", "sambandha", 0],
+            ["नित्यसम्बन्धः", "सः", "(अस्ति)-वाक्ये · यः ↔ सः", "sambandha", 1] ] },
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · मुक्त-वाक्यम्", nodes: [
+            ["कर्ता", "यः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["विधेयविशेषणम्", "मुक्तः", "प्रथमा · यः प्रति · क्तान्तम्", "other", 1],
+            ["कर्ता", "उद्वेगैः", "तृतीया · बहुवचनम् · मुक्तः प्रति", "karta", 2],
+            ["इतरेतर-द्वन्द्वः", "हर्ष-", "उद्वेगैः-पदेन सह (हर्षामर्षभयोद्वेगैः)", "sambandha", 3],
+            ["इतरेतर-द्वन्द्वः", "मर्ष-", "उद्वेगैः-पदेन सह", "sambandha", 3],
+            ["नञ्-तत्पुरुषः", "अ-", "मर्ष-पदेन सह (अमर्ष)", "sambandha", 4],
+            ["इतरेतर-द्वन्द्वः", "भयः-", "उद्वेगैः-पदेन सह", "sambandha", 3] ] },
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · सः-वाक्यम्", nodes: [
+            ["कर्ता", "सः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["सम्बन्धः", "च", "सः प्रति · अव्ययम्", "sambandha", 1],
+            ["विधेयविशेषणम्", "प्रियः", "प्रथमा · सः प्रति", "other", 1],
+            ["षष्ठीसम्बन्धः", "मे", "षष्ठी · प्रियः प्रति", "sambandha", 2] ] } ] },
+        16: { note: "द्वे क्रियाकेन्द्रे — उभे अध्याहृते (अस्ति) । अनपेक्षः-आदयः सर्वे भक्त-पदे समुच्चिताः; यः ↔ सः इति नित्यसम्बन्धः केन्द्रे योजयति ।", hubs: [
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · यः-वाक्यम्", nodes: [
+            ["कर्ता", "यः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["नित्यसम्बन्धः", "सः", "(अस्ति)-वाक्ये · यः ↔ सः", "sambandha", 1],
+            ["विधेयविशेषणम्", "भक्तः", "प्रथमा · यः प्रति · (मद्भक्तः)", "other", 1],
+            ["षष्ठी-तत्पुरुषः", "मद्-", "भक्तः-पदेन सह", "sambandha", 2],
+            ["समुच्चितः", "अपेक्षः", "प्रथमा · भक्तः प्रति · (अनपेक्षः)", "karma", 2],
+            ["बहुव्रीहिः", "अन्-", "अपेक्षः-पदेन सह", "sambandha", 3],
+            ["समुच्चितः", "शुचिः", "प्रथमा · भक्तः प्रति", "karma", 2],
+            ["समुच्चितः", "दक्षः", "प्रथमा · भक्तः प्रति", "karma", 2],
+            ["समुच्चितः", "उदासीनः", "प्रथमा · भक्तः प्रति", "karma", 2],
+            ["समुच्चितः", "व्यथः", "प्रथमा · भक्तः प्रति · (गतव्यथः)", "karma", 2],
+            ["बहुव्रीहिः", "गत-", "व्यथः-पदेन सह", "sambandha", 3],
+            ["समुच्चितः", "परित्यागी", "प्रथमा · भक्तः प्रति · (सर्वारम्भपरित्यागी)", "karma", 2],
+            ["षष्ठी-तत्पुरुषः", "आरम्भ-", "परित्यागी-पदेन सह", "sambandha", 3],
+            ["कर्मधारयः", "सर्व-", "आरम्भ-पदेन सह", "sambandha", 4] ] },
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · सः-वाक्यम्", nodes: [
+            ["कर्ता", "सः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["विधेयविशेषणम्", "प्रियः", "प्रथमा · सः प्रति", "other", 1],
+            ["षष्ठीसम्बन्धः", "मे", "षष्ठी · प्रियः प्रति", "sambandha", 2] ] } ] },
+        17: { note: "षट् क्रियाकेन्द्राणि — हृष्यति, द्वेष्टि, शोचति, काङ्क्षति, अध्याहृते (अस्ति) द्वे च । द्वेष्टि-आदीनां कर्ता (यः) अध्याहृतः; चतुर्णाम् अपि क्रियाणां प्रतिषेधः न । यः ↔ सः इति नित्यसम्बन्धः ।", hubs: [
+          { kriya: "हृष्यति", sub: "धातुः हृष् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्", nodes: [
+            ["कर्ता", "यः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["प्रतिषेधः", "न", "हृष्यति प्रति · अव्ययम्", "sambandha", 0],
+            ["नित्यसम्बन्धः", "सः", "(अस्ति)-वाक्ये · यः ↔ सः", "sambandha", 1] ] },
+          { kriya: "द्वेष्टि", sub: "धातुः द्विष् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्", nodes: [
+            ["कर्ता", "(यः)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["प्रतिषेधः", "न", "द्वेष्टि प्रति · अव्ययम्", "sambandha", 0] ] },
+          { kriya: "शोचति", sub: "धातुः शुच् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्", nodes: [
+            ["कर्ता", "(यः)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["प्रतिषेधः", "न", "शोचति प्रति · अव्ययम्", "sambandha", 0] ] },
+          { kriya: "काङ्क्षति", sub: "धातुः काङ्क्ष् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्", nodes: [
+            ["कर्ता", "(यः)", "अध्याहृतः · प्रथमा", "karta", 0],
+            ["प्रतिषेधः", "न", "काङ्क्षति प्रति · अव्ययम्", "sambandha", 0] ] },
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · यः-वाक्यम्", nodes: [
+            ["कर्ता", "यः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["विधेयविशेषणम्", "परित्यागी", "प्रथमा · यः प्रति · (शुभाशुभपरित्यागी)", "other", 1],
+            ["बहुव्रीहिः", "शुभ-", "परित्यागी-पदेन सह", "sambandha", 2],
+            ["नञ्-तत्पुरुषः", "अ-", "शुभ-पदेन सह (अशुभ)", "sambandha", 3],
+            ["इतरेतर-द्वन्द्वः", "शुभ-", "अशुभ-पदेन सह", "sambandha", 4],
+            ["विधेयविशेषणम्", "भक्तिमान्", "प्रथमा · यः प्रति", "other", 1],
+            ["नित्यसम्बन्धः", "सः", "(अस्ति)-वाक्ये · यः ↔ सः", "sambandha", 1] ] },
+          { kriya: "(अस्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · सः-वाक्यम्", nodes: [
+            ["कर्ता", "सः", "प्रथमा · एकवचनम्", "karta", 0],
+            ["विधेयविशेषणम्", "प्रियः", "प्रथमा · सः प्रति", "other", 1],
+            ["षष्ठीसम्बन्धः", "मे", "षष्ठी · प्रियः प्रति", "sambandha", 2] ] } ] },
+        18: KARAKA12_1819,
+        19: KARAKA12_1819,
+        20: { note: "द्वे क्रियाकेन्द्रे — पर्युपासते, अध्याहृतं (सन्ति) च । ये ↔ ते इति नित्यसम्बन्धः केन्द्रे योजयति । अध्यायस्य प्रथमश्लोकस्य पर्युपासते-पदम् अत्र पुनरायाति ।", hubs: [
+          { kriya: "पर्युपासते", sub: "धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम् · सकर्मकः", nodes: [
+            ["कर्ता", "भक्ताः", "प्रथमा · बहुवचनम्", "karta", 0],
+            ["विशेषणम्", "ये", "प्रथमा · भक्ताः प्रति", "other", 1],
+            ["सम्बन्धः", "तु", "ये प्रति · अव्ययम्", "sambandha", 2],
+            ["विशेषणम्", "श्रद्दधानाः", "प्रथमा · भक्ताः प्रति", "other", 1],
+            ["विशेषणम्", "परमाः", "प्रथमा · भक्ताः प्रति · (मत्परमाः)", "other", 1],
+            ["बहुव्रीहिः", "मत्-", "परमाः-पदेन सह", "sambandha", 2],
+            ["कर्म", "अमृतम्", "द्वितीया · एकवचनम् · (धर्म्यामृतम्)", "karma", 0],
+            ["कर्मधारयः", "धर्म्य-", "अमृतम्-पदेन सह", "sambandha", 1],
+            ["विशेषणम्", "इदम्", "द्वितीया · अमृतम् प्रति · सर्वनाम इदम्", "other", 1],
+            ["विशेषणम्", "उक्तम्", "अमृतम् प्रति", "other", 1],
+            ["क्रियाविशेषणम्", "यथा", "अव्ययम् · उक्तम् प्रति", "other", 2] ] },
+          { kriya: "(सन्ति)", sub: "क्रिया अध्याहृता · धातुः अस् · लट् · प्रथमपुरुषः · बहुवचनम् · परस्मैपदम् · अकर्मकः", nodes: [
+            ["कर्ता", "ते", "प्रथमा · बहुवचनम्", "karta", 0],
+            ["नित्यसम्बन्धः", "ये", "पर्युपासते-वाक्ये · ते ↔ ये", "sambandha", 1],
+            ["विधेयविशेषणम्", "प्रियाः", "प्रथमा · ते प्रति", "other", 1],
+            ["तीव्रतादर्शी", "अतीव", "अव्ययम् · प्रियाः प्रति", "other", 2],
+            ["षष्ठीसम्बन्धः", "मे", "षष्ठी · प्रियाः प्रति", "sambandha", 2] ] } ] }
       };
 
       var PADA12 = {
@@ -2637,7 +3050,17 @@
         7: [["तेषाम्","नाम","पुंलिङ्गम् · षष्ठी · बहुवचनम् · सर्वनाम तद्"],["अहम्","नाम","प्रथमा · एकवचनम् · सर्वनाम अस्मद्"],["समुद्धर्ता","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् समुद्धर्तृ"],["मृत्यु-","नाम","कर्मधारयः · संसार-पदेन सह (मृत्युसंसारसागरात्)"],["संसार-","नाम","कर्मधारयः · सागरात्-पदेन सह"],["सागरात्","नाम","पुंलिङ्गम् · पञ्चमी · एकवचनम् · मूलपदम् सागर"],["भवामि","क्रिया","धातुः भू · लट् · उत्तमपुरुषः · एकवचनम् · परस्मैपदम्"],["नचिरात्","अव्यय","अव्ययम् · क्रियाविशेषणम्"],["पार्थ","नाम","पुंलिङ्गम् · सम्बोधनम् · एकवचनम् · मूलपदम् पार्थ"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["आवेशित-","नाम","बहुव्रीहिः · चेतसाम्-पदेन सह (आवेशितचेतसाम्)"],["चेतसाम्","नाम","नपुंलिङ्गम् · षष्ठी · बहुवचनम् · मूलपदम् चेतस्"]],
         8: [["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["एव","अव्यय","अवधारणार्थकम्"],["मनः","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् मनस्"],["आधत्स्व","क्रिया","धातुः आ+धा · लोट् · मध्यमपुरुषः · एकवचनम् · आत्मनेपदम्"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["बुद्धिम्","नाम","स्त्रीलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् बुद्धि"],["निवेशय","क्रिया","धातुः नि+विश् (णिजन्तम्) · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["निवसिष्यसि","क्रिया","धातुः नि+वस् · लृट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["एव","अव्यय","अवधारणार्थकम्"],["अतः","अव्यय","अव्ययम्"],["ऊर्ध्वम्","अव्यय","अव्ययम्"],["न","अव्यय","प्रतिषेधार्थकम्"],["संशयः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् संशय"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
         9: [["अथ","अव्यय","अव्ययम्"],["चित्तम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् चित्त"],["समाधातुम्","नाम","सम्+आ+धा-धातोः तुमुन्-प्रत्ययान्तम् · तुमुन्कर्म"],["न","अव्यय","प्रतिषेधार्थकम्"],["शक्नोषि","क्रिया","धातुः शक् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["स्थिरम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् स्थिर · क्रियाविशेषणम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["अभ्यास-","नाम","कर्मधारयः · योगेन-पदेन सह (अभ्यासयोगेन)"],["योगेन","नाम","पुंलिङ्गम् · तृतीया · एकवचनम् · मूलपदम् योग"],["ततः","अव्यय","अव्ययम्"],["माम्","नाम","द्वितीया · एकवचनम् · सर्वनाम अस्मद्"],["इच्छ","क्रिया","धातुः इष् · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["आप्तुम्","नाम","आप्-धातोः तुमुन्-प्रत्ययान्तम् · तुमुन्कर्म"],["धनञ्-","नाम","उपपद-तत्पुरुषः · जय-पदेन सह (धनञ्जय)"],["जय","नाम","पुंलिङ्गम् · सम्बोधनम् · एकवचनम् · मूलपदम् जय"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
-        10: [["अभ्यासे","नाम","पुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् अभ्यास"],["अपि","अव्यय","अव्ययम्"],["अ-","अव्यय","नञ्-तत्पुरुषः · समर्थः-पदेन सह (असमर्थः)"],["समर्थः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् समर्थ"],["असि","क्रिया","धातुः अस् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मत्-","नाम","षष्ठी-तत्पुरुषः · कर्म-पदेन सह (मत्कर्मपरमः)"],["कर्म-","नाम","सप्तमी-तत्पुरुषः · परमः-पदेन सह"],["परमः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् परम"],["भव","क्रिया","धातुः भू · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मद्-","नाम","चतुर्थी-तत्पुरुषः · अर्थम्-पदेन सह (मदर्थम्)"],["अर्थम्","नाम","नपुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् अर्थ"],["अपि","अव्यय","अव्ययम्"],["कर्माणि","नाम","नपुंलिङ्गम् · द्वितीया · बहुवचनम् · मूलपदम् कर्मन्"],["कुर्वन्","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · कृ-धातोः शतृ-प्रत्ययान्तम् · मूलपदम् कुर्वत्"],["सिद्धिम्","नाम","स्त्रीलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् सिद्धि"],["अवाप्स्यसि","क्रिया","धातुः अव+आप् · लृट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]]
+        10: [["अभ्यासे","नाम","पुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् अभ्यास"],["अपि","अव्यय","अव्ययम्"],["अ-","अव्यय","नञ्-तत्पुरुषः · समर्थः-पदेन सह (असमर्थः)"],["समर्थः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् समर्थ"],["असि","क्रिया","धातुः अस् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मत्-","नाम","षष्ठी-तत्पुरुषः · कर्म-पदेन सह (मत्कर्मपरमः)"],["कर्म-","नाम","सप्तमी-तत्पुरुषः · परमः-पदेन सह"],["परमः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् परम"],["भव","क्रिया","धातुः भू · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मद्-","नाम","चतुर्थी-तत्पुरुषः · अर्थम्-पदेन सह (मदर्थम्)"],["अर्थम्","नाम","नपुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् अर्थ"],["अपि","अव्यय","अव्ययम्"],["कर्माणि","नाम","नपुंलिङ्गम् · द्वितीया · बहुवचनम् · मूलपदम् कर्मन्"],["कुर्वन्","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · कृ-धातोः शतृ-प्रत्ययान्तम् · मूलपदम् कुर्वत्"],["सिद्धिम्","नाम","स्त्रीलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् सिद्धि"],["अवाप्स्यसि","क्रिया","धातुः अव+आप् · लृट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        11: [["अथ","अव्यय","अव्ययम्"],["एतत्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · सर्वनाम एतद्"],["अपि","अव्यय","अव्ययम्"],["अ-","अव्यय","नञ्-तत्पुरुषः · शक्तः-पदेन सह (अशक्तः)"],["शक्तः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् शक्त"],["असि","क्रिया","धातुः अस् · लट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["कर्तुम्","नाम","कृ-धातोः तुमुन्-प्रत्ययान्तम् · तुमुन्कर्म"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["मद्-","नाम","बहुव्रीहिः · योगम्-पदेन सह (मद्योगम्)"],["योगम्","नाम","पुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् योग"],["आश्रितः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · आ+श्रि-धातोः क्तान्तम् · मूलपदम् आश्रित"],["सर्व-","नाम","कर्मधारयः · कर्म-पदेन सह (सर्वकर्मफलत्यागम्)"],["कर्म-","नाम","षष्ठी-तत्पुरुषः · फल-पदेन सह"],["फल-","नाम","षष्ठी-तत्पुरुषः · त्यागम्-पदेन सह"],["त्यागम्","नाम","पुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् त्याग"],["ततः","अव्यय","अव्ययम्"],["कुरु","क्रिया","धातुः कृ · लोट् · मध्यमपुरुषः · एकवचनम् · परस्मैपदम्"],["(त्वम्)","नाम","प्रथमा · एकवचनम् · सर्वनाम युष्मद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["यत्-","नाम","बहुव्रीहिः · आत्मवान्-पदेन सह (यतात्मवान्)"],["आत्मवान्","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् आत्मवत्"]],
+        12: [["श्रेयः","नाम","नपुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् श्रेयस्"],["हि","अव्यय","अव्ययम्"],["ज्ञानम्","नाम","नपुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् ज्ञान"],["अभ्यासात्","नाम","पुंलिङ्गम् · पञ्चमी · एकवचनम् · मूलपदम् अभ्यास"],["ज्ञानात्","नाम","नपुंलिङ्गम् · पञ्चमी · एकवचनम् · मूलपदम् ज्ञान"],["ध्यानम्","नाम","नपुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् ध्यान"],["विशिष्यते","क्रिया","धातुः वि+शास् · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम्"],["ध्यानात्","नाम","नपुंलिङ्गम् · पञ्चमी · एकवचनम् · मूलपदम् ध्यान"],["कर्म-","नाम","षष्ठी-तत्पुरुषः · फल-पदेन सह (कर्मफलत्यागः)"],["फल-","नाम","षष्ठी-तत्पुरुषः · त्यागः-पदेन सह"],["त्यागः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् त्याग"],["त्यागात्","नाम","पुंलिङ्गम् · पञ्चमी · एकवचनम् · मूलपदम् त्याग"],["(विशिष्यते)","क्रिया","धातुः वि+शास् · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["शान्तिः","नाम","स्त्रीलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् शान्ति"],["अनन्तरम्","अव्यय","अव्ययम्"],["(भवति)","क्रिया","धातुः भू · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        13: [["अ-","अव्यय","नञ्-तत्पुरुषः · द्वेष्टा-पदेन सह (अद्वेष्टा)"],["द्वेष्टा","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् द्वेष्टृ · द्विष्-धातोः तृच्-प्रत्ययान्तम्"],["सर्व-","नाम","कर्मधारयः · भूतानाम्-पदेन सह (सर्वभूतानाम्)"],["भूतानाम्","नाम","नपुंलिङ्गम् · षष्ठी · बहुवचनम् · मूलपदम् भूत"],["मैत्रः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् मैत्र"],["करुणः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् करुण"],["एव","अव्यय","अव्ययम्"],["च","अव्यय","समुच्चयार्थकम्"],["निर्-","अव्यय","पञ्चमी-तत्पुरुषः · ममः-पदेन सह (निर्ममः)"],["ममः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् मम"],["निर्-","अव्यय","पञ्चमी-तत्पुरुषः · अहङ्कारः-पदेन सह (निरहङ्कारः)"],["अहङ्कारः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् अहङ्कार"],["सम-","नाम","बहुव्रीहिः · सुखः-पदेन सह (समदुःखसुखः)"],["दुःख-","नाम","द्वन्द्वः · सुखः-पदेन सह"],["सुखः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् सुख"],["क्षमी","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् क्षमिन्"]],
+        14: [["सन्तुष्टः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् सन्तुष्ट"],["सततम्","अव्यय","अव्ययम् · क्रियाविशेषणम्"],["योगी","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् योगिन्"],["यतात्मा","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् यतात्मन्"],["दृढ-","नाम","बहुव्रीहिः · निश्चयः-पदेन सह (दृढनिश्चयः)"],["निश्चयः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् निश्चय"],["मयि","नाम","सप्तमी · एकवचनम् · सर्वनाम अस्मद्"],["अर्पित-","नाम","बहुव्रीहिः · बुद्धिः-पदेन सह (मय्यर्पितमनोबुद्धिः)"],["मनः-","नाम","द्वन्द्वः · बुद्धिः-पदेन सह · मूलपदम् मनस्"],["बुद्धिः","नाम","स्त्रीलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् बुद्धि"],["यः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम यद्"],["मत्-","नाम","षष्ठी-तत्पुरुषः · भक्तः-पदेन सह (मद्भक्तः) · सर्वनाम अस्मद्"],["भक्तः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् भक्त"],["सः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम तद्"],["मे","नाम","षष्ठी · एकवचनम् · सर्वनाम अस्मद्"],["प्रियः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् प्रिय"],["अस्ति","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्"],["अस्ति","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्"]],
+        15: [["यस्मात्","नाम","पुंलिङ्गम् · पञ्चमी · एकवचनम् · सर्वनाम यद्"],["न","अव्यय","प्रतिषेधार्थकम्"],["उद्विजते","क्रिया","धातुः उद्+विज् · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम्"],["लोकः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् लोक"],["लोकात्","नाम","पुंलिङ्गम् · पञ्चमी · एकवचनम् · मूलपदम् लोक"],["न","अव्यय","प्रतिषेधार्थकम्"],["उद्विजते","क्रिया","धातुः उद्+विज् · लट् · प्रथमपुरुषः · एकवचनम् · आत्मनेपदम्"],["च","अव्यय","समुच्चयार्थकम्"],["यः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम यद्"],["हर्ष-","नाम","इतरेतर-द्वन्द्वः · उद्वेगैः-पदेन सह (हर्षामर्षभयोद्वेगैः)"],["अ-","अव्यय","नञ्-तत्पुरुषः · मर्ष-पदेन सह (अमर्ष)"],["मर्ष-","नाम","इतरेतर-द्वन्द्वः · उद्वेगैः-पदेन सह"],["भयः-","नाम","इतरेतर-द्वन्द्वः · उद्वेगैः-पदेन सह · मूलपदम् भय"],["उद्वेगैः","नाम","पुंलिङ्गम् · तृतीया · बहुवचनम् · मूलपदम् उद्वेग"],["मुक्तः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मुच्-धातोः क्तान्तम् · मूलपदम् मुक्त"],["यः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम यद्"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["सः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम तद्"],["च","अव्यय","समुच्चयार्थकम्"],["मे","नाम","षष्ठी · एकवचनम् · सर्वनाम अस्मद्"],["प्रियः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् प्रिय"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        16: [["अन्-","अव्यय","बहुव्रीहिः · अपेक्षः-पदेन सह (अनपेक्षः)"],["अपेक्षः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् अपेक्ष"],["शुचिः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् शुचि"],["दक्षः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् दक्ष"],["उदासीनः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् उदासीन"],["गत-","नाम","बहुव्रीहिः · व्यथः-पदेन सह (गतव्यथः)"],["व्यथः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् व्यथ"],["सर्व-","नाम","कर्मधारयः · आरम्भ-पदेन सह (सर्वारम्भपरित्यागी)"],["आरम्भ-","नाम","षष्ठी-तत्पुरुषः · परित्यागी-पदेन सह"],["परित्यागी","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् परित्यागिन्"],["यः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम यद्"],["मद्-","नाम","षष्ठी-तत्पुरुषः · भक्तः-पदेन सह (मद्भक्तः)"],["भक्तः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् भक्त"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["सः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम तद्"],["मे","नाम","षष्ठी · एकवचनम् · सर्वनाम अस्मद्"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["प्रियः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् प्रिय"]],
+        17: [["यः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम यद्"],["न","अव्यय","प्रतिषेधार्थकम्"],["हृष्यति","क्रिया","धातुः हृष् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्"],["न","अव्यय","प्रतिषेधार्थकम्"],["द्वेष्टि","क्रिया","धातुः द्विष् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्"],["न","अव्यय","प्रतिषेधार्थकम्"],["शोचति","क्रिया","धातुः शुच् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्"],["न","अव्यय","प्रतिषेधार्थकम्"],["काङ्क्षति","क्रिया","धातुः काङ्क्ष् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम्"],["शुभ-","नाम","इतरेतर-द्वन्द्वः · अशुभ-पदेन सह (शुभाशुभपरित्यागी)"],["अ-","अव्यय","नञ्-तत्पुरुषः · शुभ-पदेन सह (अशुभ)"],["शुभ-","नाम","बहुव्रीहिः · परित्यागी-पदेन सह"],["परित्यागी","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् परित्यागिन्"],["भक्तिमान्","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् भक्तिमत्"],["यः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम यद्"],["सः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सर्वनाम तद्"],["मे","नाम","षष्ठी · एकवचनम् · सर्वनाम अस्मद्"],["प्रियः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् प्रिय"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["(यः)","नाम","प्रथमा · एकवचनम् · सर्वनाम यद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["(यः)","नाम","प्रथमा · एकवचनम् · सर्वनाम यद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"],["(यः)","नाम","प्रथमा · एकवचनम् · सर्वनाम यद् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        18: [["समः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् सम"],["शत्रौ","नाम","पुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् शत्रु"],["च","अव्यय","समुच्चयार्थकम्"],["मित्रे","नाम","नपुंलिङ्गम् · सप्तमी · एकवचनम् · मूलपदम् मित्र"],["च","अव्यय","समुच्चयार्थकम्"],["तथा","अव्यय","अव्ययम्"],["मान-","नाम","इतरेतर-द्वन्द्वः · अपमानयोः-पदेन सह (मानापमानयोः)"],["अपमानयोः","नाम","नपुंलिङ्गम् · सप्तमी · द्विवचनम् · मूलपदम् अपमान"],["शीत-","नाम","इतरेतर-द्वन्द्वः · दुःखेषु-पदेन सह (शीतोष्णसुखदुःखेषु)"],["उष्ण-","नाम","इतरेतर-द्वन्द्वः · दुःखेषु-पदेन सह"],["सुख-","नाम","इतरेतर-द्वन्द्वः · दुःखेषु-पदेन सह"],["दुःखेषु","नाम","नपुंलिङ्गम् · सप्तमी · बहुवचनम् · मूलपदम् दुःख"],["समः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् सम"],["सङ्ग-","नाम","तॄतीया-तत्पुरुषः · विवर्जितः-पदेन सह (सङ्गविवर्जितः)"],["विवर्जितः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् विवर्जित"]],
+        19: [["तुल्य-","नाम","बहुव्रीहिः · स्तुतिः-पदेन सह (तुल्यनिन्दास्तुतिः)"],["निन्दा-","नाम","इतरेतर-द्वन्द्वः · स्तुतिः-पदेन सह"],["स्तुतिः","नाम","स्त्रीलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् स्तुति"],["मौनी","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् मौनिन्"],["सन्तुष्टः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · सम्+तुष्-धातोः क्तान्तम् · मूलपदम् सन्तुष्ट"],["येन","नाम","पुंलिङ्गम् · तृतीया · एकवचनम् · सर्वनाम यद्"],["केनचित्","नाम","पुंलिङ्गम् · तृतीया · एकवचनम् · मूलपदम् किञ्चित्"],["अ-","अव्यय","बहुव्रीहिः · निकेतः-पदेन सह (अनिकेतः)"],["निकेतः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् निकेत"],["स्थिर-","नाम","बहुव्रीहिः · मतिः-पदेन सह (स्थिरमतिः)"],["मतिः","नाम","स्त्रीलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् मति"],["भक्तिमान्","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् भक्तिमत्"],["मे","नाम","षष्ठी · एकवचनम् · सर्वनाम अस्मद्"],["प्रियः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् प्रिय"],["नरः","नाम","पुंलिङ्गम् · प्रथमा · एकवचनम् · मूलपदम् नर"],["(अस्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · एकवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]],
+        20: [["ये","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम यद्"],["तु","अव्यय","भेदार्थकम्"],["धर्म्य-","नाम","कर्मधारयः · अमृतम्-पदेन सह (धर्म्यामृतम्)"],["अमृतम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · मूलपदम् अमृत"],["इदम्","नाम","नपुंलिङ्गम् · द्वितीया · एकवचनम् · सर्वनाम इदम्"],["यथा","अव्यय","अव्ययम्"],["उक्तम्","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् प्रिय"],["पर्युपासते","क्रिया","धातुः परि+उप+आस् · लट् · प्रथमपुरुषः · बहुवचनम् · आत्मनेपदम्"],["श्रद्दधानाः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् श्रद्दधान"],["मत्-","नाम","बहुव्रीहिः · परमाः-पदेन सह (मत्परमाः)"],["परमाः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् परम"],["भक्ताः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् भक्त"],["ते","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · सर्वनाम तद्"],["अतीव","अव्यय","अव्ययम्"],["मे","नाम","षष्ठी · एकवचनम् · सर्वनाम अस्मद्"],["प्रियाः","नाम","पुंलिङ्गम् · प्रथमा · बहुवचनम् · मूलपदम् प्रिय"],["(सन्ति)","क्रिया","धातुः अस् · लट् · प्रथमपुरुषः · बहुवचनम् · परस्मैपदम् · अध्याहृतम् — विश्लेषणेन दत्तम्, श्लोके नास्ति"]]
       };
 
       /* ============ Chapters ============ */
@@ -2651,11 +3074,11 @@
           completeText: "You have walked the whole trail: the armies are arrayed, the conches have sounded on both sides, the chariot stands between the two hosts — Arjuna, seeing his own kin on either side, feels his limbs give way, argues the whole chain of ruin that killing them would bring, and at last casts aside his bow and arrows and sinks down on the seat of his chariot, his mind overwhelmed with grief." },
         12: { name: "Chapter 12", verses: VERSES12, anvaya: ANVAYA12, karaka: KARAKA12, pada: PADA12,
           chipCh: "<strong>Chapter 12</strong> · Bhakti Yoga",
-          chipRange: "Verses <strong>1–10</strong> · the first half of the chapter",
-          pathSub: "Chapter 12 — Bhakti Yoga — opens with Arjuna's question: who are the greater yogins, the devotees who worship the Lord in form, or those who contemplate the unmanifest Imperishable? Kṛṣṇa's answer unfolds as a ladder of practice.",
-          readerHead: "Chapter 12 · Verses 1–10",
-          completeTitle: "Chapter 12, verses 1–10 — complete",
-          completeText: "You have walked this stretch of the trail: Arjuna's question, Kṛṣṇa's verdict for those who worship him with faith, the harder road of the Unmanifest that reaches him all the same, his promise to lift his devotees out of the ocean of death, and the first rungs of the ladder — fix the mind on Me; if not, practise; if not, work for Me. Verses 11–20 will complete the chapter." }
+          chipRange: "Verses <strong>1–20</strong> · the whole chapter",
+          pathSub: "Chapter 12 — Bhakti Yoga — opens with Arjuna's question: who are the greater yogins, the devotees who worship the Lord in form, or those who contemplate the unmanifest Imperishable? Kṛṣṇa's answer unfolds as a ladder of practice, and closes with his portrait of the devotee who is dear to him.",
+          readerHead: "Chapter 12 · Verses 1–20",
+          completeTitle: "Chapter 12, verses 1–20 — complete",
+          completeText: "You have walked the whole trail: Arjuna's question, Kṛṣṇa's verdict for those who worship him with faith, the harder road of the Unmanifest that reaches him all the same, his promise to lift his devotees out of the ocean of death, and the ladder of practice — fix the mind on Me; if not, practise; if not, work for Me; if not, renounce the fruits — until knowledge, meditation and renunciation open onto peace. It ends with the portrait of the devotee who is dear to him: free of hatred, the same in pleasure and pain, expecting nothing, content with whatever comes — and, at the last, exceedingly dear." }
       };
       var CH = 1;
       function CV() { return CHAPTERS[CH].verses; }
