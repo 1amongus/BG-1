@@ -8,7 +8,7 @@
     <title>Bhagavad Gita Learning Path</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Sahitya:wght@400;700&family=Rozha+One&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root {
         color-scheme: light dark;
@@ -394,31 +394,6 @@
       .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 6px 0 12px; font-size: 15px; color: var(--ink-soft); align-items: center; }
       .legend span { display: inline-flex; align-items: center; gap: 6px; }
       .gloss .g-type { margin-top: 8px; }
-      /* Font showcase */
-      .font-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
-      @media (max-width: 720px) { .font-grid { grid-template-columns: 1fr; } }
-      .font-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; }
-      .font-card.active { border-color: var(--gold); outline: 2px solid var(--gold); outline-offset: -2px; }
-      .font-card h3 { margin: 0 0 2px; font-size: 21px; font-weight: 600; }
-      .font-card .f-en { color: var(--gold); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; margin: 0 0 12px; }
-      .font-card .f-sample { font-size: 21px; line-height: 1.8; margin: 0 0 10px; }
-      .font-card .f-abc { font-size: 17px; color: var(--ink-soft); margin: 0 0 16px; line-height: 1.7; }
-      .font-card .btn { margin-top: auto; align-self: flex-start; }
-      .f-tiro { font-family: "Tiro Devanagari Sanskrit", serif; }
-      .f-noto { font-family: "Noto Serif Devanagari", serif; }
-      .f-sahitya { font-family: "Sahitya", serif; }
-      .f-rozha { font-family: "Rozha One", serif; }
-
-      /* ---------- Compare ---------- */
-      .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
-      @media (max-width: 720px) { .compare { grid-template-columns: 1fr; } }
-      .cmp { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px 24px; }
-      .cmp h3 { margin: 0 0 12px; font-size: 20px; font-weight: 600; }
-      .cmp dl { margin: 0; }
-      .cmp dt { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-top: 14px; }
-      .cmp dt:first-child { margin-top: 0; }
-      .cmp dd { margin: 3px 0 0; color: var(--ink-soft); }
-
       footer.note { margin-top: 56px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--ink-soft); font-size: 15px; max-width: 720px; }
     </style>
   </head>
@@ -548,70 +523,6 @@
           <button class="btn ghost" data-goto-page="a">← Back to Option A — The Guided Path</button>
         </div>
       </div>
-
-      <!-- ============ FONT SHOWCASE ============ -->
-      <section class="block" id="fonts">
-        <div class="block-head">
-          <h2><span class="dev">अक्षरशैली</span> — other fonts to try</h2>
-          <p>You liked the current type, so it stays the default. Here are three more Devanagari faces, each showing the first verse. Tap <span class="dev">योजयतु</span> on any card and the whole page's Sanskrit switches to that font, so you can feel it in the path and the reader before deciding.</p>
-        </div>
-        <div class="font-grid" id="fontGrid">
-          <article class="font-card active" data-font-card='"Tiro Devanagari Sanskrit", "Noto Serif Devanagari", serif'>
-            <h3 class="dev f-tiro">तिरो-देवनागरी-संस्कृतम्</h3>
-            <p class="f-en">Tiro Devanagari Sanskrit · current</p>
-            <p class="f-sample dev f-tiro">धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः । मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ॥</p>
-            <p class="f-abc dev f-tiro">अ आ इ ई उ ऊ ऋ ए ऐ ओ औ अं अः · क ख ग घ ङ · क्ष त्र ज्ञ · ० १ २ ३ ४ ५ ६ ७ ८ ९</p>
-            <button class="btn ghost" data-font-btn>योजयतु · Use this font</button>
-          </article>
-          <article class="font-card" data-font-card='"Noto Serif Devanagari", serif'>
-            <h3 class="dev f-noto">नोटो-सेरिफ्-देवनागरी</h3>
-            <p class="f-en">Noto Serif Devanagari</p>
-            <p class="f-sample dev f-noto">धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः । मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ॥</p>
-            <p class="f-abc dev f-noto">अ आ इ ई उ ऊ ऋ ए ऐ ओ औ अं अः · क ख ग घ ङ · क्ष त्र ज्ञ · ० १ २ ३ ४ ५ ६ ७ ८ ९</p>
-            <button class="btn ghost" data-font-btn>योजयतु · Use this font</button>
-          </article>
-          <article class="font-card" data-font-card='"Sahitya", serif'>
-            <h3 class="dev f-sahitya">साहित्यम्</h3>
-            <p class="f-en">Sahitya</p>
-            <p class="f-sample dev f-sahitya">धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः । मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ॥</p>
-            <p class="f-abc dev f-sahitya">अ आ इ ई उ ऊ ऋ ए ऐ ओ औ अं अः · क ख ग घ ङ · क्ष त्र ज्ञ · ० १ २ ३ ४ ५ ६ ७ ८ ९</p>
-            <button class="btn ghost" data-font-btn>योजयतु · Use this font</button>
-          </article>
-          <article class="font-card" data-font-card='"Rozha One", serif'>
-            <h3 class="dev f-rozha">रोज़ा-वन्</h3>
-            <p class="f-en">Rozha One · display weight</p>
-            <p class="f-sample dev f-rozha">धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः । मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ॥</p>
-            <p class="f-abc dev f-rozha">अ आ इ ई उ ऊ ऋ ए ऐ ओ औ अं अः · क ख ग घ ङ · क्ष त्र ज्ञ · ० १ २ ३ ४ ५ ६ ७ ८ ९</p>
-            <button class="btn ghost" data-font-btn>योजयतु · Use this font</button>
-          </article>
-        </div>
-      </section>
-
-      <!-- ============ COMPARE ============ -->
-      <section class="block" id="compare">
-        <div class="block-head">
-          <h2>Which one fits you?</h2>
-          <p>They teach the same verses. The difference is the rhythm.</p>
-        </div>
-        <div class="compare">
-          <div class="cmp">
-            <h3>Guided Path</h3>
-            <dl>
-              <dt>Pace</dt><dd>One verse at a time, about 2–3 minutes a stop; a whole chapter in about two hours, or spread over days.</dd>
-              <dt>You do</dt><dd>Read, tap words for meanings, answer one check per verse. The path decides what comes next.</dd>
-              <dt>Choose it if</dt><dd>You are starting out, or you want the Gita to become a daily habit that carries you forward on its own.</dd>
-            </dl>
-          </div>
-          <div class="cmp">
-            <h3>Study Reader</h3>
-            <dl>
-              <dt>Pace</dt><dd>Yours. Sit with a single verse for twenty minutes, or scan a whole chapter in twenty.</dd>
-              <dt>You do</dt><dd>Read the full analysis — every word glossed, the context explained — and move freely between verses.</dd>
-              <dt>Choose it if</dt><dd>You already read some Sanskrit, are preparing for a class, or want a reference to return to.</dd>
-            </dl>
-          </div>
-        </div>
-      </section>
 
       <footer class="note">
         <p>Verse text: <em>Śrīmad Bhagavad Gītā</em> — Chapter 1, verses 1–47, and Chapter 12, verses 1–20 — as presented in the <a href="https://ereaders.samsaadhanii.in/books/ereaders/#/read/shrimadbhagavadgita/1-1-1" target="_blank" rel="noopener">Samsaadhanii e-reader</a> (Computational Linguistics Group, University of Hyderabad). The <span class="dev">अन्वयः</span> word order, <span class="dev">कारकचक्रम्</span> relations and <span class="dev">पदपरिचयः</span> tables here are the e-reader's own analysis, reproduced exactly as its data gives them — nothing re-tagged, reordered or corrected; words the analysis supplies but the verse omits are shown in brackets, and the speaker lines are marked as not part of that analysis. A word the analysis lists more than once keeps a row for each occurrence. Translations and word glosses are short learner renderings.</p>
@@ -3603,17 +3514,6 @@
       }
       Array.prototype.forEach.call(document.querySelectorAll(".ch-tab"), function (t) {
         t.addEventListener("click", function () { setChapter(+t.getAttribute("data-ch")); });
-      });
-
-      /* ================= Font showcase ================= */
-      Array.prototype.forEach.call(document.querySelectorAll("[data-font-card]"), function (card) {
-        var btn = card.querySelector("[data-font-btn]");
-        btn.addEventListener("click", function () {
-          document.documentElement.style.setProperty("--dev-font", card.getAttribute("data-font-card"));
-          Array.prototype.forEach.call(document.querySelectorAll("[data-font-card]"), function (c) { c.classList.remove("active"); });
-          card.classList.add("active");
-          btn.textContent = "योजितम् ✓ · Applied — tap a verse to feel it";
-        });
       });
 
       setChapter(1);
