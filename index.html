@@ -97,8 +97,7 @@
       .intro { padding: 32px 0 8px; max-width: 760px; }
       .intro h1 { font-size: clamp(30px, 5.4vw, 46px); line-height: 1.12; font-weight: 600; margin: 0 0 14px; letter-spacing: -.01em; }
       .intro h1 .dev { font-weight: 400; }
-      .intro p { font-size: 19px; color: var(--ink-soft); margin: 0 0 20px; }
-      .intro .btn { margin: 0 0 22px; }
+      .intro p { font-size: 19px; color: var(--ink-soft); margin: 0; }
       .chips { display: flex; flex-wrap: wrap; gap: 8px; }
       .chip {
         border: 1px solid var(--line); background: var(--card); color: var(--ink-soft);
@@ -447,7 +446,6 @@
       <header class="intro">
         <h1>Timeless wisdom for life’s deepest questions</h1>
         <p>The Bhagavad Gita is the sacred dialogue between Krishna and Arjuna on the battlefield of Kurukshetra—teaching duty, devotion, self-knowledge, and the path to inner freedom.</p>
-        <button class="btn" data-goto-page="a" data-scroll-target="#option-a">Start learning</button>
       </header>
 
 
@@ -3178,15 +3176,11 @@
             try { history.pushState(null, "", h); } catch (e) { window.location.hash = h; }
           }
         }
-        if (opts.scrollTarget) {
-          var t = document.querySelector(opts.scrollTarget);
-          if (t) { t.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
-        }
         if (opts.scroll !== false) window.scrollTo({ top: 0, behavior: "smooth" });
       }
       Array.prototype.forEach.call(document.querySelectorAll("[data-goto-page]"), function (b) {
         b.addEventListener("click", function () {
-          showPage(b.getAttribute("data-goto-page"), { scrollTarget: b.getAttribute("data-scroll-target") || null });
+          showPage(b.getAttribute("data-goto-page"));
         });
       });
       Array.prototype.forEach.call(document.querySelectorAll("[data-page-tab]"), function (t) {
