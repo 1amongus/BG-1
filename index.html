@@ -546,6 +546,151 @@
       .legend span { display: inline-flex; align-items: center; gap: 6px; }
       .gloss .g-type { margin-top: 8px; }
       footer.note { margin-top: 56px; border-top: 1px solid var(--line); padding-top: 18px; color: var(--ink-soft); font-size: 15px; max-width: 720px; }
+
+      /* ---------- App shell: nested drill-down screens, zero page scroll ----------
+         The page itself never scrolls. Option A becomes a stack of app-like
+         screens (home → section → chapter → lesson overlay), each exactly one
+         viewport tall; Option B keeps its own internal scroll region. */
+      html, body { height: 100%; }
+      body { overflow: hidden; overscroll-behavior: none; }
+      .wrap { height: 100dvh; display: flex; flex-direction: column; padding: 0 20px 0; }
+      .page-view { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+      .page-view[hidden] { display: none; }
+      #page-b { display: block; overflow-y: auto; padding-bottom: 48px; }
+      #page-b[hidden] { display: none; }
+      .screen {
+        flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden;
+        width: 100%; max-width: 600px; margin: 0 auto;
+      }
+      .screen[hidden] { display: none; }
+
+      /* Screen 1 — home: intro, the three section rows, quiet links, footer */
+      #screen-home { padding-bottom: 12px; }
+      #screen-home > * { flex: none; }
+      #screen-home .intro { padding: 14px 0 0; max-width: none; }
+      #screen-home .intro p { font-size: 15px; line-height: 1.45; }
+      .sec-list { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+      .sec-row {
+        display: flex; align-items: center; gap: 12px; text-align: left; width: 100%;
+        background: var(--card); border: 1px solid var(--accent); border-radius: var(--radius);
+        box-shadow: var(--shadow); padding: 12px 16px; color: var(--ink);
+        position: relative; isolation: isolate; overflow: hidden;
+      }
+      .sec-row::before {
+        content: ""; position: absolute; z-index: -1; pointer-events: none;
+        right: -36px; bottom: -36px; width: 124px; height: 124px;
+        background: var(--accent); opacity: .08;
+        -webkit-mask-image: var(--motif-art); mask-image: var(--motif-art);
+        -webkit-mask-size: contain; mask-size: contain;
+        -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+      }
+      .sec-main { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+      .sec-name { font-size: 21px; font-weight: 600; line-height: 1.2; }
+      .sec-name .dev { color: var(--gold); font-weight: 400; font-size: 19px; margin-left: 6px; }
+      .sec-range { color: var(--ink-soft); font-size: 14.5px; line-height: 1.45; }
+      .sec-side { display: flex; align-items: center; gap: 10px; flex: none; }
+      .sec-prog { color: var(--ink-soft); font-size: 13.5px; white-space: nowrap; }
+      .sec-chev { color: var(--accent); font-size: 27px; font-weight: 700; line-height: 1; flex: none; }
+      .reader-row {
+        display: flex; align-items: center; gap: 12px; text-align: left; width: 100%;
+        background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 11px 16px; color: var(--ink); margin-top: 10px; overflow: hidden;
+      }
+      .reader-row .sec-name { font-size: 18px; }
+      .reader-row .sec-range { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      #screen-home .quiz-link { margin-top: 10px; font-size: 15px; }
+      #screen-home footer.note {
+        margin-top: auto; max-width: none; padding-top: 10px;
+        font-size: 12px; line-height: 1.45;
+      }
+      @media (max-height: 760px) {
+        #screen-home .intro { padding-top: 10px; }
+        .sec-list { margin-top: 10px; gap: 7px; }
+        .sec-row { padding: 9px 14px; }
+        .sec-name { font-size: 19px; }
+        .reader-row { margin-top: 8px; padding: 9px 14px; }
+        #screen-home footer.note { font-size: 11.5px; padding-top: 8px; }
+      }
+
+      /* Screen 2 — one section's six chapter tiles */
+      .screen-back { padding: 12px 0 2px; flex: none; }
+      #screen-section .ch-home { margin-top: 4px; flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+      #screen-section .ch-group { margin-bottom: 0; }
+      .ch-group[hidden] { display: none; }
+
+      /* Screen 3 — the chapter's serpentine verse path, fitted to the screen */
+      #screen-chapter { padding: 10px 0 12px; }
+      #option-a { margin-top: 0 !important; flex: 1; min-height: 0; display: flex; }
+      .path-shell { flex: 1; min-height: 0; width: 100%; display: flex; flex-direction: column; margin-top: 0; padding: 12px 14px; }
+      .path-back, .path-top { flex: none; }
+      #screen-chapter .path-back { margin-bottom: 8px; }
+      #screen-chapter .path-top { margin-bottom: 2px; }
+      #screen-chapter .btn { min-height: 42px; }
+      .path-sub {
+        flex: none; font-size: 13px; line-height: 1.4; margin-bottom: 6px;
+        display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      }
+      #screen-chapter .path {
+        flex: 1; min-height: 0; max-width: none; margin: 0; padding: 4px 0 0;
+        display: flex; flex-direction: column; justify-content: space-evenly;
+      }
+      #screen-chapter .node-row { display: flex; justify-content: center; gap: 7px; margin: 0; }
+      #screen-chapter .node { width: 44px; height: 44px; font-size: 20px; border-width: 2.5px; flex: none; box-shadow: 0 2px 0 var(--line); }
+      #screen-chapter .node .tick { font-size: 22px; }
+      @media (max-width: 480px) {
+        #screen-chapter .node { width: 42px; height: 42px; font-size: 19px; }
+      }
+      @media (max-width: 360px) {
+        #screen-chapter .node { width: 38px; height: 38px; font-size: 17px; }
+        #screen-chapter .node-row { gap: 6px; }
+      }
+
+      /* Screen 4 — lesson overlay: compact steps that fit the viewport.
+         Scoped to the overlay only; the Study Reader keeps its full sizing. */
+      .ov-top { padding: 10px 14px; }
+      .ov-close { width: 40px; height: 40px; }
+      .ov-inner { padding: 16px 18px 24px; }
+      .ov-foot { padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); }
+      .ov-body .step-kicker { margin-bottom: 4px; }
+      .ov-body .step-title { font-size: 20px; margin-bottom: 10px; }
+      .ov-body .verse-card { padding: 13px 15px 11px; margin-bottom: 12px; }
+      .ov-body .verse-text { font-size: 18.5px; line-height: 1.58; }
+      .ov-body .verse-meta { margin-top: 7px; font-size: 13.5px; }
+      .ov-body .hint { font-size: 14px; margin-bottom: 8px; }
+      .ov-body .words { gap: 6px; margin-bottom: 10px; }
+      .ov-body .word-chip { font-size: 17px; padding: 5px 11px; min-height: 38px; }
+      .ov-body .gloss { padding: 10px 13px; min-height: 0; }
+      .ov-body .gloss .g-word { font-size: 18.5px; }
+      .ov-body .gloss .g-mean { font-size: 15px; }
+      .ov-body .transl { margin-top: 10px; }
+      .ov-body .transl p { font-size: 16.5px; }
+      .ov-body .ptable th { padding: 4px 8px 4px 0; font-size: 13.5px; }
+      .ov-body .ptable td { padding: 3px 8px 3px 0; font-size: 14.5px; line-height: 1.45; }
+      .ov-body .ptable td.d { font-size: 14.5px; }
+      .ov-body .ptable td.p { font-size: 16px; }
+      .ov-body .pada-badge { font-size: 13px; padding: 1px 8px; }
+      .ov-body .anvaya-box { padding: 11px 14px; }
+      .ov-body .anvaya-box .a-text { font-size: 18px; line-height: 1.65; }
+      .ov-body .anvaya-box .a-note { font-size: 14px; margin-top: 6px; }
+      .ov-body .sec-title-dev { font-size: 17.5px; margin: 14px 0 2px; }
+      .ov-body .sec-note { font-size: 13.5px; margin-bottom: 8px; }
+      .ov-body .k-centre { padding: 6px 18px 5px; min-width: 140px; }
+      .ov-body .k-centre .k-role { font-size: 12px; }
+      .ov-body .k-centre .k-word { font-size: 20px; line-height: 1.3; }
+      .ov-body .k-centre .k-sub { font-size: 11.5px; }
+      /* Lesson graph nodes run role, word and detail along one line so the
+         whole graph fits the screen; the reader keeps the stacked boxes. */
+      .ov-body .k-node { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 9px; padding: 5px 10px; }
+      .ov-body .k-node .k-role { display: inline; font-size: 12.5px; }
+      .ov-body .k-node .k-word { display: inline; font-size: 16.5px; line-height: 1.35; margin-top: 0; }
+      .ov-body .k-node .k-sub { display: inline; font-size: 12px; margin-top: 0; }
+      .ov-body .k-item { padding: 3px 0 3px 26px; }
+      .ov-body .k-item::after { top: 16px; }
+      .ov-body .k-item:last-child::before { height: 20px; }
+      .ov-body .k-fnode::before { top: 9px; }
+      .ov-body .k-hub-block { padding: 10px 0 12px; }
+      .ov-body .quiz-opt { padding: 11px 14px; font-size: 15.5px; min-height: 46px; margin-bottom: 8px; }
+      .ov-body .complete-c { padding-top: 12px; }
     </style>
   </head>
   <body>
@@ -753,7 +898,7 @@
       <section class="block" id="option-a" style="margin-top:28px">
         <div class="path-shell">
           <div class="path-back">
-            <button class="btn ghost" id="backToTiles" type="button">← All chapters</button>
+            <button class="btn ghost" id="backToTiles" type="button">← Chapters</button>
             <span class="path-ch-name" id="pathChName"><strong>Chapter 1</strong> · Arjuna Viṣāda Yoga · Verses <strong>1–47</strong></span>
           </div>
           <div class="path-top">
@@ -17713,6 +17858,99 @@
       function el(id) { return document.getElementById(id); }
       function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
 
+      /* ================= App shell: nested drill-down screens =================
+         Screen 1 (home) → Screen 2 (a section's 6 chapters) → Screen 3 (the
+         chapter's serpentine path) → Screen 4 (the lesson overlay). The shell
+         only rearranges existing blocks into screens; no content changes. */
+      var SCREENS = {};
+      var curSection = 0, curScreen = "home";
+      var pageA = el("page-a");
+      function mkScreen(id) {
+        var s = document.createElement("section");
+        s.className = "screen"; s.id = id; s.hidden = true;
+        pageA.appendChild(s);
+        return s;
+      }
+      var scrHome = mkScreen("screen-home"),
+          scrSection = mkScreen("screen-section"),
+          scrChapter = mkScreen("screen-chapter");
+      SCREENS = { home: scrHome, section: scrSection, chapter: scrChapter };
+
+      // Screen 1: intro, the three section rows, the Study Reader link,
+      // the quiz link and the footer — nothing else.
+      var introEl = document.querySelector("header.intro");
+      if (introEl) scrHome.appendChild(introEl);
+      var secList = document.createElement("nav");
+      secList.className = "sec-list";
+      secList.setAttribute("aria-label", "Sections of the Gita");
+      [["Karma Yoga", "कर्मयोगः", "Chapters 1–6"],
+       ["Bhakti Yoga", "भक्तियोगः", "Chapters 7–12"],
+       ["Jñāna Yoga", "ज्ञानयोगः", "Chapters 13–18"]].forEach(function (s, i) {
+        var b = document.createElement("button");
+        b.className = "sec-row";
+        b.setAttribute("data-section", String(i));
+        b.innerHTML = '<span class="sec-main"><span class="sec-name">' + s[0] +
+          '<span class="dev">' + s[1] + '</span></span>' +
+          '<span class="sec-range">' + s[2] + '</span></span>' +
+          '<span class="sec-side"><span class="sec-prog" id="secProg' + i + '"></span>' +
+          '<span class="sec-chev" aria-hidden="true">›</span></span>';
+        b.addEventListener("click", function () { openSection(i); });
+        secList.appendChild(b);
+      });
+      scrHome.appendChild(secList);
+      var readerRow = document.createElement("button");
+      readerRow.className = "reader-row";
+      readerRow.setAttribute("data-goto-page", "b");
+      readerRow.innerHTML = '<span class="sec-main"><span class="sec-name">The Study Reader</span>' +
+        '<span class="sec-range">The e-reader way — the verses open in front of you, each with its full analysis.</span></span>' +
+        '<span class="sec-chev" aria-hidden="true">›</span>';
+      scrHome.appendChild(readerRow);
+      var quizLinkEl = pageA.querySelector(".quiz-link");
+      if (quizLinkEl) scrHome.appendChild(quizLinkEl);
+      var footEl = document.querySelector("footer.note");
+      if (footEl) scrHome.appendChild(footEl);
+      var crossCard = pageA.querySelector(".opt-card.cross-link");
+      if (crossCard) crossCard.remove();
+
+      // Screen 2: a back control over the existing chapter-tile groups;
+      // only the opened section's group is shown.
+      var secBack = document.createElement("div");
+      secBack.className = "screen-back";
+      secBack.innerHTML = '<button class="btn ghost" id="backToSections" type="button">← Sections</button>';
+      scrSection.appendChild(secBack);
+      var chaptersEl = el("chapters");
+      scrSection.appendChild(chaptersEl);
+      el("backToSections").addEventListener("click", function () { showScreen("home"); });
+
+      // Screen 3: the existing Guided Path block (its back control is #backToTiles).
+      scrChapter.appendChild(el("option-a"));
+
+      function refreshSectionProgress() {
+        for (var s = 0; s < 3; s++) {
+          var d = 0, t = 0;
+          for (var ch = s * 6 + 1; ch <= s * 6 + 6; ch++) {
+            CHAPTERS[ch].verses.forEach(function (v) {
+              t++;
+              if (done[ch + ":" + v.n]) d++;
+            });
+          }
+          var p = el("secProg" + s);
+          if (p) p.textContent = devNum(d) + " / " + devNum(t) + (window.innerWidth <= 480 ? "" : " verses done");
+        }
+      }
+      function showScreen(name) {
+        curScreen = name;
+        for (var k in SCREENS) SCREENS[k].hidden = k !== name;
+        if (name === "home") refreshSectionProgress();
+      }
+      function openSection(i) {
+        curSection = i;
+        Array.prototype.forEach.call(chaptersEl.querySelectorAll(".ch-group"), function (g, gi) {
+          g.hidden = gi !== i;
+        });
+        showScreen("section");
+      }
+
       /* ================= Page navigation: Option A / Option B ================= */
       var currentPage = "a";
       function showPage(which, opts) {
@@ -17721,6 +17959,7 @@
         var isB = currentPage === "b";
         el("page-a").hidden = isB;
         el("page-b").hidden = !isB;
+        if (!isB) showScreen("home");
         Array.prototype.forEach.call(document.querySelectorAll("[data-page-tab]"), function (t) {
           var on = t.getAttribute("data-page-tab") === currentPage;
           t.classList.toggle("active", on);
@@ -17755,30 +17994,34 @@
       });
 
       /* ================= Option A: the path ================= */
-      var OFFSETS = [0, 46, 74, 46, 0, -46, -74, -46, 0, 40];
       var pathEl = el("path");
+      /* Serpentine path, fitted to the screen: verse buttons run in rows
+         whose sideways shift follows a sine wave, so even the 78-verse
+         chapter fits one viewport with no scrolling. Same buttons, same
+         order, same done/next states — only the layout is compacted. */
       function renderPath() {
         pathEl.innerHTML = "";
-        CV().forEach(function (v, i) {
-          var row = document.createElement("div");
-          row.className = "node-row";
-          var wrap = document.createElement("div");
-          wrap.className = "node-wrap";
-          wrap.style.transform = "translateX(" + OFFSETS[i % OFFSETS.length] + "px)";
-          var btn = document.createElement("button");
-          btn.className = "node dev";
-          btn.id = "node-" + v.n;
-          btn.setAttribute("aria-label", "Lesson for verse " + v.n);
-          btn.innerHTML = '<span class="num">' + devNum(v.n) + '</span><span class="tick">✓</span>';
-          btn.addEventListener("click", function () { openLesson(v.n); });
-          var lab = document.createElement("div");
-          lab.className = "node-label";
-          lab.textContent = "Verse " + v.n;
-          wrap.appendChild(btn);
-          wrap.appendChild(lab);
-          row.appendChild(wrap);
-          pathEl.appendChild(row);
-        });
+        var verses = CV();
+        var cols = window.innerWidth >= 900 ? 8 : 6;
+        var rowW = cols * 44 + (cols - 1) * 7;
+        var pathW = Math.min(600, window.innerWidth - 40) - 32;
+        var amp = Math.max(0, Math.min(30, Math.floor((pathW - rowW) / 2) - 2));
+        var rows = Math.ceil(verses.length / cols);
+        for (var r = 0; r < rows; r++) {
+          var rowEl = document.createElement("div");
+          rowEl.className = "node-row";
+          if (amp > 0) rowEl.style.transform = "translateX(" + Math.round(amp * Math.sin(r * Math.PI / 3.2)) + "px)";
+          verses.slice(r * cols, r * cols + cols).forEach(function (v) {
+            var btn = document.createElement("button");
+            btn.className = "node dev";
+            btn.id = "node-" + v.n;
+            btn.setAttribute("aria-label", "Lesson for verse " + v.n);
+            btn.innerHTML = '<span class="num">' + devNum(v.n) + '</span><span class="tick">✓</span>';
+            btn.addEventListener("click", function () { openLesson(v.n); });
+            rowEl.appendChild(btn);
+          });
+          pathEl.appendChild(rowEl);
+        }
       }
 
       function nextUndone() {
@@ -17837,6 +18080,11 @@
       }
       el("ovClose").addEventListener("click", closeLesson);
       document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !overlay.hidden) closeLesson(); });
+      document.addEventListener("keydown", function (e) {
+        if (e.key !== "Escape" || !overlay.hidden || currentPage !== "a") return;
+        if (curScreen === "chapter") openSection(curSection);
+        else if (curScreen === "section") showScreen("home");
+      });
 
       function verseCardHTML(v, withMeta) {
         return '<div class="verse-card"><p class="verse-text dev">' + esc(v.text) + "</p>" +
@@ -17900,7 +18148,7 @@
         setFeedback("", "");
         ovBody.innerHTML = '<p class="step-kicker dev">सोपानम् ३ / ४ · अन्वयः · कारकचक्रम्</p>' +
           '<h3 class="step-title dev">वाक्यं सरलक्रमेण पश्यतु</h3>' +
-          verseCardHTML(v, false) + anvayaHTML(v) + karakaHTML(v);
+          anvayaHTML(v) + karakaHTML(v);
         setAction("अग्रे · परीक्षणम्", true, function () { L.step = "quiz"; renderQuiz(); });
         setProgress();
         ovBody.parentElement.scrollTop = 0;
@@ -18082,14 +18330,16 @@
           }
           note.hidden = true;
           setChapter(+t.getAttribute("data-ch"));
-          document.querySelector(".path-shell").scrollIntoView({ behavior: "smooth", block: "start" });
+          curSection = Math.floor((CH - 1) / 6);
+          showScreen("chapter");
         });
       });
       el("backToTiles").addEventListener("click", function () {
-        el("chapters").scrollIntoView({ behavior: "smooth", block: "start" });
+        openSection(curSection);
       });
 
       setChapter(1);
+      showScreen("home");
       // Main screen is Option A; open on Option B only when its link/hash is used
       if (window.location.hash === "#option-b" || window.location.hash === "#page-b") {
         showPage("b", { updateHash: false, scroll: false });
