@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="sa">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>क्रियापदपरीक्षा</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f6f1e6;
+        --bg-deep: #efe6d3;
+        --card: #fffdf7;
+        --ink: #26190e;
+        --ink-soft: #5d4c36;
+        --line: #ddd0b2;
+        --accent: #9c3a10;
+        --accent-ink: #ffffff;
+        --gold: #b07d16;
+        --gold-bg: #f3e5c3;
+        --good: #2e6b27;
+        --good-bg: #e2efdd;
+        --bad: #a02c1c;
+        --bad-bg: #f7e0da;
+        --chip-bg: #fffdf7;
+        --dev-font: "Tiro Devanagari Sanskrit", "Noto Serif Devanagari", serif;
+        --ui-font: "Noto Serif Devanagari", "Tiro Devanagari Sanskrit", serif;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #171008;
+          --bg-deep: #100a05;
+          --card: #241a10;
+          --ink: #f1e7d3;
+          --ink-soft: #c9b896;
+          --line: #4a3a22;
+          --accent: #e08a4e;
+          --accent-ink: #221304;
+          --gold: #dfa93e;
+          --gold-bg: #3a2c12;
+          --good: #9fce94;
+          --good-bg: #1d2f1c;
+          --bad: #f09a8a;
+          --bad-bg: #3a1d16;
+          --chip-bg: #241a10;
+        }
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--ui-font);
+        -webkit-font-smoothing: antialiased;
+        padding-bottom: 92px;
+      }
+      button { font-family: inherit; cursor: pointer; }
+      .wrap { max-width: 640px; margin: 0 auto; padding: 14px 16px 8px; }
+
+      /* ---------- top bar ---------- */
+      .topbar { padding: 6px 2px 12px; border-bottom: 1px solid var(--line); }
+      .t-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+      .t-title { font-family: var(--dev-font); font-size: 24px; font-weight: 600; color: var(--accent); }
+      .t-stats { font-size: 16px; color: var(--ink-soft); font-weight: 600; white-space: nowrap; }
+      .t-stats .dot { margin: 0 6px; opacity: .6; }
+      .segs { display: flex; gap: 5px; margin-top: 10px; }
+      .seg { flex: 1; height: 7px; border-radius: 4px; background: var(--bg-deep); border: 1px solid var(--line); }
+      .seg.done-good { background: var(--good); border-color: var(--good); }
+      .seg.done-bad { background: var(--bad); border-color: var(--bad); }
+      .seg.current { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+
+      /* ---------- verse card ---------- */
+      .verse-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 18px 14px;
+        margin-top: 16px;
+        box-shadow: 0 1px 3px rgba(38, 25, 14, .06);
+      }
+      .speaker { font-family: var(--dev-font); font-size: 17px; font-weight: 600; color: var(--accent); margin-bottom: 8px; }
+      .verse { font-family: var(--dev-font); font-size: 21px; line-height: 1.95; }
+      .verse .vline { display: block; }
+      .vref { margin-top: 10px; font-size: 14px; color: var(--ink-soft); }
+
+      .question { font-family: var(--dev-font); font-size: 19px; font-weight: 600; margin: 20px 2px 12px; }
+
+      /* ---------- chips ---------- */
+      .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+      .chip {
+        min-height: 44px;
+        padding: 8px 15px;
+        font-family: var(--dev-font);
+        font-size: 18px;
+        color: var(--ink);
+        background: var(--chip-bg);
+        border: 1.5px solid var(--line);
+        border-radius: 999px;
+        transition: background .12s ease, border-color .12s ease, color .12s ease;
+      }
+      .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+      .chip:disabled { cursor: default; opacity: 1; }
+      .chip.correct { background: var(--good-bg); border-color: var(--good); color: var(--good); font-weight: 700; }
+      .chip.missed { background: var(--gold-bg); border: 2px dashed var(--gold); color: var(--ink); font-weight: 700; }
+      .chip.wrong { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); font-weight: 700; }
+      .chip.dim { opacity: .45; }
+
+      /* ---------- legend ---------- */
+      .legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 16px; font-size: 15px; color: var(--ink-soft); }
+      .legend .li { display: inline-flex; align-items: center; gap: 7px; }
+      .sw { width: 16px; height: 16px; border-radius: 5px; display: inline-block; }
+      .sw.good { background: var(--good-bg); border: 1.5px solid var(--good); }
+      .sw.gold { background: var(--gold-bg); border: 2px dashed var(--gold); }
+      .sw.bad { background: var(--bad-bg); border: 1.5px solid var(--bad); }
+
+      /* ---------- explanation ---------- */
+      .explain { margin-top: 22px; }
+      .explain h2 { font-family: var(--dev-font); font-size: 19px; color: var(--accent); margin: 0 0 10px; }
+      .vrow {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--gold);
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+      }
+      .vrow-word { font-family: var(--dev-font); font-size: 21px; font-weight: 700; margin-bottom: 6px; }
+      .vrow dl { margin: 0; }
+      .vrow .fld { display: flex; gap: 10px; padding: 3px 0; font-size: 16px; line-height: 1.55; }
+      .vrow dt { flex: 0 0 86px; color: var(--ink-soft); font-weight: 600; }
+      .vrow dd { margin: 0; font-family: var(--dev-font); word-break: break-word; }
+
+      /* ---------- completion ---------- */
+      .done-card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 26px 18px;
+        margin-top: 16px;
+        text-align: center;
+      }
+      .done-title { font-family: var(--dev-font); font-size: 24px; font-weight: 600; color: var(--accent); }
+      .done-score { font-family: var(--dev-font); font-size: 44px; font-weight: 700; margin: 14px 0 4px; }
+      .done-score-label { font-size: 16px; color: var(--ink-soft); }
+      .marks { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 20px 0 6px; }
+      .mark {
+        width: 44px; height: 44px; border-radius: 50%;
+        display: inline-flex; align-items: center; justify-content: center;
+        font-family: var(--dev-font); font-size: 19px; font-weight: 700;
+        border: 2px solid var(--line); background: var(--bg);
+      }
+      .mark.good { background: var(--good-bg); border-color: var(--good); color: var(--good); }
+      .mark.bad { background: var(--bad-bg); border-color: var(--bad); color: var(--bad); }
+      .retry-btn {
+        margin-top: 18px; min-height: 48px; padding: 10px 26px;
+        font-size: 18px; font-weight: 700; font-family: var(--dev-font);
+        background: var(--accent); color: var(--accent-ink);
+        border: none; border-radius: 999px;
+      }
+
+      /* ---------- action bar ---------- */
+      .actionbar {
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+        background: var(--bg-deep);
+        border-top: 1px solid var(--line);
+        padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      }
+      .ab-inner { max-width: 640px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+      .ab-msg { flex: 1; font-size: 16px; font-weight: 600; color: var(--ink-soft); line-height: 1.4; }
+      .ab-msg.good { color: var(--good); }
+      .ab-btn {
+        min-height: 48px; padding: 10px 24px; flex: 0 0 auto;
+        font-size: 18px; font-weight: 700; font-family: var(--dev-font);
+        background: var(--accent); color: var(--accent-ink);
+        border: none; border-radius: 999px;
+      }
+      .ab-btn.secondary { background: var(--card); color: var(--accent); border: 1.5px solid var(--accent); }
+      [hidden] { display: none !important; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="topbar">
+        <div class="t-row">
+          <div class="t-title">क्रियापदपरीक्षा</div>
+          <div class="t-stats"><span id="progLabel"></span><span class="dot">·</span><span id="scoreLabel"></span></div>
+        </div>
+        <div class="segs" id="segs"></div>
+      </header>
+
+      <main id="quizView">
+        <section class="verse-card">
+          <div class="speaker" id="speaker"></div>
+          <div class="verse" id="verseText"></div>
+          <div class="vref" id="vref"></div>
+        </section>
+
+        <p class="question">अस्मिन् श्लोके सर्वाणि क्रियापदानि चिनुत ।</p>
+
+        <div class="chips" id="chips"></div>
+
+        <div class="legend" id="legend" hidden>
+          <span class="li"><span class="sw good"></span>सम्यक् चितम्</span>
+          <span class="li"><span class="sw gold"></span>अचितं क्रियापदम्</span>
+          <span class="li"><span class="sw bad"></span>न क्रियापदम्</span>
+        </div>
+
+        <section class="explain" id="explain" hidden>
+          <h2>क्रियापदानां विवरणम्</h2>
+          <div id="verbRows"></div>
+        </section>
+      </main>
+
+      <main id="doneView" hidden>
+        <section class="done-card">
+          <div class="done-title">परीक्षा समाप्ता</div>
+          <div class="done-score" id="doneScore"></div>
+          <div class="done-score-label">अङ्काः</div>
+          <div class="marks" id="marks"></div>
+          <button class="retry-btn" id="retryBtn">पुनरारम्भः</button>
+        </section>
+      </main>
+    </div>
+
+    <footer class="actionbar" id="actionbar">
+      <div class="ab-inner">
+        <span class="ab-msg" id="abMsg"></span>
+        <button class="ab-btn" id="submitBtn">निवेदय</button>
+        <button class="ab-btn" id="nextBtn" hidden></button>
+      </div>
+    </footer>
+
+    <script>
+      "use strict";
+      var VERSES = [{"n": 1, "speaker": "धृतराष्ट्र उवाच", "lines": ["धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः।", "मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय॥1॥"], "words": ["धर्म-", "क्षेत्रे", "कुरु-", "क्षेत्रे", "समवेताः", "युयुत्सवः", "मामकाः", "पाण्डवाः", "च", "एव", "किम्", "अकुर्वत", "सञ्जय"], "verbs": [{"i": 11, "word": "अकुर्वत", "morph": "कृ3{कर्तरि;लङ्;प्र;बहु;आत्मनेपदी;डुकृञ्;तनादिः}", "rel": "अभिहित_कर्ता,6.1;सकर्मकः.1", "hindi": "किया"}]}, {"n": 2, "speaker": "सञ्जय उवाच", "lines": ["दृष्ट्वा तु पाण्डवानीकं व्यूढं दुर्योधनस्तदा।", "आचार्यमुपसङ्गम्य राजा वचनमब्रवीत्॥2॥"], "words": ["दृष्ट्वा", "तु", "पाण्डव-", "अनीकम्", "व्यूढम्", "दुर्योधनः", "तदा", "आचार्यम्", "उपसङ्गम्य", "राजा", "वचनम्", "अब्रवीत्"], "verbs": [{"i": 11, "word": "अब्रवीत्", "morph": "ब्रू1{कर्तरि;लङ्;प्र;एक;परस्मैपदी;ब्रूञ्;अदादिः}", "rel": "अभिहित_कर्ता,5.1;द्विकर्मकः.1", "hindi": "कहा"}]}, {"n": 3, "speaker": "दुर्योधनः", "lines": ["पश्यैतां पाण्डुपुत्राणामाचार्य महतीं चमूम्।", "व्यूढां द्रुपदपुत्रेण तव शिष्येण धीमता॥3॥"], "words": ["पश्य", "एताम्", "पाण्डु-", "पुत्राणाम्", "आचार्य", "महतीम्", "चमूम्", "व्यूढाम्", "द्रुपद-", "पुत्रेण", "तव", "शिष्येण", "धीमता", "(त्वम्)"], "verbs": [{"i": 0, "word": "पश्य", "morph": "दृश्1{कर्तरि;लोट्;म;एक;परस्मैपदी;दृशिँर्;भ्वादिः}", "rel": "अभिहित_कर्ता,11.1.1;सकर्मकः.1", "hindi": "देखिये"}]}, {"n": 4, "speaker": "दुर्योधनः", "lines": ["अत्र शूरा महेष्वासा भीमार्जुनसमा युधि। युयुधानो विराटश्च द्रुपदश्च महारथः॥4॥"], "words": ["अत्र", "शूराः", "महा-", "इष्वासाः", "भीम-", "अर्जुन-", "समाः", "युधि", "युयुधानः", "विराटः", "च", "द्रुपदः", "च", "महान्-", "रथः", "धृष्टकेतुः", "चेकितानः", "काशिराजः", "च", "वीर्यवान्", "पुरुजित्", "कुन्तिभोजः", "च", "शैब्यः", "च", "नर-", "पुङ्गवः", "युधामन्युः", "च", "विक्रान्तः", "उत्तमौजाः", "च", "वीर्यवान्", "सौभद्रः", "द्रौपदेयाः", "च", "सर्वे", "एव", "महान्-", "रथाः", "(सन्ति)"], "verbs": [{"i": 40, "word": "(सन्ति)", "morph": "(अस्2{कर्तरि;लट्;प्र;बहु;परस्मैपदी;असँ;अदादिः})", "rel": "अभिहित_कर्ता,32.1;अकर्मकः.1", "hindi": "(हैं)"}]}, {"n": 5, "speaker": "दुर्योधनः", "lines": ["धृष्टकेतुश्चेकितानः काशिराजश्च वीर्यवान्। पुरुजित्कुन्तिभोजश्च शैब्यश्च नरपुङ्गवः॥5॥"], "words": ["अत्र", "शूराः", "महा-", "इष्वासाः", "भीम-", "अर्जुन-", "समाः", "युधि", "युयुधानः", "विराटः", "च", "द्रुपदः", "च", "महान्-", "रथः", "धृष्टकेतुः", "चेकितानः", "काशिराजः", "च", "वीर्यवान्", "पुरुजित्", "कुन्तिभोजः", "च", "शैब्यः", "च", "नर-", "पुङ्गवः", "युधामन्युः", "च", "विक्रान्तः", "उत्तमौजाः", "च", "वीर्यवान्", "सौभद्रः", "द्रौपदेयाः", "च", "सर्वे", "एव", "महान्-", "रथाः", "(सन्ति)"], "verbs": [{"i": 40, "word": "(सन्ति)", "morph": "(अस्2{कर्तरि;लट्;प्र;बहु;परस्मैपदी;असँ;अदादिः})", "rel": "अभिहित_कर्ता,32.1;अकर्मकः.1", "hindi": "(हैं)"}]}, {"n": 6, "speaker": "दुर्योधनः", "lines": ["युधामन्युश्च विक्रान्त उत्तमौजाश्च वीर्यवान्। सौभद्रो द्रौपदेयाश्च सर्व एव महारथाः॥6॥"], "words": ["अत्र", "शूराः", "महा-", "इष्वासाः", "भीम-", "अर्जुन-", "समाः", "युधि", "युयुधानः", "विराटः", "च", "द्रुपदः", "च", "महान्-", "रथः", "धृष्टकेतुः", "चेकितानः", "काशिराजः", "च", "वीर्यवान्", "पुरुजित्", "कुन्तिभोजः", "च", "शैब्यः", "च", "नर-", "पुङ्गवः", "युधामन्युः", "च", "विक्रान्तः", "उत्तमौजाः", "च", "वीर्यवान्", "सौभद्रः", "द्रौपदेयाः", "च", "सर्वे", "एव", "महान्-", "रथाः", "(सन्ति)"], "verbs": [{"i": 40, "word": "(सन्ति)", "morph": "(अस्2{कर्तरि;लट्;प्र;बहु;परस्मैपदी;असँ;अदादिः})", "rel": "अभिहित_कर्ता,32.1;अकर्मकः.1", "hindi": "(हैं)"}]}, {"n": 7, "speaker": "दुर्योधनः", "lines": ["अस्माकं तु विशिष्टा ये तान्निबोध द्विजोत्तम।", "नायका मम सैन्यस्य संज्ञार्थं तान्ब्रवीमि ते॥7॥"], "words": ["अस्माकम्", "तु", "विशिष्टाः", "ये", "(सन्ति)", "तान्", "निबोध", "(त्वम्)", "द्विज-", "उत्तम", "नायकाः", "मम", "सैन्यस्य", "(सन्ति)", "(ये)", "सञ्ज्ञा-", "अर्थम्", "तान्", "ब्रवीमि", "ते", "(अहम्)"], "verbs": [{"i": 4, "word": "(सन्ति)", "morph": "(अस्2{कर्तरि;लट्;प्र;बहु;परस्मैपदी;असँ;अदादिः})", "rel": "अभिहितकर्ता,4.1;अकर्मकः.1", "hindi": "(हैं)"}, {"i": 6, "word": "निबोध", "morph": "नि_बुध्2{कर्तरि;लोट्;म;एक;परस्मैपदी;नि_बुधिँर्;भ्वादिः}", "rel": "अभिहित_कर्ता,6.1.1;सकर्मकः.1", "hindi": "समझ_लीजिये"}, {"i": 13, "word": "(सन्ति)", "morph": "(अस्2{कर्तरि;लट्;प्र;बहु;परस्मैपदी;असँ;अदादिः})", "rel": "अभिहितकर्ता,10.2.1;अकर्मकः.1", "hindi": "(हैं)"}, {"i": 18, "word": "ब्रवीमि", "morph": "ब्रू1{कर्तरि;लट्;उ;एक;परस्मैपदी;ब्रूञ्;अदादिः}", "rel": "अभिहित_कर्ता,14.1.1;सकर्मकः.1", "hindi": "बतलाता_हूँ"}]}, {"n": 8, "speaker": "दुर्योधनः", "lines": ["भवान्भीष्मश्च कर्णश्च कृपश्च समितिञ्जयः।", "अश्वत्थामा विकर्णश्च सौमदत्तिस्तथैव च॥8॥"], "words": ["भवान्", "भीष्मः", "च", "कर्णः", "च", "कृपः", "च", "समितिञ्जयः", "अश्वत्थामा", "विकर्णः", "च", "सौमदत्तिः", "तथा", "एव", "च", "(अस्ति)"], "verbs": [{"i": 15, "word": "(अस्ति)", "morph": "अस्2{कर्तरि;लट्;प्र;एक;परस्मैपदी;अदादिः}", "rel": "अभिहित_कर्ता,12.1", "hindi": "है"}]}, {"n": 9, "speaker": "दुर्योधनः", "lines": ["अन्ये च बहवः शूरा मदर्थे त्यक्तजीविताः।", "नानाशस्त्रप्रहरणाः सर्वे युद्धविशारदाः॥9॥"], "words": ["अन्ये", "च", "बहवः", "शूराः", "मत्-", "अर्थे", "त्यक्तजीविताः", "नाना-", "शस्त्र-", "प्रहरणाः", "सर्वे", "युद्ध-", "विशारदाः", "(सन्ति)"], "verbs": [{"i": 13, "word": "(सन्ति)", "morph": "अस्2{कर्तरि;लट्;प्र;बहु;परस्मैपदी;अदादिः}", "rel": "अभिहित_कर्ता,9.1", "hindi": "हैं"}]}, {"n": 10, "speaker": "दुर्योधनः", "lines": ["अपर्याप्तं तदस्माकं बलं भीष्माभिरक्षितम्।", "पर्याप्तं त्विदमेतेषां बलं भीमाभिरक्षितम्॥10॥"], "words": ["अ-", "पर्याप्तम्", "तत्", "अस्माकम्", "बलम्", "भीष्म-", "अभिरक्षितम्", "(अस्ति)", "पर्याप्तम्", "तु", "इदम्", "एतेषाम्", "बलम्", "भीम-", "अभिरक्षितम्", "(अस्ति)"], "verbs": [{"i": 7, "word": "(अस्ति)", "morph": "(अस्2{कर्तरि;लट्;प्र;एक;परस्मैपदी;असँ;अदादिः})", "rel": "अभिहित_कर्ता,4.1;अकर्मकः.1", "hindi": "(है)"}, {"i": 15, "word": "(अस्ति)", "morph": "(अस्2{कर्तरि;लट्;प्र;एक;परस्मैपदी;असँ;अदादिः})", "rel": "अभिहित_कर्ता,11.1;अकर्मकः.1", "hindi": "(है)"}]}];
+
+      var DEV_DIGITS = ["०","१","२","३","४","५","६","७","८","९"];
+      function devNum(n) { return String(n).split("").map(function (c) { return DEV_DIGITS[+c]; }).join(""); }
+      function esc(s) {
+        return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+
+      var state = { idx: 0, score: 0, results: [], selected: {}, graded: false };
+
+      var els = {
+        prog: document.getElementById("progLabel"),
+        score: document.getElementById("scoreLabel"),
+        segs: document.getElementById("segs"),
+        quiz: document.getElementById("quizView"),
+        done: document.getElementById("doneView"),
+        speaker: document.getElementById("speaker"),
+        verse: document.getElementById("verseText"),
+        vref: document.getElementById("vref"),
+        chips: document.getElementById("chips"),
+        legend: document.getElementById("legend"),
+        explain: document.getElementById("explain"),
+        verbRows: document.getElementById("verbRows"),
+        msg: document.getElementById("abMsg"),
+        submit: document.getElementById("submitBtn"),
+        next: document.getElementById("nextBtn"),
+        actionbar: document.getElementById("actionbar"),
+        doneScore: document.getElementById("doneScore"),
+        marks: document.getElementById("marks"),
+        retry: document.getElementById("retryBtn")
+      };
+
+      function verbIndexSet(v) {
+        var s = {};
+        v.verbs.forEach(function (vb) { s[vb.i] = true; });
+        return s;
+      }
+
+      function renderHeader() {
+        els.prog.textContent = "श्लोकः " + devNum(state.idx + 1) + " / " + devNum(VERSES.length);
+        els.score.textContent = "अङ्काः " + devNum(state.score) + " / " + devNum(VERSES.length);
+        els.segs.innerHTML = VERSES.map(function (v, i) {
+          var cls = "seg";
+          if (state.results[i] === true) cls += " done-good";
+          else if (state.results[i] === false) cls += " done-bad";
+          else if (i === state.idx) cls += " current";
+          return '<span class="' + cls + '"></span>';
+        }).join("");
+      }
+
+      function renderVerse() {
+        var v = VERSES[state.idx];
+        state.selected = {};
+        state.graded = false;
+        els.speaker.textContent = v.speaker;
+        els.verse.innerHTML = v.lines.map(function (ln) {
+          return '<span class="vline">' + esc(ln) + "</span>";
+        }).join("");
+        els.vref.textContent = "अध्यायः १ · श्लोकः " + devNum(v.n);
+        els.chips.innerHTML = "";
+        v.words.forEach(function (w, i) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "chip";
+          b.textContent = w;
+          b.setAttribute("aria-pressed", "false");
+          b.addEventListener("click", function () { toggleChip(i, b); });
+          els.chips.appendChild(b);
+        });
+        els.legend.hidden = true;
+        els.explain.hidden = true;
+        els.verbRows.innerHTML = "";
+        els.msg.textContent = "चितानि पदानि — ०";
+        els.msg.className = "ab-msg";
+        els.submit.hidden = false;
+        els.next.hidden = true;
+        renderHeader();
+        window.scrollTo(0, 0);
+      }
+
+      function toggleChip(i, btn) {
+        if (state.graded) return;
+        if (state.selected[i]) {
+          delete state.selected[i];
+          btn.setAttribute("aria-pressed", "false");
+        } else {
+          state.selected[i] = true;
+          btn.setAttribute("aria-pressed", "true");
+        }
+        els.msg.textContent = "चितानि पदानि — " + devNum(Object.keys(state.selected).length);
+      }
+
+      function grade() {
+        if (state.graded) return;
+        state.graded = true;
+        var v = VERSES[state.idx];
+        var vset = verbIndexSet(v);
+        var perfect = true;
+        var chipEls = els.chips.children;
+        v.words.forEach(function (w, i) {
+          var b = chipEls[i];
+          b.disabled = true;
+          var isVerb = !!vset[i], isSel = !!state.selected[i];
+          if (isVerb && isSel) b.classList.add("correct");
+          else if (isVerb && !isSel) { b.classList.add("missed"); perfect = false; }
+          else if (!isVerb && isSel) { b.classList.add("wrong"); perfect = false; }
+          else b.classList.add("dim");
+        });
+        if (perfect) state.score += 1;
+        state.results[state.idx] = perfect;
+
+        els.legend.hidden = false;
+        els.verbRows.innerHTML = v.verbs.map(function (vb) {
+          return '<div class="vrow"><div class="vrow-word">' + esc(vb.word) + "</div><dl>" +
+            '<div class="fld"><dt>विश्लेषणम्</dt><dd>' + esc(vb.morph) + "</dd></div>" +
+            '<div class="fld"><dt>सम्बन्धः</dt><dd>' + esc(vb.rel) + "</dd></div>" +
+            '<div class="fld"><dt>अर्थः</dt><dd>' + esc(vb.hindi) + "</dd></div>" +
+            "</dl></div>";
+        }).join("");
+        els.explain.hidden = false;
+
+        els.msg.textContent = perfect ? "साधु ! सर्वं सम्यक् ।" : "सम्यक् उत्तरं अधः अस्ति ।";
+        els.msg.className = "ab-msg" + (perfect ? " good" : "");
+        els.submit.hidden = true;
+        els.next.textContent = state.idx === VERSES.length - 1 ? "परिणामं पश्यतु" : "अग्रिमः श्लोकः";
+        els.next.hidden = false;
+        renderHeader();
+      }
+
+      function showDone() {
+        els.quiz.hidden = true;
+        els.actionbar.hidden = true;
+        els.done.hidden = false;
+        els.doneScore.textContent = devNum(state.score) + " / " + devNum(VERSES.length);
+        els.marks.innerHTML = VERSES.map(function (v, i) {
+          return '<span class="mark ' + (state.results[i] ? "good" : "bad") + '">' + devNum(v.n) + "</span>";
+        }).join("");
+        els.prog.textContent = "श्लोकः " + devNum(VERSES.length) + " / " + devNum(VERSES.length);
+        window.scrollTo(0, 0);
+      }
+
+      els.submit.addEventListener("click", grade);
+      els.next.addEventListener("click", function () {
+        if (state.idx === VERSES.length - 1) { showDone(); return; }
+        state.idx += 1;
+        renderVerse();
+      });
+      els.retry.addEventListener("click", function () {
+        state = { idx: 0, score: 0, results: [], selected: {}, graded: false };
+        els.done.hidden = true;
+        els.quiz.hidden = false;
+        els.actionbar.hidden = false;
+        renderVerse();
+      });
+
+      renderVerse();
+    </script>
+  </body>
+</html>
