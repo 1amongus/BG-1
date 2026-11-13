@@ -564,7 +564,8 @@
       }
       .screen[hidden] { display: none; }
 
-      /* Screen 1 — home: intro, three section rows, three more tiles, footer */
+      /* Screen 1 — home: intro, three section rows, a demarcated pair of
+         lower tiles (quiz + thanks), footer */
       #screen-home { padding-bottom: 12px; }
       #screen-home > * { flex: none; }
       #screen-home .intro { padding: 14px 0 0; max-width: none; }
@@ -591,10 +592,22 @@
       .sec-side { display: flex; align-items: center; gap: 10px; flex: none; }
       .sec-prog { color: var(--ink-soft); font-size: 13.5px; white-space: nowrap; }
       .sec-chev { color: var(--accent); font-size: 27px; font-weight: 700; line-height: 1; flex: none; }
-      /* Screen 1, lower tiles: the Study Reader, the Kriyapada Quiz and the
-         Samsaadhanii thank-you tile — the section rows' card style, a touch
-         smaller so all six tiles plus the coverage line fit one screen. */
-      .home-more { margin-top: 10px; }
+      /* Screen 1, lower tiles: the Kriyapada Quiz and the Samsaadhanii
+         thank-you tile, visually demarcated from the three section rows
+         above — a divider rule and extra space set them apart, and a
+         quieter treatment (plain card, thin neutral border, no shadow,
+         softer colors) keeps them from reading as more chapter sections. */
+      .home-more {
+        margin-top: 18px; padding-top: 16px;
+        border-top: 1px solid var(--line);
+      }
+      .home-more .sec-row {
+        border-color: var(--line); box-shadow: none; background: var(--bg-deep);
+      }
+      .home-more .sec-row::before { background: var(--gold); opacity: .07; }
+      .home-more .sec-name { color: var(--ink-soft); }
+      .home-more .sec-name .dev { color: var(--gold); }
+      .home-more .sec-chev { color: var(--gold); }
       a.sec-row { text-decoration: none; }
       .more-row { padding: 10px 16px; }
       .more-row .sec-name { font-size: 18.5px; }
@@ -609,13 +622,14 @@
         .sec-list { margin-top: 10px; gap: 7px; }
         .sec-row { padding: 9px 14px; }
         .sec-name { font-size: 19px; }
-        .home-more { margin-top: 8px; }
+        .home-more { margin-top: 12px; padding-top: 11px; }
         .more-row { padding: 8px 14px; }
         #screen-home footer.note { font-size: 11.5px; padding-top: 8px; }
       }
       @media (max-height: 700px) {
         #screen-home .intro p { font-size: 14px; }
         .sec-row { padding: 8px 14px; }
+        .home-more { margin-top: 10px; padding-top: 9px; }
         .more-row { padding: 7px 14px; }
         .more-row .sec-name { font-size: 17px; }
         #screen-home footer.note { font-size: 11px; line-height: 1.4; padding-top: 7px; }
@@ -17885,8 +17899,8 @@
           scrChapter = mkScreen("screen-chapter");
       SCREENS = { home: scrHome, section: scrSection, chapter: scrChapter };
 
-      // Screen 1: intro, the three section rows, three more tiles (Study
-      // Reader, quiz, Samsaadhanii thanks) and the coverage footer.
+      // Screen 1: intro, the three section rows, two demarcated lower
+      // tiles (quiz, Samsaadhanii thanks) and the coverage footer.
       var introEl = document.querySelector("header.intro");
       if (introEl) scrHome.appendChild(introEl);
       var secList = document.createElement("nav");
@@ -17907,20 +17921,14 @@
         secList.appendChild(b);
       });
       scrHome.appendChild(secList);
-      // Screen 1, lower tiles: the Study Reader, the Kriyapada Quiz and a
-      // thank-you tile for Samsaadhanii, in the section rows' style. They
-      // replace the old reader row, quiz link line and the footer's
-      // attribution paragraph; the footer keeps the verse-coverage line.
+      // Screen 1, lower tiles: the Kriyapada Quiz and a thank-you tile for
+      // Samsaadhanii, demarcated from the section rows by a divider and a
+      // quieter style (see .home-more in the CSS). The Study Reader (Option
+      // B) view stays in the build but has no home-screen entry point; the
+      // footer keeps the verse-coverage line.
       var moreList = document.createElement("nav");
       moreList.className = "sec-list home-more";
-      moreList.setAttribute("aria-label", "Study Reader, quiz and thanks");
-      var readerTile = document.createElement("button");
-      readerTile.className = "sec-row more-row";
-      readerTile.setAttribute("data-goto-page", "b");
-      readerTile.innerHTML = '<span class="sec-main"><span class="sec-name">The Study Reader</span>' +
-        '<span class="sec-range">The e-reader way — the verses open in front of you, each with its full analysis.</span></span>' +
-        '<span class="sec-chev" aria-hidden="true">›</span>';
-      moreList.appendChild(readerTile);
+      moreList.setAttribute("aria-label", "Quiz and thanks");
       var quizTile = document.createElement("a");
       quizTile.className = "sec-row more-row";
       quizTile.href = "kriyapada-quiz.html";
