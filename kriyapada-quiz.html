@@ -180,6 +180,14 @@
       }
       .ab-btn.secondary { background: var(--card); color: var(--accent); border: 1.5px solid var(--accent); }
       [hidden] { display: none !important; }
+
+      /* ---------- back link ---------- */
+      .backnav { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--line); text-align: center; }
+      .back-link {
+        font-family: var(--dev-font); font-size: 16px; color: var(--ink-soft);
+        text-decoration: none;
+      }
+      .back-link:hover, .back-link:focus-visible { color: var(--accent); text-decoration: underline; }
     </style>
   </head>
   <body>
@@ -224,6 +232,10 @@
           <button class="retry-btn" id="retryBtn">पुनरारम्भः</button>
         </section>
       </main>
+
+      <nav class="backnav">
+        <a class="back-link" href="index.html">← गीतामुखपृष्ठं गच्छतु</a>
+      </nav>
     </div>
 
     <footer class="actionbar" id="actionbar">
