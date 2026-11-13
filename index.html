@@ -564,7 +564,7 @@
       }
       .screen[hidden] { display: none; }
 
-      /* Screen 1 — home: intro, the three section rows, quiet links, footer */
+      /* Screen 1 — home: intro, three section rows, three more tiles, footer */
       #screen-home { padding-bottom: 12px; }
       #screen-home > * { flex: none; }
       #screen-home .intro { padding: 14px 0 0; max-width: none; }
@@ -591,14 +591,15 @@
       .sec-side { display: flex; align-items: center; gap: 10px; flex: none; }
       .sec-prog { color: var(--ink-soft); font-size: 13.5px; white-space: nowrap; }
       .sec-chev { color: var(--accent); font-size: 27px; font-weight: 700; line-height: 1; flex: none; }
-      .reader-row {
-        display: flex; align-items: center; gap: 12px; text-align: left; width: 100%;
-        background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-        padding: 11px 16px; color: var(--ink); margin-top: 10px; overflow: hidden;
-      }
-      .reader-row .sec-name { font-size: 18px; }
-      .reader-row .sec-range { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-      #screen-home .quiz-link { margin-top: 10px; font-size: 15px; }
+      /* Screen 1, lower tiles: the Study Reader, the Kriyapada Quiz and the
+         Samsaadhanii thank-you tile — the section rows' card style, a touch
+         smaller so all six tiles plus the coverage line fit one screen. */
+      .home-more { margin-top: 10px; }
+      a.sec-row { text-decoration: none; }
+      .more-row { padding: 10px 16px; }
+      .more-row .sec-name { font-size: 18.5px; }
+      .more-row .sec-name .dev { font-size: 17px; }
+      .more-row .sec-range { font-size: 14px; }
       #screen-home footer.note {
         margin-top: auto; max-width: none; padding-top: 10px;
         font-size: 12px; line-height: 1.45;
@@ -608,8 +609,16 @@
         .sec-list { margin-top: 10px; gap: 7px; }
         .sec-row { padding: 9px 14px; }
         .sec-name { font-size: 19px; }
-        .reader-row { margin-top: 8px; padding: 9px 14px; }
+        .home-more { margin-top: 8px; }
+        .more-row { padding: 8px 14px; }
         #screen-home footer.note { font-size: 11.5px; padding-top: 8px; }
+      }
+      @media (max-height: 700px) {
+        #screen-home .intro p { font-size: 14px; }
+        .sec-row { padding: 8px 14px; }
+        .more-row { padding: 7px 14px; }
+        .more-row .sec-name { font-size: 17px; }
+        #screen-home footer.note { font-size: 11px; line-height: 1.4; padding-top: 7px; }
       }
 
       /* Screen 2 — one section's six chapter tiles */
@@ -985,7 +994,7 @@
       </div>
 
       <footer class="note">
-        <p>Verse text: <em>Śrīmad Bhagavad Gītā</em> — Chapter 1, verses 1–47, Chapter 2, verses 1–72, Chapter 3, verses 1–43, Chapter 4, verses 1–42, Chapter 5, verses 1–29, Chapter 6, verses 1–47, Chapter 7, verses 1–30, Chapter 8, verses 1–28, Chapter 9, verses 1–34, Chapter 10, verses 1–42, Chapter 11, verses 1–55, Chapter 12, verses 1–20, Chapter 13, verses 1–34, Chapter 14, verses 1–27, Chapter 15, verses 1–20, Chapter 16, verses 1–24, Chapter 17, verses 1–28, and Chapter 18, verses 1–78 — as presented in the <a href="https://ereaders.samsaadhanii.in/books/ereaders/#/read/shrimadbhagavadgita/1-1-1" target="_blank" rel="noopener">Samsaadhanii e-reader</a> (Computational Linguistics Group, University of Hyderabad). The <span class="dev">अन्वयः</span> word order, <span class="dev">कारकचक्रम्</span> relations and <span class="dev">पदपरिचयः</span> tables here are the e-reader's own analysis, reproduced exactly as its data gives them — nothing re-tagged, reordered or corrected; words the analysis supplies but the verse omits are shown in brackets, and the speaker lines are marked as not part of that analysis. A word the analysis lists more than once keeps a row for each occurrence. Translations and word glosses are short learner renderings.</p>
+        <p>Verse text: <em>Śrīmad Bhagavad Gītā</em>, all 700 verses — Ch. 1: 1–47 · Ch. 2: 1–72 · Ch. 3: 1–43 · Ch. 4: 1–42 · Ch. 5: 1–29 · Ch. 6: 1–47 · Ch. 7: 1–30 · Ch. 8: 1–28 · Ch. 9: 1–34 · Ch. 10: 1–42 · Ch. 11: 1–55 · Ch. 12: 1–20 · Ch. 13: 1–34 · Ch. 14: 1–27 · Ch. 15: 1–20 · Ch. 16: 1–24 · Ch. 17: 1–28 · Ch. 18: 1–78 — as presented in the <a href="https://ereaders.samsaadhanii.in/books/ereaders/#/read/shrimadbhagavadgita/1-1-1" target="_blank" rel="noopener">Samsaadhanii e-reader</a> (Computational Linguistics Group, University of Hyderabad).</p>
       </footer>
     </div>
 
@@ -17876,8 +17885,8 @@
           scrChapter = mkScreen("screen-chapter");
       SCREENS = { home: scrHome, section: scrSection, chapter: scrChapter };
 
-      // Screen 1: intro, the three section rows, the Study Reader link,
-      // the quiz link and the footer — nothing else.
+      // Screen 1: intro, the three section rows, three more tiles (Study
+      // Reader, quiz, Samsaadhanii thanks) and the coverage footer.
       var introEl = document.querySelector("header.intro");
       if (introEl) scrHome.appendChild(introEl);
       var secList = document.createElement("nav");
@@ -17898,15 +17907,39 @@
         secList.appendChild(b);
       });
       scrHome.appendChild(secList);
-      var readerRow = document.createElement("button");
-      readerRow.className = "reader-row";
-      readerRow.setAttribute("data-goto-page", "b");
-      readerRow.innerHTML = '<span class="sec-main"><span class="sec-name">The Study Reader</span>' +
+      // Screen 1, lower tiles: the Study Reader, the Kriyapada Quiz and a
+      // thank-you tile for Samsaadhanii, in the section rows' style. They
+      // replace the old reader row, quiz link line and the footer's
+      // attribution paragraph; the footer keeps the verse-coverage line.
+      var moreList = document.createElement("nav");
+      moreList.className = "sec-list home-more";
+      moreList.setAttribute("aria-label", "Study Reader, quiz and thanks");
+      var readerTile = document.createElement("button");
+      readerTile.className = "sec-row more-row";
+      readerTile.setAttribute("data-goto-page", "b");
+      readerTile.innerHTML = '<span class="sec-main"><span class="sec-name">The Study Reader</span>' +
         '<span class="sec-range">The e-reader way — the verses open in front of you, each with its full analysis.</span></span>' +
         '<span class="sec-chev" aria-hidden="true">›</span>';
-      scrHome.appendChild(readerRow);
+      moreList.appendChild(readerTile);
+      var quizTile = document.createElement("a");
+      quizTile.className = "sec-row more-row";
+      quizTile.href = "kriyapada-quiz.html";
+      quizTile.innerHTML = '<span class="sec-main"><span class="sec-name dev">क्रियापदपरीक्षा</span>' +
+        '<span class="sec-range dev">श्लोके क्रियापदं परिचिनु · प्रथमोऽध्यायः, श्लोकाः १–१०</span></span>' +
+        '<span class="sec-chev" aria-hidden="true">›</span>';
+      moreList.appendChild(quizTile);
+      var thanksTile = document.createElement("a");
+      thanksTile.className = "sec-row more-row";
+      thanksTile.href = "https://sanskrit.uohyd.ac.in/scl/";
+      thanksTile.target = "_blank";
+      thanksTile.rel = "noopener";
+      thanksTile.innerHTML = '<span class="sec-main"><span class="sec-name">Thank you, Samsaadhanii<span class="dev">धन्यवादः</span></span>' +
+        '<span class="sec-range">For the e-reader and its own analysis — <span class="dev">अन्वयः</span>, <span class="dev">कारकचक्रम्</span>, <span class="dev">पदपरिचयः</span> — behind every lesson here.</span></span>' +
+        '<span class="sec-chev" aria-hidden="true">›</span>';
+      moreList.appendChild(thanksTile);
+      scrHome.appendChild(moreList);
       var quizLinkEl = pageA.querySelector(".quiz-link");
-      if (quizLinkEl) scrHome.appendChild(quizLinkEl);
+      if (quizLinkEl) quizLinkEl.remove();
       var footEl = document.querySelector("footer.note");
       if (footEl) scrHome.appendChild(footEl);
       var crossCard = pageA.querySelector(".opt-card.cross-link");
