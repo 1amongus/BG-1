@@ -524,6 +524,9 @@
       .k-hub-block:first-child { border-top: none; padding-top: 2px; }
       .k-hub-tag { text-align: center; margin: 0 0 10px; font-size: 14px; font-weight: 700; letter-spacing: .05em; color: var(--gold); }
       .k-cross { border: 1.5px dashed var(--gold); }
+      /* Dyotaka relation labels: grayed yet readable — a dark warm gray that
+         keeps at least 4:1 contrast on every pastel node fill. */
+      .k-node .k-role.k-dyotaka { color: #5f5346; }
       @media (min-width: 800px) {
         .k-multi[data-hubs="2"], .k-multi[data-hubs="3"], .k-multi[data-hubs="4"] { grid-template-columns: 1fr 1fr; }
         .k-multi[data-hubs="2"] .k-hub-block, .k-multi[data-hubs="3"] .k-hub-block, .k-multi[data-hubs="4"] .k-hub-block { border-top: none; padding-top: 2px; }
@@ -17816,7 +17819,11 @@
       }
       function kNodeBox(nd) {
         var cross = nd[0] === "नित्यसम्बन्धः" ? " k-cross" : "";
-        return '<div class="k-node k-fnode k-' + nd[3] + cross + '"><span class="k-role dev">' + esc(nd[0]) + '</span>' +
+        /* Dyotaka relations are grayed, not hidden (agreed Nov 14): only the
+           relation label takes the gray class — the word stays full-strength,
+           and a record's separate non-dyotaka node is a different box. */
+        var dyo = nd[0].indexOf("द्योतक") !== -1 ? " k-dyotaka" : "";
+        return '<div class="k-node k-fnode k-' + nd[3] + cross + '"><span class="k-role dev' + dyo + '">' + esc(nd[0]) + '</span>' +
           '<span class="k-word dev">' + esc(nd[1]) + "</span>" +
           (nd[2] ? '<span class="k-sub dev">' + esc(nd[2]) + "</span>" : "") + "</div>";
       }
